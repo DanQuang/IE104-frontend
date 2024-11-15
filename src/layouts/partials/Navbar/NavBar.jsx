@@ -10,6 +10,7 @@ import {
 import { Button, Menu, Drawer, Avatar, Dropdown } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import './navbar.css';  // Import file CSS mới
 
 const NavBar = () => {
   const [current, setCurrent] = useState("home");
@@ -24,10 +25,7 @@ const NavBar = () => {
       try {
         // Giải mã token để lấy userId
         const decoded = jwtDecode(storedToken);
-        console.log(decoded);
         const userId = decoded.id;
-
-        // Gọi API để lấy thông tin người dùng dựa trên userId
         fetchUserData(userId);
         setIsLoggedIn(true);
       } catch (error) {
@@ -39,11 +37,9 @@ const NavBar = () => {
   const fetchUserData = async (userId) => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      console.log("AccessToken:", accessToken); // Log để kiểm tra token
-  
       if (!accessToken) {
         console.error("AccessToken not found");
-        return; // Dừng hàm nếu không có accessToken
+        return;
       }
   
       const response = await fetch(`http://localhost:8080/api/v1/users/${userId}`, {
@@ -54,11 +50,7 @@ const NavBar = () => {
   
       if (response.ok) {
         const userData = await response.json();
-        setUser({
-          name: userData.email, 
-          // avatar: userData.avatar,
-        });
-        console.log("User data fetched successfully:", userData);
+        setUser({ name: userData.email });
       } else {
         console.error("Failed to fetch user data");
       }
@@ -72,24 +64,32 @@ const NavBar = () => {
       label: (
         <Button
           type="link"
-          icon={<HomeOutlined className="!text-rose-600" />}
-          className={`${
-            current === "home" ? "uppercase border-b-2 border-rose-600" : ""
-          } text-black hover:font-bold`}
+          icon={<HomeOutlined />}
+          className={`navbar-menu-item ${current === "home" ? "active" : ""}`}
         >
           Trang chủ
         </Button>
       ),
       key: "home",
     },
+        {
+          label: (
+            <Button
+              type="link"
+              icon={<ExclamationCircleOutlined />}
+              className={`navbar-menu-item ${current === "feature" ? "active" : ""}`}
+            >
+              Feature
+            </Button>
+          ),
+          key: "feature",
+        },
     {
       label: (
         <Button
           type="link"
-          icon={<WechatOutlined className="!text-rose-600" />}
-          className={`${
-            current === "chat" ? "uppercase border-b-2 border-rose-600" : ""
-          } text-black hover:font-bold`}
+          icon={<WechatOutlined />}
+          className={`navbar-menu-item ${current === "chat" ? "active" : ""}`}
         >
           Trò chuyện
         </Button>
@@ -100,10 +100,8 @@ const NavBar = () => {
       label: (
         <Button
           type="link"
-          icon={<MoneyCollectOutlined className="!text-rose-600" />}
-          className={`${
-            current === "pricing" ? "uppercase border-b-2 border-rose-600" : ""
-          } text-black hover:font-bold`}
+          icon={<MoneyCollectOutlined />}
+          className={`navbar-menu-item ${current === "pricing" ? "active" : ""}`}
         >
           Giá tiền
         </Button>
@@ -114,10 +112,8 @@ const NavBar = () => {
       label: (
         <Button
           type="link"
-          icon={<QuestionCircleOutlined className="!text-rose-600" />}
-          className={`${
-            current === "faqs" ? "uppercase border-b-2 border-rose-600" : ""
-          } text-black hover:font-bold`}
+          icon={<QuestionCircleOutlined />}
+          className={`navbar-menu-item ${current === "faqs" ? "active" : ""}`}
         >
           FAQs
         </Button>
@@ -128,10 +124,8 @@ const NavBar = () => {
       label: (
         <Button
           type="link"
-          icon={<ExclamationCircleOutlined className="!text-rose-600" />}
-          className={`${
-            current === "issue" ? "uppercase border-b-2 border-rose-600" : ""
-          } text-black hover:font-bold`}
+          icon={<ExclamationCircleOutlined />}
+          className={`navbar-menu-item ${current === "issue" ? "active" : ""}`}
         >
           Báo lỗi/Góp ý
         </Button>
@@ -157,31 +151,31 @@ const NavBar = () => {
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     setIsLoggedIn(false);
-    setUser({ name: "", avatar: "" });
+    setUser({ name: "" });
     navigate("/auth/login");
   };
 
   return (
-    <header className="bg-white border-b border-gray-200 lg:px-20">
-      <div className="flex justify-between items-center p-2">
+    <header className="navbar-container">
+      <div className="navbar-header">
         <Link
           to="/"
-          className="text-transparent bg-gradient-to-r from-rose-400 to-rose-950 bg-clip-text font-bold text-2xl hover:scale-105 focus:outline-none hover:text-transparent"
+          className="navbar-title"
         >
-          Quan bede
+          Quan Bede
         </Link>
 
-        <div className="hidden lg:flex justify-center">
+        <div className="navbar-menu">
           <Menu
             onClick={onClick}
             selectedKeys={[current]}
             mode="horizontal"
             items={items}
-            className="p-2 bg-white border-0"
+            className="navbar-menu"
           />
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="navbar-user">
           {isLoggedIn ? (
             <Dropdown
               overlay={
@@ -195,22 +189,22 @@ const NavBar = () => {
                 </Menu>
               }
             >
-              <div className="flex items-center space-x-2 cursor-pointer">
+              <div className="navbar-user">
                 <Avatar src={user.avatar} />
-                <span className="text-black">{user.name}</span>
+                <span>{user.name}</span>
               </div>
             </Dropdown>
           ) : (
             <Button
               type="primary"
-              className="bg-rose-600 border-rose-600"
+              className="navbar-login-button"
               onClick={() => navigate("/auth/login")}
             >
               Đăng nhập
             </Button>
           )}
 
-          <div className="lg:hidden">
+          <div className="navbar-mobile-menu-button">
             <Button icon={<MenuOutlined />} onClick={showDrawer} />
           </div>
         </div>
@@ -221,7 +215,6 @@ const NavBar = () => {
         placement="left"
         onClose={closeDrawer}
         visible={drawerVisible}
-        className="lg:hidden"
       >
         <Menu
           onClick={onClick}

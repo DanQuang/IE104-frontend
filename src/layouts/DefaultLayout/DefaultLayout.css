@@ -1,0 +1,15 @@
+/* defaultLayout.css */
+.layout-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    background-color: white;
+    height: 100vh;
+  }
+  
+  .content {
+    text-align: center;
+    min-height: 400px;
+    color: black;
+  }
+  

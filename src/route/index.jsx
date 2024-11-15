@@ -1,7 +1,7 @@
 // Import necessary modules
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import HomePage from "../pages/Homepage/Homepage";
-import { DefaultLayout } from "../layouts/DefaultLayout";
+import DefaultLayout from "../layouts/DefaultLayout/DefaultLayout";
 import Feature from "../pages/Feature/Feature";
 
 // Define the router configuration

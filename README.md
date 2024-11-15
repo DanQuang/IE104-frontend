@@ -1,8 +1,21 @@
-# React + Vite
+# Quan Bede
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Quan Bede là một dự án web được xây dựng bằng **React**, **Vite**, và **Ant Design**. Đây là một ứng dụng quản lý giao diện người dùng, cung cấp các tính năng như chat, hiển thị giá tiền, và báo lỗi/góp ý. Hãy làm theo các bước dưới đây để cài đặt và chạy dự án.
 
-Currently, two official plugins are available:
+## Yêu cầu
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Trước khi bắt đầu, bạn cần có một số phần mềm sau:
+
+- [Node.js](https://nodejs.org/) (Phiên bản >= 16.x)
+- [npm](https://www.npmjs.com/) (Được cài sẵn cùng Node.js)
+- [Vite](https://vitejs.dev/) (Sử dụng tự động khi chạy dự án)
+
+## Cài đặt và khởi động dự án
+
+1. **Clone Repository**
+
+   Đầu tiên, clone repository của dự án về máy của bạn.
+
+   ```bash
+   git clone https://github.com/DanQuang/IE104-frontend.git
+   cd IE104-frontend

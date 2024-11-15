@@ -1,0 +1,83 @@
+/* Footer container */
+.footer {
+    background-color: white;
+    border-top: 1px solid #e5e7eb; /* #e5e7eb is the Tailwind gray-200 color */
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+  
+  /* Footer content wrapper */
+  .footer__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer__content--lg {
+    flex-direction: row;
+  }
+  
+  /* Footer text section */
+  .footer__text {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .footer__text--lg {
+    text-align: left;
+    margin-bottom: 0;
+  }
+  
+  .footer__title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #f43f5e, #7a10b0); /* from-rose-400 to-rose-950 */
+    background-clip: text;
+    color: transparent;
+    transition: transform 0.3s;
+  }
+  
+  .footer__title:hover {
+    transform: scale(1.05);
+  }
+  
+  .footer__copyright {
+    color: #6b7280; /* gray-500 */
+    margin-top: 0.5rem;
+  }
+  
+  /* Footer links */
+  .footer__links {
+    display: flex;
+    gap: 1rem;
+    color: #6b7280; /* gray-500 */
+  }
+  
+  .footer__links a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .footer__links a:hover {
+    color: #f43f5e; /* hover:text-rose-600 */
+  }
+  
+  /* Footer social icons */
+  .footer__social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .footer__social a {
+    color: #6b7280; /* gray-500 */
+    text-decoration: none;
+  }
+  
+  .footer__social a:hover {
+    color: #f43f5e; /* hover:text-rose-600 */
+  }
+  

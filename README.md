@@ -19,3 +19,7 @@ Trước khi bắt đầu, bạn cần có một số phần mềm sau:
    ```bash
    git clone https://github.com/DanQuang/IE104-frontend.git
    cd IE104-frontend
+2. **Chạy dự án**
+    ```
+    npm i
+    npm run dev

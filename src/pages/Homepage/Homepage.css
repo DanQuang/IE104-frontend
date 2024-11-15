@@ -1,0 +1,106 @@
+/* Container */
+.homepage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px;
+    background-color: #ffffff;
+  }
+  
+  /* Responsive Layout for Larger Screens */
+  .homepage-container-lg {
+    flex-direction: row;
+    padding: 20px 80px;
+  }
+  
+  /* Text Content Section */
+  .text-content {
+    width: 100%;
+    margin-bottom: 30px;
+    text-align: center;
+    background-image: url('../../assets/shape-50.png');
+    padding: 40px 20px;
+  }
+  
+  /* Larger screen text alignment */
+  .text-content-lg {
+    width: 50%;
+    text-align: left;
+    padding-left: 20px;
+  }
+  
+  /* Title */
+  .main-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin: 0;
+  }
+  
+  .main-title-lg {
+    font-size: 3rem;
+  }
+  
+  /* Gradient Text for Title Highlight */
+  .title-highlight {
+    background: linear-gradient(to right, #f43f5e, #4a0513);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Description Text */
+  .description-text {
+    font-size: 1.2rem;
+    color: #4b5563;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+  
+  /* Button */
+  .start-button {
+    background-color: #f43f5e;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .start-button:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Image Section */
+  .image-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Larger Screen Image Alignment */
+  .image-section-lg {
+    width: 50%;
+    justify-content: flex-end;
+  }
+  
+  /* Chatbot Image */
+  .chatbot-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Services Heading */
+  .services-heading {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 40px;
+  }
+  

@@ -2,9 +2,9 @@
 .layout-container {
     width: 100%;
     max-width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     background-color: white;
-    height: 100vh;
+    /* height: 100vh; */
   }
   
   .content {

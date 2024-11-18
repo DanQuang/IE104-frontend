@@ -1,0 +1,36 @@
+.go-to-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 20px; /* Đặt ở bên phải */
+    bottom: 20px; /* Cách đáy 20px */
+    cursor: pointer;
+  }
+  
+  .line {
+    width: 2px;
+    height: 50px;
+    background: linear-gradient(to bottom, pink, gray); /* Gradient từ hồng sang xám */
+    margin-bottom: 5px; /* Khoảng cách giữa thanh và văn bản */
+  }
+  
+  .text {
+    writing-mode: vertical-rl; /* Xoay chữ theo chiều dọc */
+    transform: rotate(180deg); /* Đảo ngược chữ để đọc từ dưới lên */
+    color: #f43f5e; /* Màu vàng gold */
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    transition: color 0.3s ease;
+  }
+  
+  .go-to-top:hover .text {
+    color: #c7982f; /* Đổi sang màu vàng đậm khi hover */
+  }
+  
+  .go-to-top:hover .line {
+    background: linear-gradient(to bottom, gray, pink); /* Đổi gradient ngược lại khi hover */
+  }
+  

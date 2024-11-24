@@ -1,6 +1,6 @@
-# Quan Bede
+# Legal Chatbot
 
-Quan Bede là một dự án web được xây dựng bằng **React**, **Vite**, và **Ant Design**. Đây là một ứng dụng quản lý giao diện người dùng, cung cấp các tính năng như chat, hiển thị giá tiền, và báo lỗi/góp ý. Hãy làm theo các bước dưới đây để cài đặt và chạy dự án.
+Legal Chatbot là một dự án web được xây dựng bằng **React**, **Vite**, và **Ant Design**. Đây là một ứng dụng quản lý giao diện người dùng, cung cấp các tính năng như chat, hiển thị giá tiền, và báo lỗi/góp ý. Hãy làm theo các bước dưới đây để cài đặt và chạy dự án.
 
 ## Yêu cầu
 

@@ -39,11 +39,11 @@ const NavBar = () => {
     },
     {
       label: (
-        <Link to="/features" className={`navbar-menu-item ${current === "features" ? "active" : ""}`}>
-          Features
+        <Link to="/Feature" className={`navbar-menu-item ${current === "Feature" ? "active" : ""}`}>
+          Feature
         </Link>
       ),
-      key: "features",
+      key: "Feature",
     },
     {
       label: (

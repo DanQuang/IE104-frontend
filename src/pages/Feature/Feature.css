@@ -3,6 +3,15 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
+    box-sizing: border-box; /* Đảm bảo padding không ảnh hưởng đến kích thước tổng thể */
+}
+
+/* Đảm bảo trang có thể cuộn */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-y: auto; /* Kích hoạt cuộn dọc nếu cần */
 }
 
 /* Tabs Navigation */
@@ -57,12 +66,14 @@
     margin-bottom: 150px;
 }
 
+/* Đảm bảo nội dung không bị giới hạn */
 .tab-inner-content {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     align-items: flex-start;
     margin: 20px 0;
+    box-sizing: border-box; /* Đảm bảo kích thước đúng */
 }
 
 .tab-text-content {
@@ -107,9 +118,9 @@
 
 .button-box {
     display: inline-block; /* Đảm bảo div chỉ rộng bằng nội dung */
-  }
+}
   
-  .button-link {
+.button-link {
     display: inline-block; /* Làm cho <a> giống như một button */
     padding: 10px 20px; /* Thêm khoảng đệm để giống với button */
     text-decoration: none; /* Xóa gạch chân */
@@ -118,15 +129,14 @@
     border: 2px solid #f43f5e; /* Thêm border cho button */
     border-radius: 20px; /* Bo góc */
     transition: background-color 0.3s ease; /* Thêm hiệu ứng chuyển màu */
-  }
+}
   
-  .button-link:hover {
+.button-link:hover {
     background-color: black; /* Thay đổi màu nền khi hover */
     color: #fff; /* Đổi màu chữ khi hover */
     border: 2px solid black; /* đổi màu border cho button */
-  }
+}
   
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .tab-inner-content {

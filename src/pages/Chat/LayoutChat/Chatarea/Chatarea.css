@@ -1,0 +1,94 @@
+.chat-area {
+    flex: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 20px 10px;
+}
+
+.chat-area.custom-scrollbar {
+    /* Tuỳ chỉnh thanh cuộn */
+    scrollbar-width: thin;
+    scrollbar-color: #888 transparent;
+}
+
+.chat-area.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-area.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+.welcome {
+    padding: 50px 0 200px;
+    text-align: center;
+}
+
+.welcome-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-large {
+    width: 80px;
+    height: 80px;
+}
+
+.welcome-box {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.welcome-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.welcome-text {
+    color: #666;
+}
+
+.markdown-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.markdown-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.markdown-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.markdown-text {
+    margin-top: 5px;
+    white-space: pre-wrap;
+}
+
+.separator {
+    margin: 20px 0;
+    border-top: 1px solid #ccc;
+}

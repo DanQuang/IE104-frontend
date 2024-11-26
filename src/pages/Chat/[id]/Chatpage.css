@@ -1,0 +1,43 @@
+.chat-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Chiều cao toàn màn hình */
+    overflow: hidden; /* Ẩn nội dung tràn */
+}
+
+.chat-area {
+    flex: 1; /* Khu vực chat chiếm tối đa không gian */
+    overflow-y: auto; /* Cuộn nội dung nếu tràn */
+    padding: 16px;
+    background-color: #f9f9f9; /* Màu nền sáng */
+}
+
+.chat-prompt {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-top: 1px solid #ddd; /* Đường kẻ phân cách */
+    background-color: #fff; /* Màu nền trắng */
+}
+
+.chat-prompt input {
+    flex: 1; /* Input chiếm tối đa không gian */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+.chat-prompt button {
+    padding: 8px 16px;
+    background-color: #007bff; /* Màu xanh */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.chat-prompt button:disabled {
+    background-color: #ccc; /* Màu xám khi bị vô hiệu hóa */
+    cursor: not-allowed;
+}

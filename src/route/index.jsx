@@ -2,7 +2,8 @@ import { createBrowserRouter, Outlet } from "react-router-dom";
 import HomePage from "../pages/Homepage/Homepage";
 import DefaultLayout from "../layouts/DefaultLayout/DefaultLayout";
 import Feature from "../pages/Feature/Feature";
-import ChatPage from "../pages/Chat/[id]/Chatpage";
+import Pricing from "../pages/Pricing/Pricing";
+// import ChatPage from "../pages/Chat/[id]/Chatpage";
 
 // Định nghĩa router
 export const router = createBrowserRouter([
@@ -15,13 +16,21 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
+        path: "home", // Route gốc
+        element: <HomePage />,
+      },
+      {
         path: "feature", // Route tính năng
         element: <Feature />,
       },
       {
-        path: "chat/:id", // Route động cho trang chat
-        element: <ChatPage />,
+        path: "pricing", // Route tính năng
+        element: <Pricing/>,
       },
+      // {
+      //   path: "chat/:id", // Route động cho trang chat
+      //   element: <ChatPage />,
+      // },
     ],
   },
   {

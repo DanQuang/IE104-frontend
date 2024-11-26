@@ -1,26 +1,35 @@
 import { useState, useEffect } from "react";
-import {
-  HomeOutlined,
-  MenuOutlined,
-} from "@ant-design/icons";
-import { Button, Menu, Drawer, Avatar, Dropdown } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import './navbar.css';  // Import file CSS mới
+import { jwtDecode } from "jwt-decode";
+import './navbar.css'; 
+
+import animationData from "../../../assets/chatbot.json";
+import Lottie from "lottie-react";
 
 const NavBar = () => {
   const [current, setCurrent] = useState("home");
-  const [drawerVisible, setDrawerVisible] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({ name: "" });
+  const [user, setUser] = useState({ name: "", avatar: "" });
+  const [hasScrolled, setHasScrolled] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("accessToken");
     if (storedToken) {
       try {
-        // Giả sử có hàm giải mã token để lấy user
         const decoded = jwtDecode(storedToken);
-        fetchUserData(decoded.id);
+        fetchUserData(decoded.id); // Giả sử bạn có hàm fetchUserData
         setIsLoggedIn(true);
       } catch (error) {
         console.error("Token decoding error:", error);
@@ -28,138 +37,69 @@ const NavBar = () => {
     }
   }, []);
 
-  const items = [
-    {
-      label: (
-        <Link to="/" className={`navbar-menu-item ${current === "home" ? "active" : ""}`}>
-          Home
-        </Link>
-      ),
-      key: "home",
-    },
-    {
-      label: (
-        <Link to="/Feature" className={`navbar-menu-item ${current === "Feature" ? "active" : ""}`}>
-          Feature
-        </Link>
-      ),
-      key: "Feature",
-    },
-    {
-      label: (
-        <Link to="/legal-assistant" className={`navbar-menu-item ${current === "legal-assistant" ? "active" : ""}`}>
-          Legal Assistant
-        </Link>
-      ),
-      key: "legal-assistant",
-    },
-    {
-      label: (
-        <Link to="/pricing" className={`navbar-menu-item ${current === "pricing" ? "active" : ""}`}>
-          Pricing
-        </Link>
-      ),
-      key: "pricing",
-    },
-    {
-      label: (
-        <Link to="/donation" className={`navbar-menu-item ${current === "donation" ? "active" : ""}`}>
-          Donation
-        </Link>
-      ),
-      key: "donation",
-    },
-    {
-      label: (
-        <Link to="/blogs" className={`navbar-menu-item ${current === "blogs" ? "active" : ""}`}>
-          Blogs
-        </Link>
-      ),
-      key: "blogs",
-    },
-    {
-      label: (
-        <Link to="/about" className={`navbar-menu-item ${current === "about" ? "active" : ""}`}>
-          About
-        </Link>
-      ),
-      key: "about",
-    },
-    {
-      label: (
-        <Link to="/contact" className={`navbar-menu-item ${current === "contact" ? "active" : ""}`}>
-          Contact
-        </Link>
-      ),
-      key: "contact",
-    },
-  ];
+  const handleNavigation = (key) => {
+    setCurrent(key);
+    navigate(`/${key}`);
+  };
 
-  const onClick = (e) => {
-    setCurrent(e.key);
-    navigate(`/${e.key}`);
-    setDrawerVisible(false);
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    setIsLoggedIn(false);
+    setUser({ name: "", avatar: "" });
+    navigate("/auth/login");
   };
 
   return (
-    <header className="navbar-container">
+    <header className={`navbar-container ${hasScrolled ? "scrolled" : ""}`}>
       <div className="navbar-header">
         <Link to="/" className="navbar-logo">
-          <img src="/path/to/logo.png" alt="Logo" />
-        </Link>
-
-        <div className="navbar-menu">
-          <Menu
-            onClick={onClick}
-            selectedKeys={[current]}
-            mode="horizontal"
-            items={items}
-            className="navbar-menu"
+          <Lottie 
+            animationData={animationData} 
+            loop={true} 
+            alt="Legal Chatbot Logo" 
+            className="logo" 
           />
-        </div>
-
+        </Link>
+        <nav className="navbar-menu">
+          {[
+            { key: "home", label: "Home" },
+            { key: "Feature", label: "Feature" },
+            { key: "legal-assistant", label: "Legal Assistant" },
+            { key: "pricing", label: "Pricing" },
+            { key: "donation", label: "Donation" },
+            { key: "blogs", label: "Blogs" },
+            { key: "about", label: "About" },
+            { key: "contact", label: "Contact" },
+          ].map((item) => (
+            <Link
+              key={item.key}
+              to={`/${item.key}`}
+              className={`navbar-menu-item ${current === item.key ? "active" : ""}`}
+              onClick={() => handleNavigation(item.key)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
         <div className="navbar-actions">
           {isLoggedIn ? (
-            <Dropdown
-              overlay={
-                <Menu>
-                  <Menu.Item onClick={() => navigate("/profile")}>Profile</Menu.Item>
-                  <Menu.Item onClick={() => {
-                    localStorage.removeItem("accessToken");
-                    setIsLoggedIn(false);
-                    setUser({ name: "" });
-                    navigate("/auth/login");
-                  }}>Logout</Menu.Item>
-                </Menu>
-              }
-            >
-              <div className="navbar-user">
-                <Avatar src={user.avatar} />
+            <div className="navbar-user-dropdown">
+              <div className="navbar-user" onClick={() => navigate("/profile")}>
+                <img src={user.avatar} alt="User Avatar" className="user-avatar" />
                 <span>{user.name}</span>
               </div>
-            </Dropdown>
+              <button className="logout-button" onClick={handleLogout}>Logout</button>
+            </div>
           ) : (
-            <Button
-              type="primary"
-              className="navbar-login-button"
+            <button 
+              className="navbar-login-button" 
               onClick={() => navigate("/auth/login")}
             >
               Start Consulting
-            </Button>
+            </button>
           )}
-
-          <Button icon={<MenuOutlined />} onClick={() => setDrawerVisible(true)} className="navbar-mobile-menu-button" />
         </div>
       </div>
-
-      <Drawer
-        title="Menu"
-        placement="left"
-        onClose={() => setDrawerVisible(false)}
-        visible={drawerVisible}
-      >
-        <Menu onClick={onClick} selectedKeys={[current]} mode="vertical" items={items} />
-      </Drawer>
     </header>
   );
 };

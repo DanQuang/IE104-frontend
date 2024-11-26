@@ -1,69 +1,67 @@
-/* navbar.css */
-
-/* Các lớp cho Header */
+/* Tổng quan về navbar */
 .navbar-container {
   background-color: white;
-  border-bottom: 1px solid #e5e7eb; /* Màu xám nhạt giống border-gray-200 */
-  padding-left: 2rem;
-  padding-right: 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm shadow để tạo độ nổi */
+  padding: 20px;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: none;
+
+}
+
+.navbar-container.navbar-scrolled {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .navbar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem; /* Điều chỉnh padding để phù hợp hơn với thiết kế */
+  height: 64px;
 }
 
 .navbar-logo {
-  display: flex;
-  align-items: center;
+  margin-left: 20px;
+  margin-top: 20px;
 }
 
-.navbar-logo img {
-  height: 50px; /* Điều chỉnh kích thước logo để phù hợp với thiết kế mới */
-  margin-right: 1rem;
+.navbar-logo:hover {
+  scale: 1.05;
 }
 
-.navbar-title {
-  display: none; /* Ẩn tiêu đề vì không cần thiết trong thiết kế mới */
-}
 
 .navbar-menu {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 2rem;
-  padding: 0;
-  background-color: transparent;
-  border: none;
+  gap: 1.5rem;
 }
 
 .navbar-menu-item {
-  color: black;
+  color: #000000;
   font-weight: 500;
+  text-transform: capitalize;
+  font-size: 1rem;
   padding: 0.5rem 1rem;
   border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
-  font-size: 1rem;
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 
-.navbar-menu-item:hover {
-  color: #d4a73e; /* Điều chỉnh màu hover để phù hợp với thiết kế */
-}
-
+.navbar-menu-item:hover,
 .navbar-menu-item.active {
-  color: #d4a73e; /* Màu sắc của mục đang hoạt động giống với màu nút */
+  color: #f43f5e;
+  border-bottom: 2px solid #f43f5e;
   font-weight: bold;
-  border-color: #d4a73e;
 }
 
-/* Các lớp cho dropdown và button */
+/* User actions */
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 0.5em;
+  color: #f43f5e;
 }
 
 .navbar-user {
@@ -73,47 +71,20 @@
   cursor: pointer;
 }
 
-.navbar-user-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-}
-
 .navbar-login-button {
-  background-color: #d4a73e;
-  border: none;
-  color: white;
+  background-color: #f43f5e;
+  color: #ffffff;
+  font-weight: 700;
   padding: 0.75rem 1.5rem;
+  border: none;
   font-size: 1rem;
   border-radius: 25px;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-right: 60px;
+  padding: 20px;
 }
 
 .navbar-login-button:hover {
-  background-color: #b58b32; /* Màu tối hơn cho nút khi hover */
+  background-color: #f43f5e;
   transform: scale(1.05);
-}
-
-.navbar-mobile-menu-button {
-  display: none;
-}
-
-@media (max-width: 1024px) {
-  .navbar-menu {
-      display: none;
-  }
-
-  .navbar-mobile-menu-button {
-      display: block;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar-header {
-      padding: 0.5rem;
-  }
-
-  .navbar-logo img {
-      height: 40px;
-  }
 }

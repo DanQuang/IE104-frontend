@@ -2,16 +2,9 @@
 .features-container {
     max-width: 1400px;
     margin: 0 auto;
+    margin-top: 50px;
     padding: 0 20px;
     box-sizing: border-box; /* Đảm bảo padding không ảnh hưởng đến kích thước tổng thể */
-}
-
-/* Đảm bảo trang có thể cuộn */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow-y: auto; /* Kích hoạt cuộn dọc nếu cần */
 }
 
 /* Tabs Navigation */

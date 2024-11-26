@@ -1,0 +1,58 @@
+/* CSS cho IndexPage */
+
+.index-page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.index-page-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.index-page-icon {
+    width: 5rem;
+    height: 5rem;
+    animation: pulse 1.5s infinite;
+}
+
+.index-page-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.index-page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.index-page-card {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 1rem;
+    max-width: 24rem;
+}
+
+.index-page-card h2 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Hiệu ứng "pulse" cho biểu tượng */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}

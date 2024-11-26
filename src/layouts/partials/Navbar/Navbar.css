@@ -2,89 +2,118 @@
 
 /* Các lớp cho Header */
 .navbar-container {
-    background-color: white;
-    border-bottom: 1px solid #e5e7eb; /* Màu xám nhạt giống border-gray-200 */
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  .navbar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem;
-  }
-  
-  .navbar-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    background-image: linear-gradient(to right, #f43f5e, #be123c); /* Tạo gradient */
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    text-transform: uppercase;
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-  
-  .navbar-title:hover {
-    transform: scale(1.05);
-    color: transparent; /* Giữ màu text gradient */
-  }
-  
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb; /* Màu xám nhạt giống border-gray-200 */
+  padding-left: 2rem;
+  padding-right: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm shadow để tạo độ nổi */
+}
+
+.navbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem; /* Điều chỉnh padding để phù hợp hơn với thiết kế */
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  height: 50px; /* Điều chỉnh kích thước logo để phù hợp với thiết kế mới */
+  margin-right: 1rem;
+}
+
+.navbar-title {
+  display: none; /* Ẩn tiêu đề vì không cần thiết trong thiết kế mới */
+}
+
+.navbar-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.navbar-menu-item {
+  color: black;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.navbar-menu-item:hover {
+  color: #d4a73e; /* Điều chỉnh màu hover để phù hợp với thiết kế */
+}
+
+.navbar-menu-item.active {
+  color: #d4a73e; /* Màu sắc của mục đang hoạt động giống với màu nút */
+  font-weight: bold;
+  border-color: #d4a73e;
+}
+
+/* Các lớp cho dropdown và button */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.navbar-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.navbar-login-button {
+  background-color: #d4a73e;
+  border: none;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-login-button:hover {
+  background-color: #b58b32; /* Màu tối hơn cho nút khi hover */
+  transform: scale(1.05);
+}
+
+.navbar-mobile-menu-button {
+  display: none;
+}
+
+@media (max-width: 1024px) {
   .navbar-menu {
-    display: flex;
-    justify-content: center;
-    padding: 0.5rem;
-    background-color: white;
-    border: none;
-  }
-  
-  .navbar-menu-item {
-    color: black;
-    text-transform: none;
-    font-weight: normal;
-    padding: 0.5rem;
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s ease;
-  }
-  
-  .navbar-menu-item.active {
-    text-transform: uppercase;
-    font-weight: bold;
-    border-color: #f43f5e; /* Tương ứng với màu rose-600 */
-  }
-  
-  /* Các lớp cho dropdown và button */
-  .navbar-user {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-  }
-  
-  .navbar-user-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-  }
-  
-  .navbar-login-button {
-    background-color: #f43f5e;
-    border-color: #f43f5e;
-    color: white;
-  }
-  
-  .navbar-mobile-menu-button {
-    display: none;
-  }
-  
-  @media (max-width: 1024px) {
-    .navbar-menu {
       display: none;
-    }
-  
-    .navbar-mobile-menu-button {
-      display: block;
-    }
   }
-  
+
+  .navbar-mobile-menu-button {
+      display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-header {
+      padding: 0.5rem;
+  }
+
+  .navbar-logo img {
+      height: 40px;
+  }
+}

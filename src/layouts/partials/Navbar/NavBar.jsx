@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import './navbar.css'; 
 
@@ -12,6 +12,7 @@ const NavBar = () => {
   const [user, setUser] = useState({ name: "", avatar: "" });
   const [hasScrolled, setHasScrolled] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation(); // Theo dõi đường dẫn hiện tại
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +37,11 @@ const NavBar = () => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    const path = location.pathname.replace("/", "");
+    setCurrent(path || "home"); 
+  }, [location]);
 
   const handleNavigation = (key) => {
     setCurrent(key);
@@ -63,7 +69,7 @@ const NavBar = () => {
         <nav className="navbar-menu">
           {[
             { key: "home", label: "Home" },
-            { key: "Feature", label: "Feature" },
+            { key: "feature", label: "Feature" },
             { key: "legal-assistant", label: "Legal Assistant" },
             { key: "pricing", label: "Pricing" },
             { key: "donation", label: "Donation" },

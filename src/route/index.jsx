@@ -3,28 +3,31 @@ import HomePage from "../pages/Homepage/Homepage";
 import DefaultLayout from "../layouts/DefaultLayout/DefaultLayout";
 import Feature from "../pages/Feature/Feature";
 import Pricing from "../pages/Pricing/Pricing";
+import LoginPage from "../pages/Auth/Login/LoginPage";
+import RegisterPage from "../pages/Auth/Register/Registerpage";
+import ForgotPasswordPage from "../pages/Auth/ForgotPassword/ForgotPassword";
 // import ChatPage from "../pages/Chat/[id]/Chatpage";
 
 // Định nghĩa router
 export const router = createBrowserRouter([
   {
-    path: "/", // Layout chính cho trang
+    path: "/", 
     element: <DefaultLayout />,
     children: [
       {
-        path: "", // Route gốc
+        path: "", 
         element: <HomePage />,
       },
       {
-        path: "home", // Route gốc
+        path: "home", 
         element: <HomePage />,
       },
       {
-        path: "feature", // Route tính năng
+        path: "feature", 
         element: <Feature />,
       },
       {
-        path: "pricing", // Route tính năng
+        path: "pricing", 
         element: <Pricing/>,
       },
       // {
@@ -34,13 +37,21 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/auth", // Nếu cần sử dụng auth routes
+    path: "/auth", 
     element: <Outlet />,
     children: [
-      // Định nghĩa các route auth nếu cần
-      // Ví dụ:
-      // { path: "login", element: <LoginPage /> },
-      // { path: "signup", element: <SignupPage /> },
+      {
+        path: "login", 
+        element: <LoginPage/>,
+      },
+      {
+        path: "register", 
+        element: <RegisterPage/>,
+      },
+      {
+        path: "forgot-password", 
+        element: <ForgotPasswordPage/>,
+      },
     ],
   },
 ]);

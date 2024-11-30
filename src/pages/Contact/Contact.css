@@ -14,7 +14,8 @@
   }
   
   .contact-header h2 {
-    font-size: 36px;
+    color: #f43f5e;
+    font-size: 50px;
     font-weight: 700;
     margin-bottom: 20px;
   }
@@ -60,7 +61,7 @@
 
 .contact-card .contact-link {
   display: inline-block;
-  color: #6a5acd;
+  color: #f43f5e;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -73,5 +74,5 @@
 /* Hover effect for cards */
 .contact-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 20px #f43f5e;
 }

@@ -1,0 +1,226 @@
+/* General Layout */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section {
+  padding: 80px 0; /* Uniform padding for all sections */
+}
+
+/* Banner Section */
+.banner-section {
+  position: relative;
+  background: #f7f7f7;
+  padding: 100px 0; /* Larger banner */
+}
+
+.pattern-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.pattern-1, .pattern-2 {
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+}
+
+.banner-section .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px; /* Space between content and image */
+}
+
+.banner-section h2, .banner-section p {
+  text-align: left; /* Ensures all text is left-aligned */
+}
+
+.banner-section h2 {
+  font-size: 2.5rem; /* Large title size */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.banner-section p {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #666;
+}
+
+.banner-section img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Info Section */
+.info-section {
+  background: #f4f4f4;
+  padding: 80px 0;
+  border-top: 2px solid #ddd;
+}
+
+.info-section h3, .info-section p {
+  text-align: left; /* Ensures all text is left-aligned */
+}
+
+.info-section h3 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.info-section p {
+  font-size: 1.3rem;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* Mission Section */
+.mission-section {
+  background: #fff;
+  padding: 80px 0;
+  border-top: 2px solid #ddd;
+}
+
+.mission-section .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mission-section .content-column {
+  display: flex;
+  flex-direction: column; /* Keep content in column layout */
+  gap: 30px; /* Space between text and image */
+}
+
+.mission-section .image-column {
+  flex: 1;
+}
+
+.mission-section .content-column {
+  flex: 2;
+}
+
+/* Reverse order of columns in the mission-section */
+.mission-section .row {
+  display: flex;
+  flex-direction: row-reverse; /* Reverse the order of the columns */
+}
+
+.mission-section h3, .mission-section ul li, .mission-section p {
+  text-align: left; /* Ensures all text is left-aligned */
+}
+
+.mission-section h3 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.mission-section ul {
+  list-style-type: disc;
+  padding-left: 30px;
+  margin-bottom: 30px;
+}
+
+.mission-section ul li {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.8;
+}
+
+.mission-section .btn {
+  background-color: #f43f5e;
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  text-align: left; /* Ensure button text is left-aligned */
+}
+
+.mission-section .btn:hover {
+  background-color: #e11d48;
+  transform: translateY(-5px);
+}
+
+/* Mission Section Image - Adjust image size */
+/* Mission Section Image - Make the image smaller */
+.mission-section .col-lg-6 img {
+  width: 130%; /* Make the image width 50% of its container */
+  height: 130%; /* Ensure the aspect ratio is maintained */
+}
+
+
+/* Legal Master Section */
+.legal-master-section {
+  background: #f4f9fc;
+  padding: 80px 0;
+  border-top: 2px solid #ddd;
+}
+
+.legal-master-section h3, .legal-master-section h4, .legal-master-section p, .legal-master-section ul li {
+  text-align: left; /* Ensures all text is left-aligned */
+}
+
+.legal-master-section h3 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.legal-master-section h4 {
+  font-size: 1.8rem;
+  color: #f43f5e;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+.legal-master-section p {
+  font-size: 1.3rem;
+  color: #555;
+  line-height: 1.8;
+}
+
+.legal-master-section ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.legal-master-section ul li {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Ensuring all sections are left-aligned */
+.mission-section .btn-box, .legal-master-section .btn-box {
+  text-align: left; /* Left-align button containers */
+}
+
+/* Styling the button box to align left */
+.mission-section .btn-box {
+  text-align: left;
+}
+
+.legal-master-section .btn-box {
+  text-align: left;
+}

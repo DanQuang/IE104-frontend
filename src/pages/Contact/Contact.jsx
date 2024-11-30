@@ -6,45 +6,46 @@ function Contact() {
   return (
     <div className="contact-page">
       <header className="contact-header">
-        <h2>Get in Touch</h2>
+        <h2>Liên hệ</h2>
         <p>
-          We are here to assist you. Please feel free to reach out to us with
-          any questions or inquiries. Your feedback is important to us, and we
-          are committed to providing you with the information and support you
-          need.
+          Chúng tôi ở đây để hỗ trợ bạn. Xin vui lòng liên hệ với chúng tôi nếu
+          có bất kỳ câu hỏi hoặc thắc mắc nào. Phản hồi của bạn rất quan trọng
+          đối với chúng tôi và chúng tôi cam kết cung cấp cho bạn thông tin và
+          hỗ trợ bạn cần.
         </p>
       </header>
       <div className="contact-cards-container">
         {/* Call Now Section */}
         <div className="contact-card">
-          <h3>Call Now</h3>
-          <p>General Inquiries: +1 (888) 850-0025</p>
-          <p>Technical Support: +1 (202) 888-5383</p>
-          <a href="tel:+18888500025" className="contact-link">
-            Call Now →
+          <h3>Gọi ngay</h3>
+          <p>Thắc mắc chung: +84 911 617 838</p>
+          <p>Hỗ trợ kĩ thuật: +1 (202) 888-5383</p>
+          <a href="tel:+84911617838" className="contact-link">
+            Gọi ngay →
           </a>
         </div>
 
         {/* Email Support Section */}
         <div className="contact-card">
-          <h3>Email Support</h3>
+          <h3>Hỗ trợ qua Email</h3>
           <p>
-            Prefer Email? Send us a Mail Now and we&#39;ll get back to you soon.
+            Bạn thích Email hơn? Gửi mail cho chúng tôi ngay bây giờ và chúng
+            tôi sẽ sớm liên hệ lại với bạn.
           </p>
-          <a href="mailto:support@legalmaster.ai" className="contact-link">
-            Send Email →
+          <a href="mailto:tquangdan03@gmail.com" className="contact-link">
+            Gửi Email →
           </a>
         </div>
 
         {/* Visit Us Section */}
         <div className="contact-card">
-          <h3>Visit Us</h3>
-          <p>We&#39;re Available during our Office Hours:</p>
-          <p>Monday - Friday: 9:00 AM - 5:00 PM (Local Time)</p>
+          <h3>Ghé thăm chúng tôi</h3>
+          <p>Chúng tôi làm việc trong giờ hành chính:</p>
+          <p>Thứ hai - Thứ sáu: 9:00 AM - 5:00 PM (Giờ địa phương)</p>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Contact;

@@ -30,18 +30,18 @@ const Footer = () => {
           <div className="footer-links">
             {/* Resources Section */}
             <div className="footer-section">
-              <h3 className="footer-heading">Resources</h3>
+              <h3 className="footer-heading">Tài nguyên</h3>
               <ul className="footer-list">
                 <li><Link to="/chat" className="footer-item">Trò Chuyện</Link></li>
                 <li><Link to="/pricing" className="footer-item">Giá Tiền</Link></li>
                 <li><Link to="/FAQs" className="footer-item">FAQs</Link></li>
-                <li><Link to="/contact" className="footer-item">Contact</Link></li>
+                <li><Link to="/contact" className="footer-item">Liên hệ</Link></li>
               </ul>
             </div>
 
             {/* Primary Pages Section */}
             <div className="footer-section">
-              <h3 className="footer-heading">Primary Pages</h3>
+              <h3 className="footer-heading">Trang chính</h3>
               <ul className="footer-list">
                 <li><Link to="/privacy" className="footer-item">Privacy</Link></li>
               </ul>

@@ -10,215 +10,160 @@ function Feature() {
   const [activeTab, setActiveTab] = useState(0);
 
   const tabs = [
-    "Legal Database",
-    "Legal Document",
-    "Legal Consultancy",
-    "Voice Recording",
-    "Legal Mock Trials",
+    "Cơ sở dữ liệu",
+    "Soạn thảo tài liệu",
+    "Tư vấn pháp lý",
+    "Ghi âm giọng nói",
+    "Phiên tòa giả định",
   ];
 
   const tabContents = [
     <div key="0" className="tab-inner-content">
       <div className="tab-text-content">
-        <h3>Legal Queries: Your Gateway to Legal Insight</h3>
+        <h3>Truy vấn pháp lý: Cổng thông tin pháp lý của bạn</h3>
         <p>
-          Navigate the complexities of law with ease. Our AI-driven platform
-          offers instantaneous, reliable answers to your legal questions,
-          ensuring you are always informed and prepared.
+          Tra cứu pháp luật một cách dễ dàng. Nền tảng dựa trên AI của chúng tôi
+          cung cấp câu trả lời tức thời, đáng tin cậy cho các câu hỏi pháp lý
+          của bạn, đảm bảo bạn luôn được thông báo và chuẩn bị sẵn sàng.
         </p>
         <ul>
           <li>
-            Access well-founded legal advice at the click of a button, drawing
-            from a vast repository of legal knowledge.
+            Truy cập tư vấn pháp lý có cơ sở chỉ bằng một nút bấm, rút ra từ
+            kho kiến thức pháp lý rộng lớn.
           </li>
           <li>
-            Dive into our extensive database for detailed insights into case
-            laws, statutes, and legal precedents.
+            Đi sâu vào cơ sở dữ liệu mở rộng của chúng tôi để có thông tin chi
+            tiết về án lệ, quy chế và tiền lệ pháp lý.
           </li>
           <li>
-            Confidentiality is paramount. Your inquiries and the information
-            provided are protected with the highest standards of privacy.
+            Bảo mật là điều tối quan trọng. Yêu cầu của bạn và thông tin được
+            cung cấp được bảo vệ với tiêu chuẩn bảo mật cao nhất.
           </li>
           <div className="button-box">
-            <a
-              className="button-link"
-              href="https://github.com/DanQuang"
-            >
-              Explore Legal Database
+            <a className="button-link" href="https://github.com/DanQuang">
+              Khám phá Cơ sở dữ liệu pháp lý
             </a>
           </div>
         </ul>
       </div>
       <div className="tab-image-content">
-        <img src={legal_queries} alt="Legal Database" className="tab-image" />
+        <img src={legal_queries} alt="Cơ sở dữ liệu pháp lý" className="tab-image" />
       </div>
     </div>,
     <div key="1" className="tab-inner-content">
       <div className="tab-text-content">
-        <h3>Effortless Document Drafting</h3>
+        <h3>Soạn thảo tài liệu pháp lý dễ dàng</h3>
         <p>
-          Simplify your legal drafting process with our AI-powered tool.
-          Experience the future of legal documentation, where precision meets
-          efficiency. Our intelligent system not only drafts documents but also
-          ensures they are customized to your specific needs, compliant with the
-          latest regulations, and ready for any legal scrutiny.
+          Đơn giản hóa quy trình soạn thảo tài liệu pháp lý với công cụ AI của chúng tôi. Trải nghiệm tương lai của việc soạn thảo pháp lý, nơi độ chính xác hòa quyện với hiệu quả. Hệ thống thông minh không chỉ soạn thảo tài liệu mà còn đảm bảo chúng được tùy chỉnh theo nhu cầu cụ thể của bạn, tuân thủ các quy định mới nhất và sẵn sàng đối mặt với mọi thách thức pháp lý.
         </p>
         <ul>
           <li>
-            Our AI meticulously crafts documents that cater to your individual
-            legal requirements, ensuring every term and clause is in your best
-            interest.
+            AI của chúng tôi soạn thảo tài liệu một cách tỉ mỉ, đáp ứng các yêu cầu pháp lý cá nhân, đảm bảo từng điều khoản đều có lợi cho bạn.
           </li>
           <li>
-            Stay ahead of the legal curve with documents that are automatically
-            updated to reflect the latest laws and regulations relevant to your
-            case.
+            Cập nhật tài liệu tự động để phản ánh các quy định pháp luật mới nhất liên quan đến vụ việc của bạn.
           </li>
           <li>
-            Transform hours of drafting into minutes with our AI, freeing you to
-            focus on the strategic aspects of your legal endeavors.
+            Biến hàng giờ soạn thảo thành phút giây, giúp bạn tập trung vào các khía cạnh chiến lược của công việc pháp lý.
           </li>
           <div className="button-box">
-            <a
-              className="button-link"
-              href="https://github.com/DanQuang"
-            >
-              Explore Legal Documents
+            <a className="button-link" href="https://github.com/DanQuang">
+              Khám phá Tài liệu pháp lý
             </a>
           </div>
         </ul>
       </div>
       <div className="tab-image-content">
-        <img src={legal_document} alt="Legal Database" className="tab-image" />
+        <img src={legal_document} alt="Soạn thảo tài liệu pháp lý" className="tab-image" />
       </div>
     </div>,
     <div key="3" className="tab-inner-content">
       <div className="tab-text-content">
-        <h3>Instant Legal Advice, Anytime</h3>
+        <h3>Tư vấn pháp lý tức thời, mọi lúc mọi nơi</h3>
         <p>
-          Access real-time legal guidance without the wait. Our AI Lawyer
-          provides immediate, reliable, and personalized legal advice to help
-          you navigate through any legal query or dilemma. Leveraging vast
-          databases of legal knowledge and current case law, our AI is equipped
-          to offer you comprehensive legal counsel on-demand.
+          Tiếp cận tư vấn pháp lý theo thời gian thực mà không cần phải chờ đợi. Luật sư AI của chúng tôi cung cấp lời khuyên pháp lý đáng tin cậy, cá nhân hóa ngay lập tức, giúp bạn xử lý mọi thắc mắc hoặc tình huống pháp lý. Với cơ sở dữ liệu pháp luật phong phú và các án lệ cập nhật, AI của chúng tôi sẵn sàng mang đến cho bạn sự tư vấn toàn diện.
         </p>
         <ul>
           <li>
-            No more waiting for appointments. Get expert legal advice instantly,
-            24/7, to make informed decisions quickly and confidently.
+            Không cần chờ đợi lịch hẹn. Nhận lời khuyên pháp lý chuyên môn ngay lập tức, 24/7, để đưa ra quyết định nhanh chóng và tự tin.
           </li>
           <li>
-            Our AI taps into a broad spectrum of legal precedents and
-            regulations to deliver advice that encompasses all angles of your
-            legal situation.
+            AI của chúng tôi tận dụng một loạt các tiền lệ pháp lý và quy định để cung cấp lời khuyên bao quát mọi khía cạnh tình huống pháp lý của bạn.
           </li>
           <li>
-            The AI Lawyer tailors its counsel to your specific circumstances,
-            ensuring advice that&#39;s relevant to your unique legal context.
+            Tư vấn được cá nhân hóa theo tình huống cụ thể của bạn, đảm bảo phù hợp với ngữ cảnh pháp lý riêng biệt.
           </li>
           <div className="button-box">
-            <a
-              className="button-link"
-              href="https://github.com/DanQuang"
-            >
-              Get Consultancy
+            <a className="button-link" href="https://github.com/DanQuang">
+              Nhận tư vấn pháp lý
             </a>
           </div>
         </ul>
       </div>
       <div className="tab-image-content">
-        <img src={legal_advice} alt="Legal Database" className="tab-image" />
+        <img src={legal_advice} alt="Tư vấn pháp lý" className="tab-image" />
       </div>
     </div>,
     <div key="4" className="tab-inner-content">
       <div className="tab-text-content">
-        <h3>Speak Up, We&#39;re Listening - Advanced Voice Recognition</h3>
+        <h3>Ghi âm giọng nói - Chúng tôi đang lắng nghe</h3>
         <p>
-          Interact with our AI Lawyer as naturally as you would with a human
-          attorney. Our state-of-the-art voice recognition feature understands
-          and processes your spoken queries, delivering accurate legal insights
-          and assistance in response. Whether you&#39;re on the go or in the middle
-          of a task, our hands-free support ensures your legal needs are heard
-          and addressed promptly and precisely.
+          Tương tác với Luật sư AI của chúng tôi tự nhiên như khi trò chuyện với một luật sư thực thụ. Tính năng nhận diện giọng nói tiên tiến xử lý chính xác các câu hỏi được nói, cung cấp các thông tin pháp lý và hỗ trợ cần thiết. Dù bạn đang di chuyển hay bận rộn với công việc, hỗ trợ rảnh tay đảm bảo nhu cầu pháp lý của bạn được đáp ứng một cách nhanh chóng và chính xác.
         </p>
         <ul>
           <li>
-            Powered by sophisticated NLP algorithms, our system comprehensively
-            understands context, nuances, and legal terminology from your voice
-            commands
+            Được hỗ trợ bởi các thuật toán NLP tiên tiến, hệ thống của chúng tôi hiểu ngữ cảnh, sắc thái và thuật ngữ pháp lý từ lệnh bằng giọng nói của bạn.
           </li>
           <li>
-            Engage in fluid, dynamic conversations with our AI Lawyer that
-            understands follow-up questions and complex legal jargon, ensuring a
-            natural and interactive experience
+            Tương tác linh hoạt, hiểu các câu hỏi tiếp nối và thuật ngữ pháp lý phức tạp, mang lại trải nghiệm tự nhiên và tương tác.
           </li>
           <li>
-            Use your voice to navigate through legal procedures, draft
-            documents, or get advice, making legal assistance accessible
-            anytime, without the need for typing or clicking
+            Sử dụng giọng nói để điều hướng quy trình pháp lý, soạn thảo tài liệu hoặc nhận tư vấn, giúp bạn tiếp cận hỗ trợ pháp lý mà không cần gõ phím.
           </li>
           <div className="button-box">
-            <a
-              className="button-link"
-              href="https://github.com/DanQuang"
-            >
-              Record your Voice
+            <a className="button-link" href="https://github.com/DanQuang">
+              Ghi âm giọng nói
             </a>
           </div>
         </ul>
       </div>
       <div className="tab-image-content">
-        <img src={voice} alt="Legal Database" className="tab-image" />
+        <img src={voice} alt="Ghi âm giọng nói" className="tab-image" />
       </div>
     </div>,
     <div key="5" className="tab-inner-content">
       <div className="tab-text-content">
-        <h3>Legal Mock Trials - Practice, Perfect, Prevail</h3>
+        <h3>Phiên tòa giả định - Rèn luyện, Hoàn thiện, Thành công</h3>
         <p>
-          Sharpen your legal skills and strategy with our cutting-edge Legal
-          Mock Trials feature. Whether you&#39;re an attorney preparing for a case,
-          a law student honing your advocacy, or a business professional seeking
-          insight into litigation, our AI Lawyer provides a realistic and
-          invaluable trial simulation experience. Step into the courtroom,
-          present your case, and receive feedback and analysis to fine-tune your
-          legal prowess
+          Nâng cao kỹ năng pháp lý và chiến lược của bạn với tính năng Phiên tòa giả định tiên tiến. Dù bạn là luật sư chuẩn bị cho một vụ án, sinh viên luật luyện tập tranh luận, hay chuyên gia kinh doanh tìm hiểu về kiện tụng, Luật sư AI của chúng tôi mang đến trải nghiệm mô phỏng phiên tòa thực tế. Bước vào phòng xử án, trình bày vụ việc của bạn, nhận phản hồi và phân tích để tinh chỉnh khả năng pháp lý của mình.
         </p>
         <ul>
           <li>
-            Immerse yourself in lifelike courtroom scenarios, complete with
-            judges, juries, witnesses, and opposing counsel, to practice your
-            case presentation and argumentation
+            Tham gia các kịch bản phiên tòa sống động, bao gồm thẩm phán, bồi thẩm đoàn, nhân chứng và luật sư đối lập, để luyện tập trình bày và lập luận vụ án.
           </li>
           <li>
-            Receive instant, data-driven feedback on your trial performance,
-            including areas of improvement, strengths, and suggested strategies
-            for success
+            Nhận phản hồi tức thì và dựa trên dữ liệu về hiệu suất trong phiên tòa, bao gồm các điểm cần cải thiện, thế mạnh và chiến lược gợi ý để thành công.
           </li>
           <li>
-            Customize mock trials to suit your specific legal practice area or
-            academic needs, ensuring targeted skill development and enhancement
-            of your legal expertise.
+            Tùy chỉnh phiên tòa giả định theo lĩnh vực thực hành pháp lý hoặc nhu cầu học thuật của bạn, đảm bảo phát triển kỹ năng có trọng tâm và nâng cao chuyên môn pháp lý.
           </li>
           <div className="button-box">
-            <a
-              className="button-link"
-              href="https://github.com/DanQuang"
-            >
-              Get Mockup Trials
+            <a className="button-link" href="https://github.com/DanQuang">
+              Tham gia Phiên tòa giả định
             </a>
           </div>
         </ul>
       </div>
       <div className="tab-image-content">
-        <img src={mock_trial} alt="Legal Database" className="tab-image" />
+        <img src={mock_trial} alt="Phiên tòa giả định" className="tab-image" />
       </div>
     </div>,
   ];
 
   return (
     <div className="features-container">
-      <h2>AI SERVICES</h2>
-      {/* Tabs Navigation */}
+      <h2>DỊCH VỤ AI</h2>
+      {/* Điều hướng Tabs */}
       <div className="tabs-container">
         {tabs.map((tab, index) => (
           <button
@@ -230,7 +175,7 @@ function Feature() {
           </button>
         ))}
       </div>
-      {/* Tab Content */}
+      {/* Nội dung Tabs */}
       <div className="tab-content">{tabContents[activeTab]}</div>
     </div>
   );

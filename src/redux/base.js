@@ -1,7 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
-// import appReducer from './slices/app';
+import appReducer from './slices/app';
 import chatReducer from './slices/chat';
-// import authReducer from './slices/auth';
+import authReducer from './slices/auth';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 
 // Tạo bộ lưu trữ giả (noop storage) cho môi trường không hỗ trợ window
@@ -28,8 +28,8 @@ const rootPersistConfig = {
 
 // Kết hợp reducer gốc
 const rootReducer = combineReducers({
-    // app: appReducer,
-    // auth: authReducer,
+    app: appReducer,
+    auth: authReducer,
     chat: chatReducer,
 });
 

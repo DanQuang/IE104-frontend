@@ -1,53 +1,51 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import "./LoginPage.css"; // Import the CSS file
-import animationData from "../../../assets/chatbot.json"; // Import the animation data
+import Cookies from "js-cookie"; // Import thư viện js-cookie
+import { useDispatch } from "react-redux"; // Import dispatch để gửi action đến Redux
+import { logIn } from "../../../redux/slices/auth"; // Import action logIn để cập nhật Redux store
+import "./LoginPage.css";
+import animationData from "../../../assets/chatbot.json"; // Import animation data
 import Lottie from "lottie-react";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(""); // Để lưu lỗi
-  const [isLoading, setIsLoading] = useState(false); // Trạng thái loading
-
+  const [errorMessage, setErrorMessage] = useState(""); // Error state
+  const [isLoading, setIsLoading] = useState(false); // Loading state
   const navigate = useNavigate();
+  const dispatch = useDispatch(); // Khai báo dispatch
+
+  // Mock API call for login
+  const mockLoginAPI = async (email, password) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (email === "user@example.com" && password === "password123") {
+          resolve({ token: "mock-jwt-token-1234567890" }); // Giả lập token
+        } else {
+          reject({ message: "Invalid email or password." });
+        }
+      }, 1000); // Giả lập độ trễ
+    });
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setErrorMessage(""); // Reset lỗi trước khi gửi yêu cầu
+    setErrorMessage(""); // Clear previous error
 
     try {
-      const response = await fetch("https://api.example.com/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await mockLoginAPI(email, password); // Call mock API
+      const token = response.token;
 
-      const data = await response.json();
+      // Lưu token vào Redux store và cookie
+      dispatch(logIn({ token }));
+      Cookies.set("authToken", token, { expires: 7, secure: true }); // Cookie sẽ tồn tại trong 7 ngày
 
-      if (response.ok) {
-        const token = data.token;
-        // Lưu token vào localStorage hoặc sessionStorage
-        if (rememberMe) {
-          localStorage.setItem("authToken", token);
-        } else {
-          sessionStorage.setItem("authToken", token);
-        }
-
-        // Điều hướng đến trang dashboard
-        navigate("/dashboard");
-      } else {
-        // Hiển thị lỗi từ máy chủ (nếu có)
-        setErrorMessage(data.message || "Invalid email or password.");
-      }
+      navigate("/chat/1"); // Chuyển hướng đến trang chat
     } catch (error) {
-      // Xử lý lỗi mạng hoặc lỗi không mong muốn
-      setErrorMessage("An error occurred. Please try again.");
+      // Handle login failure
+      setErrorMessage(error.message || "An error occurred. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -91,23 +89,8 @@ const LoginPage = () => {
               placeholder="Enter your password"
               required
             />
-            <span
-              className="show-password"
-              onClick="togglePasswordVisibility()"
-            >
-              👁️
-            </span>
           </div>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
-          {/* Hiển thị lỗi */}
-          <div className="remember-me">
-            <input
-              type="checkbox"
-              checked={rememberMe}
-              onChange={() => setRememberMe(!rememberMe)}
-            />
-            <span>Remember me</span>
-          </div>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
           <button type="submit" className="login-button" disabled={isLoading}>
             {isLoading ? "Logging in..." : "Login"}
           </button>
@@ -119,7 +102,6 @@ const LoginPage = () => {
               Don't have an account? <Link to="/auth/register">Register</Link>
             </p>
           </div>
-          {/* Thêm liên kết "Back to Home" */}
           <div className="back-to-home">
             <Link to="/">← Back to Home</Link>
           </div>

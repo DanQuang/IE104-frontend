@@ -1,0 +1,130 @@
+/* DropdownMenu Styles */
+.dropdown-menu-sub-trigger {
+    display: flex;
+    align-items: center;
+    cursor: default;
+    user-select: none;
+    padding: 0.375rem 0.5rem; /* px-2 py-1.5 */
+    font-size: 0.875rem; /* text-sm */
+    border-radius: 0.125rem; /* rounded-sm */
+    outline: none;
+    transition: background-color 0.2s;
+  }
+  
+  .dropdown-menu-sub-trigger.inset {
+    padding-left: 2rem; /* pl-8 */
+  }
+  
+  .chevron-icon {
+    margin-left: auto;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .dropdown-menu-sub-content {
+    position: absolute;
+    z-index: 50;
+    min-width: 8rem;
+    padding: 0.25rem;
+    border-radius: 0.375rem;
+    background-color: #ffffff; /* bg-popover */
+    color: #333333; /* text-popover-foreground */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s, transform 0.3s ease-in-out;
+  }
+  
+  .dropdown-menu-content {
+    position: absolute;
+    z-index: 50;
+    min-width: 8rem;
+    padding: 0.25rem;
+    border-radius: 0.375rem;
+    background-color: #ffffff; /* bg-popover */
+    color: #333333; /* text-popover-foreground */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s, transform 0.3s ease-in-out;
+  }
+  
+  .dropdown-menu-item {
+    display: flex;
+    align-items: center;
+    cursor: default;
+    user-select: none;
+    padding: 0.375rem 0.5rem; /* px-2 py-1.5 */
+    font-size: 0.875rem; /* text-sm */
+    border-radius: 0.125rem; /* rounded-sm */
+    outline: none;
+    transition: background-color 0.2s;
+  }
+  
+  .dropdown-menu-item.inset {
+    padding-left: 2rem; /* pl-8 */
+  }
+  
+  .dropdown-menu-checkbox-item {
+    display: flex;
+    align-items: center;
+    cursor: default;
+    user-select: none;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.125rem;
+    outline: none;
+    transition: background-color 0.2s;
+  }
+  
+  .checkbox-icon {
+    position: absolute;
+    left: 0.5rem;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .check-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .dropdown-menu-radio-item {
+    display: flex;
+    align-items: center;
+    cursor: default;
+    user-select: none;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.125rem;
+    outline: none;
+    transition: background-color 0.2s;
+  }
+  
+  .radio-icon {
+    position: absolute;
+    left: 0.5rem;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .dot-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .dropdown-menu-label {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  
+  .dropdown-menu-separator {
+    margin: 0.25rem 0;
+    height: 1px;
+    background-color: #e0e0e0;
+  }
+  
+  .dropdown-menu-shortcut {
+    margin-left: auto;
+    font-size: 0.75rem;
+    opacity: 0.6;
+    letter-spacing: 0.1rem;
+  }
+  

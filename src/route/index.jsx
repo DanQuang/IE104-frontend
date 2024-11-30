@@ -6,17 +6,17 @@ import Pricing from "../pages/Pricing/Pricing";
 import LoginPage from "../pages/Auth/Login/LoginPage";
 import RegisterPage from "../pages/Auth/Register/Registerpage";
 import ForgotPasswordPage from "../pages/Auth/ForgotPassword/ForgotPassword";
-import Contact from "../pages/Contact/Contact"
-// import ChatPage from "../pages/Chat/[id]/Chatpage";
+import Contact from "../pages/Contact/Contact";
+import ChatPage from "../pages/Chat/[id]/Chatpage";
 
 // Định nghĩa router
 export const router = createBrowserRouter([
   {
-    path: "/", 
+    path: "/",
     element: <DefaultLayout />,
     children: [
       {
-        path: "", 
+        index: true,
         element: <HomePage />,
       },
       {
@@ -35,15 +35,15 @@ export const router = createBrowserRouter([
         path: "contact",
         element: <Contact />
       },
-      // {
-      //   path: "chat/:id", // Route động cho trang chat
-      //   element: <ChatPage />,
-      // },
+      {
+        path: "/chat/:id",
+        element: <ChatPage />
+      },
     ],
   },
   {
     path: "/auth", 
-    element: <Outlet />,
+    element: <Outlet />, 
     children: [
       {
         path: "login", 

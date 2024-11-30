@@ -12,5 +12,4 @@ export const store = configureStore({
         }),
 });
 
-// Tạo persistor để đồng bộ hóa state với bộ lưu trữ
 export const persistor = persistStore(store);

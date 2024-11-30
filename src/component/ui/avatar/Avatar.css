@@ -1,0 +1,31 @@
+/* Avatar root container */
+.avatar-root {
+    position: relative;
+    display: flex;
+    height: 2.5rem; /* 40px */
+    width: 2.5rem;  /* 40px */
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  
+  /* Avatar image */
+  .avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Avatar fallback (when image is not available) */
+  .avatar-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #e0e0e0; /* A muted grey fallback */
+    font-size: 1.25rem;  /* Adjust the fallback text size */
+    color: #ffffff; /* White text */
+  }
+  

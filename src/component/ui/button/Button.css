@@ -1,0 +1,127 @@
+/* Default button style */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: 0.375rem; /* rounded-md */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    outline: none;
+    border: none;
+  }
+  
+  .button:focus-visible {
+    outline: 1px solid rgba(255, 255, 255, 0.5); /* focus-visible:ring */
+    ring-color: rgba(0, 0, 0, 0.5); /* focus-visible:ring-ring */
+  }
+  
+  /* Disabled state */
+  .button:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  
+  /* Variants */
+  
+  /* Default variant */
+  .button.default {
+    background-color: #007bff; /* bg-primary */
+    color: #ffffff; /* text-primary-foreground */
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
+  }
+  
+  .button.default:hover {
+    background-color: rgba(0, 123, 255, 0.9); /* hover:bg-primary/90 */
+  }
+  
+  /* Destructive variant */
+  .button.destructive {
+    background-color: #dc3545; /* bg-destructive */
+    color: #ffffff; /* text-destructive-foreground */
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .button.destructive:hover {
+    background-color: rgba(220, 53, 69, 0.9); /* hover:bg-destructive/90 */
+  }
+  
+  /* Outline variant */
+  .button.outline {
+    border: 1px solid #ced4da; /* border-input */
+    background-color: #ffffff; /* bg-background */
+    color: #495057; /* text-foreground */
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.075);
+  }
+  
+  .button.outline:hover {
+    background-color: #f8f9fa; /* hover:bg-accent */
+    color: #007bff; /* hover:text-accent-foreground */
+  }
+  
+  /* Secondary variant */
+  .button.secondary {
+    background-color: #6c757d; /* bg-secondary */
+    color: #ffffff; /* text-secondary-foreground */
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .button.secondary:hover {
+    background-color: rgba(108, 117, 125, 0.8); /* hover:bg-secondary/80 */
+  }
+  
+  /* Ghost variant */
+  .button.ghost {
+    background-color: transparent;
+    color: #007bff; /* text-primary */
+  }
+  
+  .button.ghost:hover {
+    background-color: rgba(108, 117, 125, 0.1); /* hover:bg-accent */
+    color: #007bff; /* hover:text-accent-foreground */
+  }
+  
+  /* Link variant */
+  .button.link {
+    background-color: transparent;
+    color: #007bff; /* text-primary */
+    text-decoration: underline;
+  }
+  
+  .button.link:hover {
+    text-decoration: underline; /* hover:underline */
+  }
+  
+  /* Sizes */
+  
+  /* Default size */
+  .button.default {
+    height: 2.25rem; /* h-9 */
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+  }
+  
+  /* Small size */
+  .button.sm {
+    height: 2rem; /* h-8 */
+    border-radius: 0.375rem; /* rounded-md */
+    padding-left: 0.75rem; /* px-3 */
+    padding-right: 0.75rem; /* px-3 */
+    font-size: 0.75rem; /* text-xs */
+  }
+  
+  /* Large size */
+  .button.lg {
+    height: 2.5rem; /* h-10 */
+    border-radius: 0.375rem; /* rounded-md */
+    padding-left: 2rem; /* px-8 */
+    padding-right: 2rem; /* px-8 */
+  }
+  
+  /* Icon size */
+  .button.icon {
+    height: 2.25rem; /* h-9 */
+    width: 2.25rem; /* w-9 */
+  }
+  

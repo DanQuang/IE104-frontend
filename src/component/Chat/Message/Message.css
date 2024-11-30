@@ -1,0 +1,56 @@
+/* Tổng quan */
+.message-container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.message-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Avatar */
+.avatar-container {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+}
+
+/* Nội dung tin nhắn */
+.message-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.sender-name {
+    font-weight: 600;
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.message-text {
+    margin-top: 5px;
+    white-space: pre-wrap;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Separator */
+.separator {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}

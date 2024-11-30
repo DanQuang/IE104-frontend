@@ -1,0 +1,19 @@
+/* Base style for the separator */
+.separator {
+    background-color: #e0e0e0; /* Color for the separator, change as needed */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Horizontal separator */
+  .separator.horizontal {
+    height: 1px;
+    width: 100%;
+  }
+  
+  /* Vertical separator */
+  .separator.vertical {
+    height: 100%;
+    width: 1px;
+  }
+  

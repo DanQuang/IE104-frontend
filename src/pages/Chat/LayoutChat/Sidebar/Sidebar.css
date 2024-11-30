@@ -1,0 +1,105 @@
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background-color: #1f2937; /* Sidebar background */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chats {
+    overflow-y: auto;
+    flex-grow: 1;
+    margin-bottom: 10px;
+}
+
+/* Loading animation */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* User info */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #2d3748; /* Hover background */
+    transition: background-color 0.2s;
+}
+
+.user-info:hover {
+    background-color: #4a5568;
+}
+
+.avatar {
+    border: 2px solid #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+}
+
+/* Mobile sidebar */
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(31, 41, 55, 0.75); /* Overlay */
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile-sidebar-content {
+    background-color: #1f2937;
+    width: 260px;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.close-icon {
+    width: 24px;
+    height: 24px;
+    stroke: #fff;
+}

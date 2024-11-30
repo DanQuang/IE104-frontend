@@ -7,17 +7,18 @@ import LoginPage from "../pages/Auth/Login/LoginPage";
 import RegisterPage from "../pages/Auth/Register/Registerpage";
 import ForgotPasswordPage from "../pages/Auth/ForgotPassword/ForgotPassword";
 import Contact from "../pages/Contact/Contact";
+import ChatPage from "../pages/Chat/[id]/Chatpage";
 import About from "../pages/About/About";
 // import ChatPage from "../pages/Chat/[id]/Chatpage";
 
 // Định nghĩa router
 export const router = createBrowserRouter([
   {
-    path: "/", 
+    path: "/",
     element: <DefaultLayout />,
     children: [
       {
-        path: "", 
+        index: true,
         element: <HomePage />,
       },
       {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
         element: <Contact />
       },
       {
+        path: "/chat/:id",
+        element: <ChatPage />
+      },
+      {
         path: "about",
         element: <About />
       },
@@ -48,7 +53,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/auth", 
-    element: <Outlet />,
+    element: <Outlet />, 
     children: [
       {
         path: "login", 

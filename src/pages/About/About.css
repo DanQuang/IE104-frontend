@@ -1,0 +1,194 @@
+/* General page layout */
+.about-page {
+  padding: 60px;
+  max-width: 1320px;
+  margin: 0 auto;
+  background-color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Tab content layout for both sections */
+.tab-inner-content {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+}
+
+.tab-text-content, .tab-image-content {
+  padding: 20px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.tab-text-content h3 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.tab-text-content p {
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.tab-image-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Ensures there’s space between text and image */
+}
+
+.tab-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  max-width: 600px; /* Ensures image doesn't take up too much space */
+}
+
+/* Drafting Section */
+.drafting-section {
+  text-align: center;
+  margin-top: 60px;
+  padding: 20px;
+}
+
+.drafting-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.drafting-section p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Content Block Section */
+.content_block_3_4 {
+  display: flex;
+  flex-direction: column;
+  margin: 60px 0;
+  justify-content: space-between;
+}
+
+.content_block_left, .content_block_right {
+  flex: 1;
+  padding: 20px;
+}
+
+.content_block_left img {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.content_block_right h4 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.content_block_right p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.content_block_right .mission-list {
+  margin-top: 20px;
+}
+
+.content_block_right .mission-list li {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.btn-box .tab-btn {
+  background-color: #f43f5e;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 50px;
+}
+
+.btn-box .tab-btn:hover {
+  background-color: #f43f5e;
+}
+
+/* Responsive Styles */
+@media (min-width: 1024px) {
+  .tab-inner-content {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .tab-text-content {
+    margin-right: 40px; /* Adds space between text and image on large screens */
+  }
+
+  .content_block_3_4 {
+    flex-direction: row;
+  }
+
+  .content_block_left, .content_block_right {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .tab-inner-content {
+    flex-direction: column;
+  }
+
+  .content_block_3_4 {
+    flex-direction: column;
+  }
+
+  .tab-image-content {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .tab-image {
+    max-width: 100%;
+  }
+}
+/* Legal Master AI Section */
+.legal-master-ai-section {
+  margin-top: 60px;
+  padding: 20px;
+}
+
+.legal-master-ai-section h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.legal-services {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.service {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.service h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333; /* Accent color */
+  margin-bottom: 10px;
+}
+
+.service p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}

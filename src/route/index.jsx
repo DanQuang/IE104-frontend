@@ -3,7 +3,7 @@ import { createBrowserRouter, Outlet } from "react-router-dom";
 import HomePage from "../pages/Homepage/Homepage";
 import DefaultLayout from "../layouts/DefaultLayout/DefaultLayout";
 import Feature from "../pages/Feature/Feature";
-
+import About from "../pages/About/About";
 // Define the router configuration
 export const router = createBrowserRouter([
   {
@@ -27,9 +27,13 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "feature",
+        path: "Feature",
         element: <Feature />,
       },
+      {
+        path: "About",
+        element: <About />,
+      }
     ],
   },
 ]);

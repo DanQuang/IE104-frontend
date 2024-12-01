@@ -1,50 +1,58 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie"; // Import thư viện js-cookie
-import { useDispatch } from "react-redux"; // Import dispatch để gửi action đến Redux
-import { logIn } from "../../../redux/slices/auth"; // Import action logIn để cập nhật Redux store
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../../redux/slices/auth";
 import "./LoginPage.css";
-import animationData from "../../../assets/chatbot.json"; // Import animation data
+import animationData from "../../../assets/chatbot.json";
 import Lottie from "lottie-react";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); // Error state
-  const [isLoading, setIsLoading] = useState(false); // Loading state
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // Khai báo dispatch
+  const dispatch = useDispatch();
 
-  // Mock API call for login
-  const mockLoginAPI = async (email, password) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (email === "user@example.com" && password === "password123") {
-          resolve({ token: "mock-jwt-token-1234567890" }); // Giả lập token
-        } else {
-          reject({ message: "Invalid email or password." });
-        }
-      }, 1000); // Giả lập độ trễ
-    });
+  // Actual API call for login using fetch
+  const loginAPI = async (email, password) => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/auth/jwt/create/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error("An error occurred. Please try again.");
+      }
+
+      const data = await response.json();
+      return data;  // Assuming the response contains the token
+    } catch (error) {
+      throw new Error(error.message || "An error occurred. Please try again.");
+    }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setErrorMessage(""); // Clear previous error
+    setErrorMessage("");
 
     try {
-      const response = await mockLoginAPI(email, password); // Call mock API
-      const token = response.token;
+      const response = await loginAPI(email, password); // Call the backend API
+      const token = response.access;
 
-      // Lưu token vào Redux store và cookie
+      // Store token in Redux and cookie
       dispatch(logIn({ token }));
-      Cookies.set("authToken", token, { expires: 7, secure: true }); // Cookie sẽ tồn tại trong 7 ngày
+      Cookies.set("authToken", token, { expires: 60, secure: true });
 
-      navigate("/chat/1"); // Chuyển hướng đến trang chat
+      navigate("/chat/1");
     } catch (error) {
-      // Handle login failure
       setErrorMessage(error.message || "An error occurred. Please try again.");
     } finally {
       setIsLoading(false);

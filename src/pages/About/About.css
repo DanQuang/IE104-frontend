@@ -37,6 +37,8 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px; /* Ensures there’s space between text and image */
+  background-color: white; /* Add white background after the image */
+  padding: 20px; /* Optional: Adds some padding around the image */
 }
 
 .tab-image {
@@ -46,6 +48,7 @@
   border-radius: 8px;
   max-width: 600px; /* Ensures image doesn't take up too much space */
 }
+
 
 /* Drafting Section */
 .drafting-section {

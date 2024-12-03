@@ -9,6 +9,7 @@ import ForgotPasswordPage from "../pages/Auth/ForgotPassword/ForgotPassword";
 import Contact from "../pages/Contact/Contact";
 import About from "../pages/About/About";
 import ChatAreaLayout from "../pages/Chat/ChatAreaLayout";
+import ProfilePage from "../pages/Auth/ProfilePage/ProfilePage";
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ export const router = createBrowserRouter([
       {
         path: "forgot-password",
         element: <ForgotPasswordPage />,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
       },
     ],
   },

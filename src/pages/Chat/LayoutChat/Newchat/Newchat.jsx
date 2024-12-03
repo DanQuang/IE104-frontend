@@ -40,12 +40,10 @@ const NewChat = () => {
         className="flex justify-between items-center px-2 py-2 rounded-md 
                    bg-sidebar hover:bg-input cursor-pointer 
                    border-2 border-gray-300"
-        onClick={createNewChat}
-        aria-label="Create new chat" 
       >
         <div className="flex gap-3 flex-1">
           <StackIcon className="h-8 w-6" />
-          <h1 className="text-xl text-left px-4">New chat</h1>
+          <h1 className="text-xl text-left px-4" onClick={createNewChat}>New chat</h1>
         </div>
         <Pencil2Icon className="h-7 w-5" />
       </button>

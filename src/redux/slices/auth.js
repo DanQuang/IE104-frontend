@@ -24,7 +24,6 @@ const authSlice = createSlice({
             state.user = action.payload.user;
         },
         signOut: (state) => {
-            // Xóa token khỏi cookie
             Cookies.remove("authToken");
 
             state.isLoggedIn = false;

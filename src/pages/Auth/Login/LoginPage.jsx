@@ -7,6 +7,8 @@ import { logIn } from "../../../redux/slices/auth";
 import "./LoginPage.css";
 import animationData from "../../../assets/chatbot.json";
 import Lottie from "lottie-react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -19,20 +21,23 @@ const LoginPage = () => {
   // Actual API call for login using fetch
   const loginAPI = async (email, password) => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/auth/jwt/create/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/auth/jwt/create/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("An error occurred. Please try again.");
       }
 
       const data = await response.json();
-      return data;  // Assuming the response contains the token
+      return data; // Assuming the response contains the token
     } catch (error) {
       throw new Error(error.message || "An error occurred. Please try again.");
     }
@@ -46,12 +51,16 @@ const LoginPage = () => {
     try {
       const response = await loginAPI(email, password); // Call the backend API
       const token = response.access;
-
-      // Store token in Redux and cookie
       dispatch(logIn({ token }));
-      Cookies.set("authToken", token, { expires: 7, secure: true }); 
+      Cookies.set("authToken", token, { expires: 7, secure: true });
 
-      navigate("/chat"); // Chuyển hướng đến trang chat
+      // Show success toast notification for 3 seconds
+      toast.success("Login successful! Welcome back!", {
+        autoClose: 5000, // 3 seconds
+        // position: toast.POSITION.BOTTOM_CENTER,
+      });
+
+      navigate("/chat");
     } catch (error) {
       setErrorMessage(error.message || "An error occurred. Please try again.");
     } finally {
@@ -124,6 +133,9 @@ const LoginPage = () => {
           </p>
         </div>
       </div>
+
+      {/* ToastContainer for notifications */}
+      <ToastContainer />
     </div>
   );
 };

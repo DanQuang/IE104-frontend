@@ -35,16 +35,16 @@ const RegisterPage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ "full_name": name, "email": email, "password": password, "re_password": confirmPassword }),
+        mode: 'cors'
       });
 
       const data = await response.json();
-      console.log(data);
       if (response.ok) {
         // Điều hướng đến trang đăng nhập sau khi đăng ký thành công
         navigate("/auth/login");
       } else {
         // Hiển thị lỗi từ máy chủ
-        setErrorMessage(data.message || "An error occurred during registration.");
+        setErrorMessage(data.email || "An error occurred during registration.");
       }
     } catch (error) {
       setErrorMessage("An error occurred. Please try again.");

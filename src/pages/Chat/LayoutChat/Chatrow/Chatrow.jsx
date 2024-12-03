@@ -73,7 +73,7 @@ const ChatRow = ({ id, title }) => {
         },
       });
       dispatch(deleteChat(id));
-      navigate("/chat/"); // Change this line
+      navigate("/chat/"); 
     } catch (error) {
       console.error("Error deleting chat:", error);
     }

@@ -1,148 +1,156 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteChat, setChatTitleFromMessage } from "@/redux/slices/chat";
-import axios from "@/utils/axios";
-import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import "./Chatrow.css"
 import {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog";
-
-import { Button } from "../ui/button";
-import "./ChatRow.css"; // Import file CSS
+  deleteChat,
+  setChatTitleFromMessage,
+} from "../../../../redux/slices/chat";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "../../../../utils/axios";
+import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
+import { useNavigate } from "react-router-dom"; // Change this line
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../../../../component/ui/dialog/Dialog";
+import { Button } from "../../../../component/ui/button/Button";
 
 const ChatRow = ({ id, title }) => {
-    const pathname = usePathname();
-    const router = useRouter();
-    const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate(); // Change this line
+  const { token } = useSelector((state) => state.auth);
 
-    const [inputTitle, setTitle] = useState(title);
-    const [isEditing, setIsEditing] = useState(false);
-    const [active, setActive] = useState(false);
-    const dispatch = useDispatch();
+  const [inputTitle, setTitle] = useState(title);
+  const [isEditing, setIsEditing] = useState(false);
 
-    useEffect(() => {
-        if (!pathname) return;
-        setActive(pathname.includes(`/chat/${id}`));
-    }, [pathname, id]);
+  const handleEditTitle = async () => {
+    setIsEditing(true);
+  };
 
-    const handleEditTitle = () => {
-        setIsEditing(true);
-    };
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
 
-    const handleTitleChange = (e) => {
-        setTitle(e.target.value);
-    };
+  const handleKeyPress = async (e) => {
+    if (e.key === "Enter") {
+      try {
+        const response = await axios.patch(
+          `/chats/${id}/`,
+          { title: inputTitle },
+          {
+            headers: {
+              Authorization: `JWT ${token}`,
+            },
+          }
+        );
+        dispatch(
+          setChatTitleFromMessage({ chatId: id, title: response.data.title })
+        );
+        setIsEditing(false);
+      } catch (error) {
+        console.error("Error updating title:", error);
+      }
+    }
+  };
 
-    const handleKeyPress = async (e) => {
-        if (e.key === "Enter") {
-            try {
-                const response = await axios.patch(
-                    `/chats/${id}/`,
-                    { title: inputTitle },
-                    {
-                        headers: {
-                            Authorization: `JWT ${token}`,
-                        },
-                    }
-                );
-                dispatch(
-                    setChatTitleFromMessage({
-                        chatId: id,
-                        title: response.data.title,
-                    })
-                );
-                setIsEditing(false);
-            } catch (error) {
-                console.error("Error updating title:", error);
-            }
-        }
-    };
+  const [active, setActive] = useState(true);
+  const dispatch = useDispatch();
 
-    const handleDeleteChat = async () => {
-        try {
-            await axios.delete(`/chats/${id}/`, {
-                headers: {
-                    Authorization: `JWT ${token}`,
-                },
-            });
-            dispatch(deleteChat(id));
-            router.replace("/chat/");
-        } catch (error) {
-            console.error("Error deleting chat:", error);
-        }
-    };
+  // useEffect(() => {
+  //     if (window.location.pathname.includes(`/chat/${id}`)) {
+  //         setActive(true);
+  //     }
+  // }, [id]);
 
-    return (
-        <div className={`chat-row ${active ? "chat-row-active" : ""}`}>
-            <Link href={`/chat/${id}`} className="chat-link">
-                {isEditing ? (
-                    <input
-                        type="text"
-                        value={inputTitle}
-                        onChange={handleTitleChange}
-                        onKeyPress={handleKeyPress}
-                        onBlur={() => setIsEditing(false)}
-                        autoFocus
-                        className="chat-input"
-                    />
-                ) : (
-                    <p className="chat-title">
-                        {title ? title : "New Chat"}
-                    </p>
-                )}
-                {active && (
-                    <>
-                        <div className="chat-gradient"></div>
-                        <div className="chat-actions">
-                            <Pencil1Icon
-                                className="chat-icon"
-                                onClick={handleEditTitle}
-                            />
-                            <Dialog>
-                                <DialogTrigger>
-                                    <TrashIcon className="chat-icon" />
-                                </DialogTrigger>
-                                <DialogContent className="dialog-content">
-                                    <DialogHeader>
-                                        <DialogTitle className="dialog-title">
-                                            Delete Chat?
-                                        </DialogTitle>
-                                        <DialogDescription>
-                                            This action cannot be undone. This will permanently delete your chat.
-                                        </DialogDescription>
-                                    </DialogHeader>
-                                    <DialogFooter className="dialog-footer">
-                                        <DialogClose asChild>
-                                            <Button type="button" variant="secondary">
-                                                Cancel
-                                            </Button>
-                                        </DialogClose>
-                                        <Button
-                                            type="button"
-                                            className="dialog-delete-button"
-                                            onClick={handleDeleteChat}
-                                        >
-                                            Delete
-                                        </Button>
-                                    </DialogFooter>
-                                </DialogContent>
-                            </Dialog>
-                        </div>
-                    </>
-                )}
-            </Link>
-        </div>
-    );
+  const handleDeleteChat = async () => {
+    try {
+      await axios.delete(`/chats/${id}/`, {
+        headers: {
+          Authorization: `JWT ${token}`,
+        },
+      });
+      dispatch(deleteChat(id));
+      navigate("/chat/"); // Change this line
+    } catch (error) {
+      console.error("Error deleting chat:", error);
+    }
+  };
+
+  return (
+    <div
+      className={`group hover:bg-slate-300  rounded-md p-2 relative ${
+        active && "bg-slate-100"
+      }`}
+    >
+      <div
+        //
+        className="flex item-center"
+      >
+        {" "}
+        {/* Change this line */}
+        {isEditing ? (
+          <input
+            type="text"
+            value={inputTitle}
+            onChange={handleTitleChange}
+            onKeyPress={handleKeyPress}
+            onBlur={() => setIsEditing(false)}
+            autoFocus
+            className="px-2 focus:outline-muted w-full"
+          />
+        ) : (
+          <p
+            onClick={() => navigate(`/chat/${id}`)}
+            className="truncate text-sm !p-0 !m-[6px] cursor-pointer"
+          >
+            {title ? title : "New Chat"}
+          </p>
+        )}
+        {active && (
+          <>
+            <div className="absolute bottom-0 right-0 top-0 bg-gradient-to-l from-input w-20 from-60%"></div>
+            <div className="absolute top-0 bottom-0 right-0 flex items-center pr-2 gap-1">
+              <Pencil1Icon
+                className="w-5 h-5 group-hover:block cursor-pointer"
+                onClick={handleEditTitle}
+              />
+              <Dialog>
+                <DialogTrigger>
+                  <TrashIcon className="w-5 h-5 group-hover:block cursor-pointer " />
+                </DialogTrigger>
+                <DialogContent className="max-w-md bg-white">
+                  <DialogHeader>
+                    <DialogTitle className="py-5">Delete Chat?</DialogTitle>
+                    <DialogDescription>
+                      This action cannot be undone. This will permanently delete
+                      your chat.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter className="sm:justify-end">
+                    <DialogClose asChild>
+                      <Button type="button" variant="secondary">
+                        Cancel
+                      </Button>
+                    </DialogClose>
+                    <Button
+                      type="button"
+                      className="bg-red-400 hover:bg-red-500"
+                      onClick={handleDeleteChat}
+                    >
+                      Delete
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default ChatRow;

@@ -6,14 +6,11 @@ import { marked } from "marked";
 import hljs from "highlight.js";
 import { StackIcon } from "@radix-ui/react-icons";
 import Message from '../Message/Message'
-import "./Chatarea.css";
 
-// eslint-disable-next-line react/prop-types
-const ChatArea = ({ chunks }) => {
+const ChatArea = ({ chatId, chunks }) => {   
     const { messages } = useSelector((state) => state.chat);
-    const chatRef = useRef(null);
-
-    // Set up markdown rendering with syntax highlighting
+    const chatRef = useRef(null);  
+    
     const renderer = new marked.Renderer();
     renderer.code = (code, language) => {
         const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
@@ -22,7 +19,6 @@ const ChatArea = ({ chunks }) => {
     marked.setOptions({ renderer });
     const html = marked(chunks);
 
-    // Scroll to the bottom when new messages are added
     useEffect(() => {
         if (chatRef.current) {
             chatRef.current.scrollTop = chatRef.current.scrollHeight;
@@ -30,46 +26,44 @@ const ChatArea = ({ chunks }) => {
     }, [messages]);
 
     return (
-        <div ref={chatRef} className="chat-area custom-scrollbar">
-            {messages.length === 0 && (
-                <div className="welcome">
-                    <div className="welcome-content">
-                        <StackIcon className="icon-large" />
-                        <div className="welcome-box">
-                            <h1 className="welcome-title">Welcome to Chat Droid AI Chatbot!</h1>
-                            <p className="welcome-text">
-                                Explore the future of chatbots, powered by Next.js 14, with sleek styling and strong backend integration.
+        <div ref={chatRef} className="flex-1 overflow-y-scroll overflow-x-hidden custom-scrollbar py-5 px-2 md:p-5">
+            {messages?.length === 0 && (
+                <div className='pb-[200px] pt-4 md:pt-10'>
+                    <div className='mx-auto max-w-2xl px-4 flex flex-col items-center gap-5'>
+                        <StackIcon className='w-20 h-20' />
+
+                        <div className='rounded-lg border border-foreground/15 bg-tertiary p-8'>
+                            <h1 className='mb-2 text-lg font-semibold'>Welcome to Chat Droid AI Chatbot!</h1>
+                            <p className='mb-2 text-muted-foreground'>
+                                Experience the future of chatbots with our Next.js 14 powered platform, featuring sleek shadcn styling, backed by Django and Langchain.
                             </p>
                         </div>
                     </div>
                 </div>
             )}
 
-            {/* Render messages */}
-            {messages.map((message) => (
-                <Message key={message.id} message={message} />
+            {messages && messages.map((message) => (
+                <Message key={message.id} message={message}/>
             ))}
 
-            {/* Render chatbot's response if any */}
             {chunks && (
-                <div className="markdown-container">
-                    <div className="markdown-header">
-                        <div className="avatar">
+                <div className='max-w-2xl mx-auto'>
+                    <div className='flex space-x-5'>
+                        <div className='w-10 h-10 rounded-full border flex items-center justify-center p-1'>
                             <Cpu size={32} />
                         </div>
-                        <div className="markdown-content">
-                            <h2 className="markdown-title">ChatBot</h2>
-                            <div
-                                className="markdown-html"
-                                dangerouslySetInnerHTML={{ __html: html }}
-                            />
+                        <div className='flex flex-col'>
+                            <h2 className='font-semibold'>ChatBot</h2>
+                            <p className='pt-1 whitespace-pre-wrap'>
+                                <div className='whitespace-pre-wrap' dangerouslySetInnerHTML={{ __html: html }} />
+                            </p>
                         </div>
                     </div>
-                    <Separator className="separator" />
+                    <Separator className='mb-5 w-full my-5' />
                 </div>
             )}
         </div>
     );
-}
+};
 
 export default ChatArea;

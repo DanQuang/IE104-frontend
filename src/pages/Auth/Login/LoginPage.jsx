@@ -25,7 +25,7 @@ const LoginPage = () => {
         } else {
           reject({ message: "Invalid email or password." });
         }
-      }, 1000); // Giả lập độ trễ
+      }, 1000); 
     });
   };
 
@@ -40,9 +40,9 @@ const LoginPage = () => {
 
       // Lưu token vào Redux store và cookie
       dispatch(logIn({ token }));
-      Cookies.set("authToken", token, { expires: 7, secure: true }); // Cookie sẽ tồn tại trong 7 ngày
+      Cookies.set("authToken", token, { expires: 7, secure: true }); 
 
-      navigate("/chat/1"); // Chuyển hướng đến trang chat
+      navigate("/chat"); // Chuyển hướng đến trang chat
     } catch (error) {
       // Handle login failure
       setErrorMessage(error.message || "An error occurred. Please try again.");

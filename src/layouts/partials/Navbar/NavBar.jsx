@@ -56,7 +56,11 @@ const NavBar = () => {
   };
 
   return (
-    <header className={`navbar-container ${hasScrolled ? "scrolled" : ""}`}>
+    <header
+      className={`navbar-container ${hasScrolled ? "scrolled" : ""} ${
+        location.pathname.startsWith("/chat") ? "non-sticky" : ""
+      }`}
+    >
       <div className="navbar-header">
         <Link to="/" className="navbar-logo">
           <Lottie

@@ -23,7 +23,7 @@ const RegisterPage = () => {
 
     // Kiểm tra xác nhận mật khẩu
     if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match.");
+      setErrorMessage("Mật khẩu không chính xác.");
       setIsLoading(false);
       return;
     }
@@ -44,10 +44,10 @@ const RegisterPage = () => {
         navigate("/login");
       } else {
         // Hiển thị lỗi từ máy chủ
-        setErrorMessage(data.message || "An error occurred during registration.");
+        setErrorMessage(data.message || "Đã xảy ra lỗi trong quá trình đăng ký.");
       }
     } catch (error) {
-      setErrorMessage("An error occurred. Please try again.");
+      setErrorMessage("Đã xảy ra lỗi. Vui lòng thử lại.");
     } finally {
       setIsLoading(false);
     }
@@ -63,19 +63,19 @@ const RegisterPage = () => {
             alt="Register Logo"
             className="logo"
           />
-          <h2 className="register-heading">Register</h2>
+          <h2 className="register-heading">Đăng ký</h2>
         </div>
-        <p className="register-subheading">Join the Legal Chatbot community today!</p>
+        <p className="register-subheading">Gia nhập cộng đồng Legal Chatbot ngay hôm nay!</p>
 
         <form onSubmit={handleRegister}>
           <div className="input-group">
-            <label htmlFor="name">Full Name*</label>
+            <label htmlFor="name">Họ và tên*</label>
             <input
               type="text"
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your full name"
+              placeholder="Nhập họ và tên"
               required
             />
           </div>
@@ -87,31 +87,31 @@ const RegisterPage = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder="Nhập email"
               required
             />
           </div>
 
           <div className="input-group">
-            <label htmlFor="password">Password*</label>
+            <label htmlFor="password">Mật khẩu*</label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
+              placeholder="Nhập mật khẩu"
               required
             />
           </div>
 
           <div className="input-group">
-            <label htmlFor="confirm-password">Confirm Password*</label>
+            <label htmlFor="confirm-password">Xác nhận mật khẩu*</label>
             <input
               type="password"
               id="confirm-password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm your password"
+              placeholder="Xác nhận mật khẩu"
               required
             />
           </div>
@@ -119,12 +119,12 @@ const RegisterPage = () => {
           {errorMessage && <p className="error-message">{errorMessage}</p>} 
 
           <button type="submit" className="register-button" disabled={isLoading}>
-            {isLoading ? "Registering..." : "Register"}
+            {isLoading ? "Đăng ký..." : "Đăng ký"}
           </button>
 
           <div className="login-link">
             <p>
-              Already have an account? <Link to="/auth/login">Login</Link>
+              Đã có tài khoản? <Link to="/auth/login">Đăng nhập</Link>
             </p>
           </div>
         </form>
@@ -133,7 +133,7 @@ const RegisterPage = () => {
         <img src="/src/assets/legal-advice.webp" alt="Register Illustration" />
         <div className="register-image-text">
           <p>
-            Unlock the power of <span>Legal Chatbot</span> today! 🚀
+            Khai phá sức mạnh của <span>Legal Chatbot</span> ngay hôm nay! 🚀
           </p>
         </div>
       </div>

@@ -163,11 +163,19 @@ section {
 
 /* Mission Section Image - Adjust image size */
 /* Mission Section Image - Make the image smaller */
-.mission-section .col-lg-6 img {
-  width: 130%; /* Make the image width 50% of its container */
-  height: 130%; /* Ensure the aspect ratio is maintained */
+.mission-section .col-lg-6-img img {
+  width: 100%; /* Giữ kích thước hình ảnh */
+  height: auto; /* Duy trì tỷ lệ khung hình */
+  border-radius: 20px; /* Bo tròn góc */
+  object-fit: cover; /* Giữ hình ảnh hiển thị đầy đủ */
+  display: block; /* Đảm bảo không có khoảng trống thừa */
+  margin-left: 0; /* Đưa hình ảnh về bên trái */
 }
 
+
+.mission-section .col-lg-6 {
+  width: 110%;
+}
 
 /* Legal Master Section */
 .legal-master-section {

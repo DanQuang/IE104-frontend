@@ -9,6 +9,7 @@ import ForgotPasswordPage from "../pages/Auth/ForgotPassword/ForgotPassword";
 import Contact from "../pages/Contact/Contact";
 import ChatPage from "../pages/Chat/[id]/Chatpage";
 import About from "../pages/About/About";
+import Donation from "../pages/Donation/Donation";
 // import ChatPage from "../pages/Chat/[id]/Chatpage";
 
 // Định nghĩa router
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "about",
         element: <About />
+      },
+      {
+        path: "donation",
+        element: <Donation />
       },
       // {
       //   path: "chat/:id", // Route động cho trang chat

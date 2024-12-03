@@ -12,7 +12,7 @@ const NavBar = () => {
   const [user, setUser] = useState({ name: "", avatar: "" });
   const [hasScrolled, setHasScrolled] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation(); // Theo dõi đường dẫn hiện tại
+  const location = useLocation(); 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +30,7 @@ const NavBar = () => {
     if (storedToken) {
       try {
         const decoded = jwtDecode(storedToken);
-        fetchUserData(decoded.id); // Giả sử bạn có hàm fetchUserData
+        fetchUserData(decoded.id); 
         setIsLoggedIn(true);
       } catch (error) {
         console.error("Token decoding error:", error);
@@ -74,7 +74,7 @@ const NavBar = () => {
           {[
             { key: "home", label: "Trang chủ" },
             { key: "feature", label: "Dịch vụ" },
-            { key: "legal-assistant", label: "Trò chuyện" },
+            { key: "chat", label: "Trò chuyện" },
             { key: "pricing", label: "Bảng giá" },
             { key: "donation", label: "Ủng hộ" },
             { key: "about", label: "Về chúng tôi" },

@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from '../../../../component/ui/avatar';
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleChatSideBar } from '@/redux/slices/app';
-import NewChat from '../chat/newchat';
-import ChatRow from '../Chat/ChatRow';
-import axios from '@/utils/axios';
-import { UpdateIcon } from '@radix-ui/react-icons';
-import { setChats } from '@/redux/slices/chat';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleChatSideBar } from "../../../../redux/slices/app";
+import NewChat from "../Newchat/Newchat";
+import ChatRow from "../Chatrow/Chatrow";
+import axios from "../../../../utils/axios";
+import { UpdateIcon } from "@radix-ui/react-icons";
+import { setChats } from "../../../../redux/slices/chat";
 
 const Sidebar = () => {
     const chatsidebar = useSelector((state) => state.app.chatsidebar);
     const { user, token } = useSelector((state) => state.auth);
     const { chats } = useSelector((state) => state.chat);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -21,90 +20,91 @@ const Sidebar = () => {
             const response = await axios.get('/chats/', {
                 headers: {
                     Authorization: `JWT ${token}`,
-                },
+                }
             });
             setLoading(false);
             dispatch(setChats(response.data));
+            return response.data;
         } catch (error) {
             console.error('Error fetching chats:', error);
+            return [];
         }
     };
 
     useEffect(() => {
-        getChats();
+        const fetchData = async () => {
+            const chats = await getChats();
+        }
+        fetchData();
     }, []);
 
     return (
         <>
-            <div className="sidebar">
-                <div className="sidebar-content">
-                    <div className="chats">
+            <div className="w-[260px] hidden h-screen md:block bg-slate-100">
+                <div className="h-full rounded-lg py-2 flex flex-col justify-between gap-3">
+                    <div className="px-2 overflow-y-auto custom-scrollbar">
                         <NewChat />
-                        {loading ? (
-                            <div className="loading">
-                                <UpdateIcon className="spin" />
-                            </div>
-                        ) : (
-                            chats.map((chat) => (
+                        {loading
+                            ? <div className="w-full flex flex-col items-center justify-center">
+                                <UpdateIcon className="animate-spin h-4 w-4 mr-2" />
+                              </div>
+                            : chats.map((chat) => (
                                 <ChatRow key={chat.id} id={chat.id} title={chat.title} />
                             ))
-                        )}
+                        }
                     </div>
 
-                    <div className="user-info" onClick={() => {}}>
-                        <Avatar className="avatar">
+                    {/* <div className="flex gap-3 p-2 hover:bg-input cursor-pointer items-center rounded-md">
+                        <Avatar className="border-2">
                             {user ? <AvatarImage src={user.profileImage} /> : null}
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
                         {user ? <p>{user.full_name}</p> : null}
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
-            {chatsidebar.open && (
-                <div className="mobile-sidebar">
-                    <div className="mobile-sidebar-overlay">
-                        <div className="mobile-sidebar-content">
-                            <button
-                                onClick={() => dispatch(toggleChatSideBar())}
-                                className="close-button"
-                            >
-                                <svg
-                                    className="close-icon"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    aria-hidden="true"
+            <div>
+                {chatsidebar.open && (
+                    <div className="md:hidden fixed inset-0 overflow-y-auto z-50 bg-gray-800 bg-opacity-75">
+                        <div className="flex h-screen relative">
+                            <div className="absolute top-0 right-0 p-1 z-100">
+                                <button
+                                    onClick={() => {
+                                        dispatch(toggleChatSideBar());
+                                    }}
+                                    className="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600"
                                 >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            </button>
-                            <div className="chats">
-                                <NewChat />
-                                {chats.map((chat) => (
-                                    <ChatRow key={chat.id} id={chat.id} title={chat.title} />
-                                ))}
+                                    <svg className="h-6 w-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" className="text-white" />
+                                    </svg>
+                                </button>
                             </div>
+                            <div className="max-w-64 w-full bg-sidebar shadow-xl">
+                                <div className="h-full rounded-lg py-2 flex flex-col justify-between gap-3">
+                                    <div className="px-2 overflow-y-auto custom-scrollbar">
+                                        <NewChat />
+                                        {chats.map((chat) => (
+                                            <ChatRow key={chat.id} id={chat.id} title={chat.title} />
+                                        ))}
+                                    </div>
 
-                            <div className="user-info">
-                                <Avatar className="avatar">
-                                    {user ? <AvatarImage src={user.profileImage} /> : null}
-                                    <AvatarFallback>CN</AvatarFallback>
-                                </Avatar>
-                                {user ? <p>{user.full_name}</p> : null}
+                                    {/* <div className="flex gap-3 p-2 hover:bg-input cursor-pointer items-center rounded-md">
+                                        <Avatar className="border-2">
+                                            {user ? <AvatarImage src={user.profileImage} /> : null}
+                                            <AvatarImage src="" />
+                                            <AvatarFallback>CN</AvatarFallback>
+                                        </Avatar>
+                                        {user ? <p>{user.full_name}</p> : null}
+                                    </div> */}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </>
     );
-};
+}
 
 export default Sidebar;

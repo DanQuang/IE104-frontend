@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import './navbar.css'; 
+import "./navbar.css";
 
 import animationData from "../../../assets/chatbot.json";
 import Lottie from "lottie-react";
@@ -40,7 +40,7 @@ const NavBar = () => {
 
   useEffect(() => {
     const path = location.pathname.replace("/", "");
-    setCurrent(path || "home"); 
+    setCurrent(path || "home");
   }, [location]);
 
   const handleNavigation = (key) => {
@@ -56,21 +56,25 @@ const NavBar = () => {
   };
 
   return (
-    <header className={`navbar-container ${hasScrolled ? "scrolled" : ""}`}>
+    <header
+      className={`navbar-container ${hasScrolled ? "scrolled" : ""} ${
+        location.pathname.startsWith("/chat") ? "non-sticky" : ""
+      }`}
+    >
       <div className="navbar-header">
         <Link to="/" className="navbar-logo">
-          <Lottie 
-            animationData={animationData} 
-            loop={true} 
-            alt="Legal Chatbot Logo" 
-            className="logo" 
+          <Lottie
+            animationData={animationData}
+            loop={true}
+            alt="Legal Chatbot Logo"
+            className="logo"
           />
         </Link>
         <nav className="navbar-menu">
           {[
             { key: "home", label: "Home" },
             { key: "feature", label: "Feature" },
-            { key: "legal-assistant", label: "Legal Assistant" },
+            { key: "chat", label: "Legal Assistant" },
             { key: "pricing", label: "Pricing" },
             { key: "donation", label: "Donation" },
             { key: "blogs", label: "Blogs" },
@@ -80,7 +84,9 @@ const NavBar = () => {
             <Link
               key={item.key}
               to={`/${item.key}`}
-              className={`navbar-menu-item ${current === item.key ? "active" : ""}`}
+              className={`navbar-menu-item ${
+                current === item.key ? "active" : ""
+              }`}
               onClick={() => handleNavigation(item.key)}
             >
               {item.label}
@@ -91,14 +97,20 @@ const NavBar = () => {
           {isLoggedIn ? (
             <div className="navbar-user-dropdown">
               <div className="navbar-user" onClick={() => navigate("/profile")}>
-                <img src={user.avatar} alt="User Avatar" className="user-avatar" />
+                <img
+                  src={user.avatar}
+                  alt="User Avatar"
+                  className="user-avatar"
+                />
                 <span>{user.name}</span>
               </div>
-              <button className="logout-button" onClick={handleLogout}>Logout</button>
+              <button className="logout-button" onClick={handleLogout}>
+                Logout
+              </button>
             </div>
           ) : (
-            <button 
-              className="navbar-login-button" 
+            <button
+              className="navbar-login-button"
               onClick={() => navigate("/auth/login")}
             >
               Start Consulting

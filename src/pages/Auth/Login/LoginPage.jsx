@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie"; // Import thư viện js-cookie
-import { useDispatch } from "react-redux"; // Import dispatch để gửi action đến Redux
-import { logIn } from "../../../redux/slices/auth"; // Import action logIn để cập nhật Redux store
+import Cookies from "js-cookie"; 
+import { useDispatch } from "react-redux"; 
+import { logIn } from "../../../redux/slices/auth"; 
 import "./LoginPage.css";
-import animationData from "../../../assets/chatbot.json"; // Import animation data
+import animationData from "../../../assets/chatbot.json"; 
 import Lottie from "lottie-react";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); // Error state
-  const [isLoading, setIsLoading] = useState(false); // Loading state
+  const [errorMessage, setErrorMessage] = useState(""); 
+  const [isLoading, setIsLoading] = useState(false); 
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // Khai báo dispatch
+  const dispatch = useDispatch(); 
 
   // Mock API call for login
   const mockLoginAPI = async (email, password) => {
@@ -32,17 +32,17 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setErrorMessage(""); // Clear previous error
+    setErrorMessage(""); 
 
     try {
-      const response = await mockLoginAPI(email, password); // Call mock API
+      const response = await mockLoginAPI(email, password); 
       const token = response.token;
 
       // Lưu token vào Redux store và cookie
       dispatch(logIn({ token }));
       Cookies.set("authToken", token, { expires: 7, secure: true }); 
 
-      navigate("/chat"); // Chuyển hướng đến trang chat
+      navigate("/chat"); 
     } catch (error) {
       // Handle login failure
       setErrorMessage(error.message || "An error occurred. Please try again.");

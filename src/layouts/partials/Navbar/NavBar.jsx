@@ -1,18 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
-import "./navbar.css";
-
+import { useSelector, useDispatch } from "react-redux";
+import Cookies from "js-cookie";  // import js-cookie
+import { AvatarIcon } from "@radix-ui/react-icons";  // import icon từ Radix UI
 import animationData from "../../../assets/chatbot.json";
 import Lottie from "lottie-react";
+import { signOut } from "../../../redux/slices/auth";
+import "./Navbar.css";
 
 const NavBar = () => {
   const [current, setCurrent] = useState("home");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({ name: "", avatar: "" });
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState(false); // State để điều khiển dropdown
+  const dropdownRef = useRef(null); // Tham chiếu đến dropdown
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
+  const { isLoggedIn, user } = useSelector((state) => state.auth); // Lấy thông tin user từ Redux
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,22 +31,26 @@ const NavBar = () => {
   }, []);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("accessToken");
-    if (storedToken) {
-      try {
-        const decoded = jwtDecode(storedToken);
-        fetchUserData(decoded.id); 
-        setIsLoggedIn(true);
-      } catch (error) {
-        console.error("Token decoding error:", error);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
     const path = location.pathname.replace("/", "");
     setCurrent(path || "home");
   }, [location]);
+
+  // Đóng dropdown khi bấm ra ngoài
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownVisible(false);
+      }
+    };
+
+    if (dropdownVisible) {
+      document.addEventListener("click", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [dropdownVisible]);
 
   const handleNavigation = (key) => {
     setCurrent(key);
@@ -49,10 +58,13 @@ const NavBar = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    setIsLoggedIn(false);
-    setUser({ name: "", avatar: "" });
-    navigate("/auth/login");
+    Cookies.remove("authToken");
+    dispatch(signOut());
+    navigate("/home");
+  };
+
+  const toggleDropdown = () => {
+    setDropdownVisible((prev) => !prev); // Toggle dropdown
   };
 
   return (
@@ -83,9 +95,7 @@ const NavBar = () => {
             <Link
               key={item.key}
               to={`/${item.key}`}
-              className={`navbar-menu-item ${
-                current === item.key ? "active" : ""
-              }`}
+              className={`navbar-menu-item ${current === item.key ? "active" : ""}`}
               onClick={() => handleNavigation(item.key)}
             >
               {item.label}
@@ -94,18 +104,22 @@ const NavBar = () => {
         </nav>
         <div className="navbar-actions">
           {isLoggedIn ? (
-            <div className="navbar-user-dropdown">
-              <div className="navbar-user" onClick={() => navigate("/profile")}>
-                <img
-                  src={user.avatar}
-                  alt="User Avatar"
-                  className="user-avatar"
-                />
-                <span>{user.name}</span>
+            <div className="navbar-user-dropdown" ref={dropdownRef}>
+              <div className="navbar-user" onClick={toggleDropdown}>
+                {/* Sử dụng icon Avatar từ Radix UI */}
+                <AvatarIcon className="user-avatar" />
+                <span>{user?.name || "User"}</span>
               </div>
-              <button className="logout-button" onClick={handleLogout}>
-                Logout
-              </button>
+              {dropdownVisible && (
+                <div className="dropdown-menu">
+                  <button className="dropdown-item" onClick={() => navigate("auth/profile")}>
+                    Profile
+                  </button>
+                  <button className="dropdown-item" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
           ) : (
             <button

@@ -16,26 +16,17 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // Actual API call for login using fetch
-  const loginAPI = async (email, password) => {
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/auth/jwt/create/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) {
-        throw new Error("An error occurred. Please try again.");
-      }
-
-      const data = await response.json();
-      return data;  // Assuming the response contains the token
-    } catch (error) {
-      throw new Error(error.message || "An error occurred. Please try again.");
-    }
+  // Mock API call for login
+  const mockLoginAPI = async (email, password) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (email === "user@example.com" && password === "password123") {
+          resolve({ token: "mock-jwt-token-1234567890" }); // Giả lập token
+        } else {
+          reject({ message: "Invalid email or password." });
+        }
+      }, 1000); // Giả lập độ trễ
+    });
   };
 
   const handleLogin = async (e) => {
@@ -49,9 +40,9 @@ const LoginPage = () => {
 
       // Store token in Redux and cookie
       dispatch(logIn({ token }));
-      Cookies.set("authToken", token, { expires: 60, secure: true });
+      Cookies.set("authToken", token, { expires: 7, secure: true }); // Cookie sẽ tồn tại trong 7 ngày
 
-      navigate("/chat/1");
+      navigate("/chat/1"); // Chuyển hướng đến trang chat
     } catch (error) {
       setErrorMessage(error.message || "An error occurred. Please try again.");
     } finally {

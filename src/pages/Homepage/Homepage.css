@@ -107,7 +107,7 @@ p {
   z-index: 1;
   transition: all 500ms ease;
   background-color: #f43f5e;
-
+  cursor: pointer;
 }
 
 .start-button:hover {

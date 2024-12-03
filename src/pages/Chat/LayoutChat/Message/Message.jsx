@@ -1,65 +1,58 @@
 import React from "react";
-import { Cpu } from "@phosphor-icons/react";
-import { Separator } from "../../../../component/ui/separator";
+import { Cpu, UserCircle } from "@phosphor-icons/react";
 import { useSelector } from "react-redux";
-import { Avatar, AvatarFallback, AvatarImage } from "../../../../component/ui/avatar";
+import { Separator } from "../../../../component/ui/separator";
 import { marked } from "marked";
 import hljs from "highlight.js";
-
-import "./Message.css"; // Tệp CSS tách riêng
 
 const Message = ({ message }) => {
     const { user } = useSelector((state) => state.auth);
 
-    // Cấu hình markdown và highlight code
     const renderer = new marked.Renderer();
     renderer.code = (code, language) => {
-        const validLanguage = hljs.getLanguage(language) ? language : "plaintext";
-        return `<pre><code class="language-${validLanguage}">${hljs.highlight(code, { language: validLanguage }).value}</code></pre>`;
+        const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
+        return `<pre><code class="language-${validLanguage}">${hljs.highlight(validLanguage, code).value}</code></pre>`;
     };
 
     marked.setOptions({ renderer });
-    const htmlContent = marked(message.content);
+
+    // Kiểm tra và xử lý nội dung
+    const content = message.content || ''; // Đảm bảo luôn là chuỗi
+    const html = marked(content);
 
     return (
-        <div className="message-container">
+        <>
             {message.sender_email ? (
-                <div className="message-wrapper">
-                    <div className="message-content">
-                        <div className="message-avatar">
-                            <Avatar className="avatar">
-                                {user?.profileImage ? (
-                                    <AvatarImage src={user.profileImage} />
-                                ) : (
-                                    <AvatarFallback>CN</AvatarFallback>
-                                )}
-                            </Avatar>
+                <div className='max-w-2xl mx-auto'>
+                    <div className='flex space-x-5'>
+                        <div className='w-10 h-10 rounded-full border flex items-center justify-center p-1'>
+                            <UserCircle size={32} />
                         </div>
-                        <div className="message-text">
-                            <h2 className="message-title">{user?.full_name || "User"}</h2>
-                            <p className="message-body">{message.content}</p>
+
+                        <div className='flex flex-col'>
+                            <h2 className='font-semibold text-xl'>{user && user.full_name}</h2>
+                            <p className='pt-1 whitespace-pre-wrap'>
+                                {message.content}
+                            </p>
                         </div>
                     </div>
-                    <Separator className="separator" />
+                    <Separator className='mb-5 w-full my-5' />
                 </div>
             ) : (
-                <div className="message-wrapper">
-                    <div className="message-content">
-                        <div className="message-avatar">
+                <div className='max-w-2xl mx-auto'>
+                    <div className='flex space-x-5'>
+                        <div className='w-10 h-10 rounded-full border flex items-center justify-center p-1'>
                             <Cpu size={32} />
                         </div>
-                        <div className="message-text">
-                            <h2 className="message-title">ChatBot</h2>
-                            <div
-                                className="message-body markdown-content"
-                                dangerouslySetInnerHTML={{ __html: htmlContent }}
-                            />
+                        <div className='flex flex-col'>
+                            <h2 className='font-semibold text-sm'>ChatBot</h2>
+                            <div className='whitespace-pre-wrap' dangerouslySetInnerHTML={{ __html: html }} />
                         </div>
                     </div>
-                    <Separator className="separator" />
+                    <Separator className='mb-5 w-full my-5' />
                 </div>
             )}
-        </div>
+        </>
     );
 };
 

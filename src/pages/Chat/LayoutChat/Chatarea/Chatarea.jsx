@@ -25,7 +25,7 @@ const ChatArea = ({ chatId, chunks }) => {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
   }, [messages]);  // Cập nhật scroll khi có tin nhắn mới
-
+  console.log(messages)
   return (
     <div ref={chatRef} className="flex-1 overflow-y-scroll overflow-x-hidden custom-scrollbar py-5 px-2 md:p-5">
       {messages.length === 0 && (

@@ -24,7 +24,7 @@ const ChatPage = () => {
 
     const fetchMessages = async () => {
       try {
-        const response = await fetch(`/chat/${id}/messages/`, {
+        const response = await fetch(`http://127.0.0.1:8000/api/chat/${id}/messages/`, {
           method: "GET",
           headers: {
             Authorization: `JWT ${token}`,

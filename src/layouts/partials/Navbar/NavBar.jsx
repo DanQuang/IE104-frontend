@@ -72,14 +72,13 @@ const NavBar = () => {
         </Link>
         <nav className="navbar-menu">
           {[
-            { key: "home", label: "Home" },
-            { key: "feature", label: "Feature" },
-            { key: "chat", label: "Legal Assistant" },
-            { key: "pricing", label: "Pricing" },
-            { key: "donation", label: "Donation" },
-            { key: "blogs", label: "Blogs" },
-            { key: "about", label: "About" },
-            { key: "contact", label: "Contact" },
+            { key: "home", label: "Trang chủ" },
+            { key: "feature", label: "Dịch vụ" },
+            { key: "legal-assistant", label: "Trò chuyện" },
+            { key: "pricing", label: "Bảng giá" },
+            { key: "donation", label: "Ủng hộ" },
+            { key: "about", label: "Về chúng tôi" },
+            { key: "contact", label: "Liên hệ" },
           ].map((item) => (
             <Link
               key={item.key}
@@ -113,7 +112,7 @@ const NavBar = () => {
               className="navbar-login-button"
               onClick={() => navigate("/auth/login")}
             >
-              Start Consulting
+              Bắt đầu ngay
             </button>
           )}
         </div>

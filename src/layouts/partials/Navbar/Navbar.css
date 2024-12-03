@@ -89,6 +89,7 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
   margin-right: 60px;
   padding: 20px;
+  cursor: pointer;
 }
 
 .navbar-login-button:hover {

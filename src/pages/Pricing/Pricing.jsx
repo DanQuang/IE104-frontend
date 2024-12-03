@@ -5,34 +5,34 @@ import "./Pricing.css";
 const Pricing = () => {
   const plans = [
     {
-      title: "Basic",
+      title: "Gói Cơ bản",
       price: "$19",
       features: [
-        "Single user",
-        "Unlimited access to Legal Answers",
-        "Unlimited access to Legal Database",
-        "Unlimited Legal Document drafting",
+        "Dành cho một người dùng",
+        "Truy cập không giới hạn vào Hệ thống Giải đáp Pháp lý",
+        "Truy cập không giới hạn vào Cơ sở dữ liệu Pháp lý",
+        "Soạn thảo Tài liệu Pháp lý không giới hạn",
       ],
     },
     {
-      title: "Premium",
+      title: "Gói Nâng cao",
       price: "$29",
       features: [
-        "Full access to Legal Answers",
-        "Full access to Legal Database",
-        "Unlimited Legal Document drafting",
-        "Voice Recording feature",
-        "Email and phone support",
+        "Truy cập đầy đủ vào Hệ thống Giải đáp Pháp lý",
+        "Truy cập đầy đủ vào Cơ sở dữ liệu Pháp lý",
+        "Soạn thảo Tài liệu Pháp lý không giới hạn",
+        "Tích hợp chức năng Ghi âm biên bản",
+        "Hỗ trợ chuyên môn qua email và điện thoại",
       ],
     },
     {
-      title: "Elite",
+      title: "Gói Chuyên nghiệp",
       price: "$49",
       features: [
-        "Up to 5 users",
-        "Includes all Premium Plan features",
-        "Exclusive access to Legal Mock Trials",
-        "Enhanced Technical Support",
+        "Hỗ trợ tối đa 5 người dùng",
+        "Bao gồm tất cả tính năng của Gói Nâng cao",
+        "Quyền truy cập độc quyền vào Phiên Tòa Mô phỏng",
+        "Dịch vụ hỗ trợ kỹ thuật cao cấp",
       ],
     },
   ];
@@ -40,8 +40,8 @@ const Pricing = () => {
   return (
     <div className="pricing-container">
       <div className="pricing-header">
-        <h2 className="pricing-title">AI Pricing Plan</h2>
-        <p className="pricing-subtitle">Get the best services for Best AI Legal Software</p>
+        <h2 className="pricing-title">Gói dịch vụ AI</h2>
+        <p className="pricing-subtitle">Trải nghiệm dịch vụ tối ưu với Nền tảng Pháp lý AI tiên tiến</p>
       </div>
 
       <div className="pricing-cards">
@@ -50,14 +50,13 @@ const Pricing = () => {
             key={index}
             className="pricing-card"
             bordered={false}
-            style={{ backgroundColor: "#fff" }}
           >
             <h3 className="plan-title">{plan.title}</h3>
             <h1 className="plan-price">{plan.price}</h1>
-            <p className="plan-period">Per Month</p>
+            <p className="plan-period">Theo tháng</p>
             <Link to="/checkout">
               <Button type="default" className="subscribe-button">
-                Subscribe
+                Đăng ký ngay
               </Button>
             </Link>
             <ul className="plan-features">

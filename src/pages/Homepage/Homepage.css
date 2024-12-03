@@ -107,7 +107,7 @@ p {
   z-index: 1;
   transition: all 500ms ease;
   background-color: #f43f5e;
-
+  cursor: pointer;
 }
 
 .start-button:hover {
@@ -389,7 +389,6 @@ h4 {
   gap: 20px; 
 }
 
-
 .btn {
   display: inline-block;
   padding: 20px 32px;
@@ -404,18 +403,6 @@ h4 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.btn.gold {
-  background-color: #f43f5e; /* Màu vàng gold */
-  color: white;
-}
-
-.btn.gold:hover {
-  background-color: #f8f8f8; 
-  color: #000000;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  transform: scale(1.05);
-}
-
 .btn.white {
   background-color: white;
   color: black;
@@ -427,4 +414,5 @@ h4 {
   color: #f8f8f8;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   transform: scale(1.05);
+  cursor: pointer;
 }

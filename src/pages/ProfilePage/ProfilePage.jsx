@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ProfilePage.css';
+import avt from "../../assets/avatar.jpg";  // Import avatar từ thư mục assets
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);  // State để lưu dữ liệu người dùng
@@ -36,7 +37,8 @@ const ProfilePage = () => {
     <div className="profile-container">
       <div className="profile-header">
         <div className="avatar">
-          <img src="https://via.placeholder.com/150" alt="User Avatar" />
+          {/* Sử dụng ảnh import */}
+          <img src={avt} alt="User Avatar" />
         </div>
         <div className="profile-info">
           <h1>{user.full_name}</h1>

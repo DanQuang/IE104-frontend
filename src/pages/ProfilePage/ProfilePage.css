@@ -1,0 +1,141 @@
+/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    padding: 30px;
+  }
+  
+  /* Profile Container */
+  .profile-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    transition: transform 0.3s ease;
+  }
+  
+  .profile-container:hover {
+    transform: scale(1.02);  /* Hiệu ứng phóng to khi hover */
+  }
+  
+  /* Header */
+  .profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .avatar img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 4px solid #4CAF50;  /* Thêm border đẹp */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-info {
+    margin-left: 20px;
+  }
+  
+  .profile-info h1 {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .profile-info .email {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .profile-info .tier {
+    font-size: 18px;
+    color: #4CAF50;
+    font-weight: bold;
+  }
+  
+  /* Profile Details */
+  .profile-details {
+    margin-top: 20px;
+  }
+  
+  .detail-item h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .detail-item ul {
+    list-style-type: none;
+  }
+  
+  .detail-item ul li {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 12px;
+  }
+  
+  .detail-item ul li strong {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .detail-item ul li span {
+    color: #4CAF50;
+    font-weight: normal;
+  }
+  
+  /* Loading Spinner */
+  .loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #4CAF50;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 100px auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .profile-header {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .profile-header .avatar {
+      margin-bottom: 20px;
+    }
+  
+    .profile-container {
+      padding: 20px;
+    }
+  
+    .profile-info h1 {
+      font-size: 26px;
+    }
+  
+    .profile-info .email, .profile-info .tier {
+      font-size: 14px;
+    }
+  
+    .detail-item ul li {
+      font-size: 14px;
+    }
+  }
+  

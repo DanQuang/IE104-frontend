@@ -1,20 +1,10 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import Cookies from "js-cookie"; 
-import { useDispatch } from "react-redux"; 
-import { logIn } from "../../../redux/slices/auth"; 
-import "./LoginPage.css";
-import animationData from "../../../assets/chatbot.json"; 
-import Lottie from "lottie-react";
+import React, { useState, useEffect } from 'react';
+import './ProfilePage.css';
+import avt from "../../assets/avatar.jpg";  // Import avatar từ thư mục assets
 
-const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); 
-  const [isLoading, setIsLoading] = useState(false); 
-  const navigate = useNavigate();
-  const dispatch = useDispatch(); 
+const ProfilePage = () => {
+  const [user, setUser] = useState(null);  // State để lưu dữ liệu người dùng
+  const [loading, setLoading] = useState(true);  // State để kiểm tra trạng thái loading
 
   useEffect(() => {
     // Fetch dữ liệu người dùng từ backend Django
@@ -35,33 +25,20 @@ const LoginPage = () => {
       });
   }, []);  // Chạy một lần khi component mount
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setErrorMessage(""); 
+  if (loading) {
+    return <div className="loading-spinner"></div>;  // Hiển thị loading khi dữ liệu chưa được fetch
+  }
 
-    try {
-      const response = await mockLoginAPI(email, password); 
-      const token = response.token;
-
-      // Lưu token vào Redux store và cookie
-      dispatch(logIn({ token }));
-      Cookies.set("authToken", token, { expires: 7, secure: true }); 
-
-      navigate("/chat"); 
-    } catch (error) {
-      // Handle login failure
-      setErrorMessage(error.message || "An error occurred. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  if (!user) {
+    return <div>No user data found</div>;  // Nếu không có dữ liệu người dùng
+  }
 
   return (
     <div className="profile-container">
       <div className="profile-header">
         <div className="avatar">
-          <img src="https://via.placeholder.com/150" alt="User Avatar" />
+          {/* Sử dụng ảnh import */}
+          <img src={avt} alt="User Avatar" />
         </div>
         <div className="profile-info">
           <h1>{user.full_name}</h1>

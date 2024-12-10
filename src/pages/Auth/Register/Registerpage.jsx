@@ -29,19 +29,19 @@ const RegisterPage = () => {
     }
 
     try {
-      const response = await fetch("https://api.example.com/register", {
+      const response = await fetch("http://127.0.0.1:8000/api/auth/users/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ "full_name": name, "email": email, "password": password, "re_password": confirmPassword }),
+        mode: 'cors'
       });
 
       const data = await response.json();
-
       if (response.ok) {
         // Điều hướng đến trang đăng nhập sau khi đăng ký thành công
-        navigate("/login");
+        navigate("/auth/login");
       } else {
         // Hiển thị lỗi từ máy chủ
         setErrorMessage(data.message || "Đã xảy ra lỗi trong quá trình đăng ký.");

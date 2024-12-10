@@ -7,70 +7,83 @@ import LoginPage from "../pages/Auth/Login/LoginPage";
 import RegisterPage from "../pages/Auth/Register/Registerpage";
 import ForgotPasswordPage from "../pages/Auth/ForgotPassword/ForgotPassword";
 import Contact from "../pages/Contact/Contact";
-import ChatPage from "../pages/Chat/[id]/Chatpage";
 import About from "../pages/About/About";
 import Donation from "../pages/Donation/Donation";
-// import ChatPage from "../pages/Chat/[id]/Chatpage";
+import ChatPage from "../pages/Chat/[id]/Chatpage";
+import ChatAreaLayout from "../pages/Chat/ChatAreaLayout";
+import ProfilePage from "../pages/Auth/ProfilePage/ProfilePage";
 
-// Định nghĩa router
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <DefaultLayout />,
+    element: <DefaultLayout />, // Layout chính cho các trang
     children: [
       {
-        index: true,
+        index: true, // Trang chủ khi truy cập vào "/"
         element: <HomePage />,
       },
       {
-        path: "home", 
+        path: "home",
         element: <HomePage />,
       },
       {
-        path: "feature", 
+        path: "feature",
         element: <Feature />,
       },
       {
-        path: "pricing", 
+        path: "pricing",
         element: <Pricing />,
       },
       {
         path: "contact",
-        element: <Contact />
-      },
-      {
-        path: "/chat/:id",
-        element: <ChatPage />
+        element: <Contact />,
       },
       {
         path: "about",
-        element: <About />
+        element: <About />,
+      },
+      {
+        path: "chat",
+        children: [
+          {
+            index: true, // Nếu chỉ truy cập "/chat"
+            element: <ChatAreaLayout />,
+          },
+          {
+            path: ":id", // Nếu truy cập "/chat/:id"
+            element: <ChatAreaLayout />,
+          },
+        ],
       },
       {
         path: "donation",
         element: <Donation />
       },
-      // {
-      //   path: "chat/:id", // Route động cho trang chat
-      //   element: <ChatPage />,
-      // },
+      {
+        path: "chat/:id", // Route động cho trang chat
+        element: <ChatPage />,
+      },
     ],
   },
   {
-    path: "/auth", 
-    element: <Outlet />, 
+    path: "/auth",
+    element: <Outlet />, // Outlet render các route con trong auth
     children: [
       {
-        path: "login", 
-        element: <LoginPage/>,
+        path: "login",
+        element: <LoginPage />,
       },
       {
-        path: "register", 
-        element: <RegisterPage/>,
+        path: "register",
+        element: <RegisterPage />,
       },
       {
-        path: "forgot-password", 
-        element: <ForgotPasswordPage/>,
+        path: "forgot-password",
+        element: <ForgotPasswordPage />,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
       },
     ],
   },

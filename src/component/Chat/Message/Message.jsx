@@ -7,7 +7,7 @@ import hljs from 'highlight.js';
 import './Message.css'; // Import CSS riêng
 import { RootState } from '@/redux/store';
 
-const Message = ({ message }) => {
+const Message = ({ messages }) => {
     const { user } = useSelector((state: RootState) => state.auth);
 
     const renderer = new marked.Renderer();
@@ -17,44 +17,48 @@ const Message = ({ message }) => {
     };
 
     marked.setOptions({ renderer });
-    const html = marked(message.content);
 
     return (
-        <>
-            {message.sender_email ? (
-                <div className="message-container">
-                    <div className="message-row">
-                        <div className="avatar-container">
-                            <Avatar className="avatar">
-                                {user && <AvatarImage src={user.profileImage} />}
-                                <AvatarFallback>CN</AvatarFallback>
-                            </Avatar>
+        <div className="chat-container">
+            {messages.map((message, index) => {
+                console.log(message.text)
+                // Giả định rằng các tin nhắn với id chẵn là của người dùng, còn lẻ là ChatBot.
+                const isUserMessage = index % 2 === 0;  // Chẵn: người dùng, Lẻ: ChatBot
+
+                // Chuyển đổi nội dung Markdown cho ChatBot (nếu cần thiết)
+                const html = isUserMessage ? message.text : marked(message.text);
+
+                return (
+                    <div key={message.id} className={`message-container ${isUserMessage ? 'user-message' : 'chatbot-message'}`}>
+                        <div className="message-row">
+                            <div className="avatar-container">
+                                {isUserMessage ? (
+                                    // Hiển thị avatar của người dùng nếu tin nhắn là của người dùng
+                                    <Avatar className="avatar">
+                                        {user && <AvatarImage src={user.profileImage} />}
+                                        <AvatarFallback>{user ? user.full_name.charAt(0) : 'U'}</AvatarFallback>
+                                    </Avatar>
+                                ) : (
+                                    // Hiển thị icon ChatBot nếu tin nhắn là của ChatBot
+                                    <Cpu size={32} />
+                                )}
+                            </div>
+
+                            <div className="message-content">
+                                <h2 className="sender-name">
+                                    {isUserMessage ? user?.full_name : 'ChatBot'}
+                                </h2>
+                                <div
+                                    className="message-text"
+                                    dangerouslySetInnerHTML={{ __html: html }}
+                                />
+                            </div>
                         </div>
-                        <div className="message-content">
-                            <h2 className="sender-name">{user && user.full_name}</h2>
-                            <p className="message-text">{message.content}</p>
-                        </div>
+                        <hr className="separator" />
                     </div>
-                    <hr className="separator" />
-                </div>
-            ) : (
-                <div className="message-container">
-                    <div className="message-row">
-                        <div className="avatar-container">
-                            <Cpu size={32} />
-                        </div>
-                        <div className="message-content">
-                            <h2 className="sender-name">ChatBot</h2>
-                            <div
-                                className="message-text"
-                                dangerouslySetInnerHTML={{ __html: html }}
-                            />
-                        </div>
-                    </div>
-                    <hr className="separator" />
-                </div>
-            )}
-        </>
+                );
+            })}
+        </div>
     );
 };
 

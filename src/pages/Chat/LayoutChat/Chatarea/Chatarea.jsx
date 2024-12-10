@@ -9,7 +9,7 @@ import Message from "../Message/Message";
 
 const ChatArea = ({ chatId, chunks }) => {
   const { messagesByChatId } = useSelector((state) => state.chat);
-  const messages = messagesByChatId[chatId] || [];  // Lấy tin nhắn của chatId hiện tại
+  const messages = messagesByChatId[chatId] || [];  
   const chatRef = useRef(null);
 
   const renderer = new marked.Renderer();
@@ -25,7 +25,6 @@ const ChatArea = ({ chatId, chunks }) => {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
   }, [messages]);  // Cập nhật scroll khi có tin nhắn mới
-  console.log(messages)
   return (
     <div ref={chatRef} className="flex-1 overflow-y-scroll overflow-x-hidden custom-scrollbar py-5 px-2 md:p-5">
       {messages.length === 0 && (
@@ -63,7 +62,6 @@ const ChatArea = ({ chatId, chunks }) => {
               </p>
             </div>
           </div>
-          <Separator className="mb-5 w-full my-5" />
         </div>
       )}
     </div>

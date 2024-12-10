@@ -28,7 +28,7 @@ const ChatAreaLayout = () => {
     // Cuộn xuống bỏ qua phần header
     window.scrollTo({
       top: headerHeight,
-      behavior: "smooth", // Cuộn mượt
+      behavior: "smooth", 
     });
   }, []);
 
@@ -44,9 +44,9 @@ const ChatAreaLayout = () => {
       ) : (
         <div className="flex h-screen w-full">
           <Sidebar />
-          <div className="w-full flex flex-col overflow-auto">
+          <div className="w-[85%] flex flex-col overflow-auto">
             {/* Header cố định */}
-            {/* <Header /> */}
+            <Header />
             {/* Hiển thị ChatPage nếu có id, ngược lại hiển thị IndexPage */}
             {id ? <ChatPage /> : <Indexpage />}
           </div>

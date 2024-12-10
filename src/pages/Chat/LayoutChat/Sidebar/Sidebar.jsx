@@ -40,9 +40,9 @@ const Sidebar = () => {
 
     return (
         <>
-            <div className="w-[260px] hidden h-screen md:block bg-slate-100">
-                <div className="h-full rounded-lg py-2 flex flex-col justify-between gap-3">
-                    <div className="px-2 overflow-y-auto custom-scrollbar">
+            <div className="w-[15%] hidden h-screen md:block bg-slate-100">
+                <div className="h-full rounded-lg py-2 flex flex-col justify-between gap-3 w-full">
+                    <div className="px-2 overflow-y-auto custom-scrollbar w-full">
                         <NewChat />
                         {loading
                             ? <div className="w-full flex flex-col items-center justify-center">

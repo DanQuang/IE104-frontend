@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     chats: [],
-    messagesByChatId: {}, // Lưu tin nhắn theo chatId
+    messagesByChatId: {},
     selectedMode: "chattergeist",
   };
   

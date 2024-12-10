@@ -6,7 +6,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../../../../utils/axios";
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
-import { useNavigate } from "react-router-dom"; // Change this line
+import { useNavigate } from "react-router-dom";
 import {
   Dialog,
   DialogClose,
@@ -20,7 +20,7 @@ import {
 import { Button } from "../../../../component/ui/button/Button";
 
 const ChatRow = ({ id, title }) => {
-  const navigate = useNavigate(); // Change this line
+  const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
 
   const [inputTitle, setTitle] = useState(title);

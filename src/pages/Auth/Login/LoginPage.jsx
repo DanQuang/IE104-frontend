@@ -78,10 +78,10 @@ const LoginPage = () => {
             alt="Legal Chatbot Logo"
             className="logo"
           />
-          <h2 className="login-heading">Login</h2>
+          <h2 className="login-heading">Đăng nhập</h2>
         </div>
         <p className="login-subheading">
-          How do I get started with Legal Chatbot?
+          Làm sao để bắt đầu với Legal Chatbot?
         </p>
 
         <form onSubmit={handleLogin}>
@@ -92,35 +92,35 @@ const LoginPage = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder="Nhập Email"
               required
             />
           </div>
           <div className="input-group">
-            <label htmlFor="password">Password*</label>
+            <label htmlFor="password">Mật khẩu*</label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
+              placeholder="Nhập mật khẩu"
               required
             />
           </div>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <button type="submit" className="login-button" disabled={isLoading}>
-            {isLoading ? "Logging in..." : "Login"}
+            {isLoading ? "Đăng nhập..." : "Đăng nhập"}
           </button>
           <div className="forgot-password">
-            <Link to="/auth/forgot-password">Forgot Password?</Link>
+            <Link to="/auth/forgot-password">Quên mật khẩu?</Link>
           </div>
           <div className="register-link">
             <p>
-              Don't have an account? <Link to="/auth/register">Register</Link>
+              Không có tài khoản? <Link to="/auth/register">Đăng ký</Link>
             </p>
           </div>
           <div className="back-to-home">
-            <Link to="/">← Back to Home</Link>
+            <Link to="/">← Trở về trang chủ</Link>
           </div>
         </form>
       </div>
@@ -128,7 +128,7 @@ const LoginPage = () => {
         <img src="/src/assets/mock-trial.webp" alt="Login Illustration" />
         <div className="login-image-text">
           <p>
-            Build your team and improve yourself with the{" "}
+            Cùng nâng cấp bản thân và đi tìm sự thật với{" "}
             <span>Legal Chatbot</span> ✨
           </p>
         </div>

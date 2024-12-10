@@ -51,10 +51,10 @@ const ForgotPasswordPage = () => {
             alt="Forgot Password Logo"
             className="logo"
           />
-          <h2 className="forgot-password-heading">Reset Password</h2>
+          <h2 className="forgot-password-heading">Đặt lại mật khẩu</h2>
         </div>
         <p className="forgot-password-subheading">
-          Enter your email to reset your password
+          Nhập Email mà bạn muốn đặt lại mật khẩu.
         </p>
 
         <form onSubmit={handleForgotPassword}>
@@ -65,7 +65,7 @@ const ForgotPasswordPage = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder="Nhập email"
               required
             />
           </div>
@@ -78,10 +78,10 @@ const ForgotPasswordPage = () => {
             className="forgot-password-button"
             disabled={isLoading}
           >
-            {isLoading ? "Sending..." : "Reset Password"}
+            {isLoading ? "Đang gửi..." : "Đặt lại mật khẩu"}
           </button>
           <div className="back-to-login">
-            <Link to="/auth/login">Back to Login</Link>
+            <Link to="/auth/login">Về trang đăng nhập</Link>
           </div>
         </form>
       </div>
@@ -90,7 +90,7 @@ const ForgotPasswordPage = () => {
         <img src="/src/assets/legal-queries.webp" alt="Reset Password Illustration" />
         <div className="forgot-password-image-text">
           <p>
-            Don't worry, we'll help you reset your <span>Password</span> 🔒
+            Đừng lo, chúng tôi sẽ giúp bạn đặt lại <span>Mật khẩu</span> 🔒
           </p>
         </div>
       </div>

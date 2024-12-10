@@ -25,7 +25,7 @@ const About = () => {
               <div>
                 <h2>Về Chúng Tôi</h2>
                 <p>
-                  Tại Build Champions Non-Profit, sứ mệnh của chúng tôi rất rõ ràng: chúng tôi cam kết trao quyền cho các cá nhân và cộng đồng chưa được phục vụ thông qua việc biến công lý từ một đặc quyền thành một quyền cơ bản.
+                  Tại Legal Chatbot, sứ mệnh của chúng tôi rất rõ ràng: chúng tôi cam kết trao quyền cho các cá nhân và cộng đồng chưa được phục vụ thông qua việc biến công lý từ một đặc quyền thành một quyền cơ bản.
                   <br />
                   Khẩu hiệu của chúng tôi, <strong>'Công lý không nên là đặc quyền mà phải là quyền cơ bản.'</strong>,
                   nhấn mạnh cam kết vững chắc của chúng tôi trong việc dân chủ hóa quyền tiếp cận công lý. Chúng tôi đạt được điều này bằng cách cung cấp dịch vụ pháp lý AI tiên tiến cho các công tố viên công, các phòng trợ giúp pháp lý, sinh viên luật, các cá nhân không có người đại diện và các văn phòng luật nhỏ.
@@ -57,7 +57,7 @@ const About = () => {
       <section className="mission-section">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-lg-6">
+            <div className="col-lg-6-img">
               <div>
                 <figure>
                   <img src={mockTrialImage} alt="Phiên Tòa Giả Định" />
@@ -66,11 +66,10 @@ const About = () => {
             </div>
 
             <div className="col-lg-6">
-              <div>
-                <div>
+                <div className="mission-detail">
                   <h3>Tuyên Bố Sứ Mệnh</h3>
                   <p>
-                    Tại Build Champions Non-Profit, sứ mệnh của chúng tôi là trao quyền cho các cá nhân và cộng đồng bằng cách làm cho công lý trở nên dễ tiếp cận đối với tất cả mọi người. Chúng tôi cung cấp dịch vụ pháp lý AI tiên tiến cho các công tố viên công, các phòng trợ giúp pháp lý, sinh viên luật, các cá nhân không có người đại diện và các văn phòng luật nhỏ.
+                    Tại Legal Chatbot, sứ mệnh của chúng tôi là trao quyền cho các cá nhân và cộng đồng bằng cách làm cho công lý trở nên dễ tiếp cận đối với tất cả mọi người. Chúng tôi cung cấp dịch vụ pháp lý AI tiên tiến cho các công tố viên công, các phòng trợ giúp pháp lý, sinh viên luật, các cá nhân không có người đại diện và các văn phòng luật nhỏ.
                   </p>
                   <ul>
                     <li>Cơ sở dữ liệu pháp lý phong phú: Cổng thông tin về kiến thức pháp lý</li>
@@ -83,7 +82,6 @@ const About = () => {
                     <Link to="/user/dashboard" className="btn">Thử Tư Vấn AI</Link>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
         </div>

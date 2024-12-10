@@ -27,8 +27,12 @@ const NewChat = () => {
         }
       );
       const newChat = response.data;
-      dispatch(addChat(newChat));
-      navigate(`/chat/${newChat.id}`);
+      
+      // Đảm bảo newChat.id là kiểu int (số nguyên)
+      const chatId = parseInt(newChat.id, 10); // parseInt chuyển đổi id thành số nguyên (base 10)
+
+      dispatch(addChat({ ...newChat, id: chatId }));  // Nếu id là số nguyên thì chỉ cần truyền trực tiếp
+      navigate(`/chat/${chatId}`);  // Dùng id đã chuyển đổi
     } catch (error) {
       console.error("Error creating new chat:", error);
     }
@@ -49,7 +53,6 @@ const NewChat = () => {
       </button>
     </div>
   );
-  
 };
 
 export default NewChat;

@@ -12,7 +12,6 @@ const appSlice = createSlice({
     name: "app", // Tên slice
     initialState,
     reducers: {
-        // Hành động để bật/tắt sidebar
         toggleChatSideBar: (state) => {
             state.chatsidebar.open = !state.chatsidebar.open;
         },

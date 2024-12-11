@@ -31,17 +31,15 @@ const ChatRow = ({ id, title }) => {
   };
 
   const handleTitleChange = (e) => {
-    setTitle(e.target.value); // Cập nhật inputTitle
+    setTitle(e.target.value);
   };
 
   const handleKeyPress = async (e) => {
     if (e.key === "Enter") {
-      // Comment API call để không gọi backend tạm thời
-      /*
       try {
         const response = await axios.patch(
           `/chats/${id}/`,
-          { title: inputTitle }, // Gửi giá trị mới của inputTitle
+          { title: inputTitle },
           {
             headers: {
               Authorization: `JWT ${token}`,
@@ -55,17 +53,17 @@ const ChatRow = ({ id, title }) => {
       } catch (error) {
         console.error("Error updating title:", error);
       }
-      */
-      
-      // Chỉ cập nhật trong Redux mà không gọi API
-      dispatch(setChatTitleFromMessage({ chatId: id, title: inputTitle }));
-      setIsEditing(false); // Kết thúc chế độ chỉnh sửa
     }
   };
-  
 
   const [active, setActive] = useState(true);
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //     if (window.location.pathname.includes(`/chat/${id}`)) {
+  //         setActive(true);
+  //     }
+  // }, [id]);
 
   const handleDeleteChat = async () => {
     try {
@@ -75,7 +73,7 @@ const ChatRow = ({ id, title }) => {
         },
       });
       dispatch(deleteChat(id));
-      navigate("/chat/");
+      navigate("/chat/"); 
     } catch (error) {
       console.error("Error deleting chat:", error);
     }
@@ -83,32 +81,38 @@ const ChatRow = ({ id, title }) => {
 
   return (
     <div
-      className={`group hover:bg-slate-300 w-full rounded-md p-2 relative ${
+      className={`group hover:bg-slate-300  rounded-md p-2 relative ${
         active && "bg-slate-100"
       }`}
     >
-      <div className="flex item-center justify-between">
+      <div
+        //
+        className="flex item-center"
+      >
+        {" "}
+        {/* Change this line */}
         {isEditing ? (
           <input
             type="text"
             value={inputTitle}
-            onChange={handleTitleChange} // Cập nhật giá trị khi người dùng thay đổi
-            onKeyPress={handleKeyPress} // Gửi request khi nhấn Enter
-            onBlur={() => setIsEditing(false)} // Dừng chỉnh sửa khi mất focus
+            onChange={handleTitleChange}
+            onKeyPress={handleKeyPress}
+            onBlur={() => setIsEditing(false)}
             autoFocus
-            className="px-2 !m-[6px] focus:outline-muted w-full"
+            className="px-2 focus:outline-muted w-full"
           />
         ) : (
           <p
             onClick={() => navigate(`/chat/${id}`)}
-            className="truncate text-sm !p-0 !m-[6px] cursor-pointer w-full text-left"
+            className="truncate text-sm !p-0 !m-[6px] cursor-pointer"
           >
             {title ? title : "New Chat"}
           </p>
         )}
         {active && (
           <>
-            <div className="flex items-center pr-2 gap-1">
+            <div className="absolute bottom-0 right-0 top-0 bg-gradient-to-l from-input w-20 from-60%"></div>
+            <div className="absolute top-0 bottom-0 right-0 flex items-center pr-2 gap-1">
               <Pencil1Icon
                 className="w-5 h-5 group-hover:block cursor-pointer"
                 onClick={handleEditTitle}

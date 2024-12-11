@@ -6,21 +6,21 @@ import ChatArea from "../LayoutChat/Chatarea/Chatarea";
 import ChatPrompt from "../LayoutChat/Chatprompt/Chatpromt";
 
 const ChatPage = () => {
-  const { id } = useParams(); // Chat ID từ URL
+  const { id: rawId } = useParams(); // Lấy id từ URL (dạng chuỗi)
+  const id = parseInt(rawId, 10); // Chuyển đổi id sang số nguyên
+  console.log("ID:", id); // Kiểm tra kiểu dữ liệu của id
+
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth); // Lấy token từ Redux
-  const selectedMode = useSelector((state) => state.chat.selectedMode); // Chế độ chọn của chat
+  const selectedMode = useSelector((state) => state.chat.selectedMode); // Lấy chế độ chat từ Redux
 
   const [ws, setWs] = useState(null); // WebSocket
-  const [loading, setLoading] = useState(false);  // State cho loading
-  const [chunks, setChunks] = useState("");
+  const [loading, setLoading] = useState(false); // State cho loading
+  const [chunks, setChunks] = useState(""); // State lưu chuỗi dữ liệu từ WebSocket
 
-  // Lấy tin nhắn cho cuộc trò chuyện hiện tại từ Redux
-  const messages = useSelector((state) => state.chat.messagesByChatId[id] || []); 
-
-  // Fetching messages khi `id` thay đổi hoặc khi token thay đổi
+  // Fetch tin nhắn khi id hoặc token thay đổi
   useEffect(() => {
-    if (!id || !token) return;
+    if (!id || !token || isNaN(id)) return;
 
     const fetchMessages = async () => {
       try {
@@ -36,7 +36,8 @@ const ChatPage = () => {
         }
 
         const data = await response.json();
-        dispatch(setMessages({ chatId: id, messages: data })); 
+        console.log("Fetched messages:", data);
+        dispatch(setMessages({ chatId: id, messages: data }));
       } catch (error) {
         console.error("Error fetching messages:", error);
       }
@@ -45,9 +46,9 @@ const ChatPage = () => {
     fetchMessages();
   }, [id, token, dispatch]);
 
-  // Mở kết nối WebSocket và thiết lập các sự kiện khi `id` và `token` thay đổi
+  // Thiết lập WebSocket khi id và token thay đổi
   useEffect(() => {
-    if (!id || !token) return;
+    if (!id || !token || isNaN(id)) return;
 
     const newWs = new WebSocket(`ws://localhost:8000/ws/chat/${id}/?token=${token}`);
     setWs(newWs);
@@ -56,25 +57,31 @@ const ChatPage = () => {
       const res = JSON.parse(event.data);
       if (res.user_data) {
         dispatch(addMessage({ chatId: id, message: res.user_data }));
-        dispatch(setChatTitleFromMessage({ chatId: parseInt(id, 10), title: res.title }));
+        dispatch(setChatTitleFromMessage({ chatId: id, title: res.title }));
       }
       if (res.llm_response) {
         dispatch(addMessage({ chatId: id, message: res.llm_response }));
         setLoading(false);
-        setChunks(""); // Clear the chunks when response is finished
+        setChunks(""); // Reset chunks khi nhận phản hồi hoàn chỉnh
       }
       if (res.data_stream) {
-        const newChunk = res.data_stream;
-        setChunks((prevChunks) => prevChunks + newChunk); // Append chunk to existing content
+        setChunks((prevChunks) => prevChunks + res.data_stream); // Append chunks
       }
     };
 
+    newWs.onerror = (error) => {
+      console.error("WebSocket error:", error);
+      // You can add a retry mechanism here
+    };
+
+    newWs.onclose = () => console.log("WebSocket closed");
+
     return () => {
-      newWs.close(); // Đảm bảo WebSocket được đóng khi component unmount
+      newWs.close(); // Đóng WebSocket khi unmount
     };
   }, [id, token, dispatch]);
 
-  // Gửi tin nhắn qua WebSocket
+  // Hàm gửi tin nhắn qua WebSocket
   const sendMessage = (message) => {
     if (ws && ws.readyState === WebSocket.OPEN) {
       setLoading(true);
@@ -94,10 +101,10 @@ const ChatPage = () => {
         <ChatArea chatId={id} chunks={chunks} />
       </div>
 
-      {/* ChatPrompt chiếm 20% chiều cao còn lại và luôn cố định dưới cùng */}
-      <div className="flex-shrink-0" style={{ flex: "0 0 20%" }}>
+      {/* ChatPrompt chiếm 20% chiều cao còn lại */}
+      {<div className="flex-shrink-0" style={{ flex: "0 0 20%" }}>
         <ChatPrompt chatId={id} onSendMessage={sendMessage} loading={loading} />
-      </div>
+      </div>}
     </div>
   );
 };

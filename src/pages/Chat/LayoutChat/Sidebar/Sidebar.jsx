@@ -6,6 +6,7 @@ import ChatRow from "../Chatrow/Chatrow";
 import axios from "../../../../utils/axios";
 import { UpdateIcon } from "@radix-ui/react-icons";
 import { setChats } from "../../../../redux/slices/chat";
+import { data } from "autoprefixer";
 
 const Sidebar = () => {
     const chatsidebar = useSelector((state) => state.app.chatsidebar);
@@ -24,6 +25,7 @@ const Sidebar = () => {
             });
             setLoading(false);
             dispatch(setChats(response.data));
+            console.log(response.data)
             return response.data;
         } catch (error) {
             console.error('Error fetching chats:', error);
@@ -40,9 +42,9 @@ const Sidebar = () => {
 
     return (
         <>
-            <div className="w-[15%] hidden h-screen md:block bg-slate-100">
-                <div className="h-full rounded-lg py-2 flex flex-col justify-between gap-3 w-full">
-                    <div className="px-2 overflow-y-auto custom-scrollbar w-full">
+            <div className="w-[260px] hidden h-screen md:block bg-slate-100">
+                <div className="h-full rounded-lg py-2 flex flex-col justify-between gap-3">
+                    <div className="px-2 overflow-y-auto custom-scrollbar">
                         <NewChat />
                         {loading
                             ? <div className="w-full flex flex-col items-center justify-center">

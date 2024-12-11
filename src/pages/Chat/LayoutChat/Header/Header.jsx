@@ -106,7 +106,7 @@ const Header = () => {
                             </Avatar> */}
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                            {user && <DropdownMenuLabel>👋 Hey, </DropdownMenuLabel>}
+                            {user && <DropdownMenuLabel>👋 Hey, {user.full_name.split(" ")[0]}</DropdownMenuLabel>}
                             <DropdownMenuSeparator />
                             <DropdownMenuItem>Profile</DropdownMenuItem>
                             <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>

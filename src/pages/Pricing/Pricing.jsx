@@ -1,6 +1,6 @@
 import { Button, Card } from "antd";
 import { Link } from "react-router-dom";
-import "./Pricing.css"; 
+import "./Pricing.css";
 
 const Pricing = () => {
   const plans = [
@@ -13,6 +13,7 @@ const Pricing = () => {
         "Truy cập không giới hạn vào Cơ sở dữ liệu Pháp lý",
         "Soạn thảo Tài liệu Pháp lý không giới hạn",
       ],
+      tier: "basic",
     },
     {
       title: "Gói Nâng cao",
@@ -24,6 +25,7 @@ const Pricing = () => {
         "Tích hợp chức năng Ghi âm biên bản",
         "Hỗ trợ chuyên môn qua email và điện thoại",
       ],
+      tier: "advanced",
     },
     {
       title: "Gói Chuyên nghiệp",
@@ -34,6 +36,7 @@ const Pricing = () => {
         "Quyền truy cập độc quyền vào Phiên Tòa Mô phỏng",
         "Dịch vụ hỗ trợ kỹ thuật cao cấp",
       ],
+      tier: "professional",
     },
   ];
 
@@ -46,15 +49,11 @@ const Pricing = () => {
 
       <div className="pricing-cards">
         {plans.map((plan, index) => (
-          <Card
-            key={index}
-            className="pricing-card"
-            bordered={false}
-          >
+          <Card key={index} className="pricing-card" bordered={false}>
             <h3 className="plan-title">{plan.title}</h3>
             <h1 className="plan-price">{plan.price}</h1>
             <p className="plan-period">Theo tháng</p>
-            <Link to="/checkout">
+            <Link to="/auth/register-tier" state={{ plan }}>
               <Button type="default" className="subscribe-button">
                 Đăng ký ngay
               </Button>

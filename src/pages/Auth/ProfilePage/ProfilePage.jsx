@@ -77,7 +77,7 @@ const ProfilePage = () => {
           <h1>{user.full_name}</h1>
           <p className="email">{user.email}</p>
           <p className="tier">
-            Cấp độ hiện tại: <span>{user.tier?.current_tier || 'N/A'}</span>
+            Tier hiện tại: <span>{user.tier?.current_tier || 'N/A'}</span>
           </p>
         </div>
       </div>

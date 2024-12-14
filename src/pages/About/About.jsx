@@ -79,7 +79,7 @@ const About = () => {
                     <li>Phiên Tòa Giả Định: Luyện tập, Hoàn thiện, Thành công</li>
                   </ul>
                   <div>
-                    <Link to="/user/dashboard" className="btn">Thử Tư Vấn AI</Link>
+                    <Link to="/chat" className="btn">Thử Tư Vấn AI</Link>
                   </div>
                 </div>
             </div>

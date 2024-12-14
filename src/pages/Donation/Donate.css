@@ -1,0 +1,49 @@
+/* Donation page specific styles */
+.donate-page-container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.donate-page-container h1 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.donate-page-container .qr-code-container {
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.donate-page-container .qr-code {
+  width: 200px;
+  height: 200px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+}
+
+.donate-page-container .account-info {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.donate-page-container .account-info p {
+  margin: 10px 0;
+}
+
+.donate-page-container .copy-button {
+  background-color: #ff5a5f;
+  color: #fff;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.donate-page-container .copy-button:hover {
+  background-color: #e0484d;
+}

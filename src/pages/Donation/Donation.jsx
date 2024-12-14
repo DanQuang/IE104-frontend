@@ -1,6 +1,7 @@
 import React from "react";
 import "./Donation.css";
 import donationImage from "../../assets/voice.webp"; // Thay bằng đường dẫn ảnh phù hợp
+import { Link } from "react-router-dom";
 
 function Donation() {
   return (
@@ -78,9 +79,11 @@ function Donation() {
           </p>
         </div>
         <div className="donation-cta">
-          <a href="https://donation-link.com" className="donate-button">
-            Quyên Góp Ngay
-          </a>
+          <Link to="/donate">
+            <button className="donation-button">
+              Ủng hộ ngay và luôn
+            </button>
+          </Link>
         </div>
       </section>
     </div>

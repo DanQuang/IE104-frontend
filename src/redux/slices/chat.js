@@ -2,19 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Initial state with proper initialization for messagesByChatId
 const initialState = {
-<<<<<<< HEAD
-  chats: [],
-  messagesByChatId: {}, // Ensuring it's initialized as an object
-  selectedMode: "chattergeist",
-};
-
-const chatSlice = createSlice({
-  name: "chat",
-  initialState,
-  reducers: {
-    setChats: (state, action) => {
-      state.chats = action.payload;
-=======
     chats: [],
     messagesByChatId: {},
     selectedMode: "Gói Cơ Bản",
@@ -65,42 +52,6 @@ const chatSlice = createSlice({
       setSelectedMode: (state, action) => {
         state.selectedMode = action.payload.type;
       },
->>>>>>> fe024b73a3e1c206a4658aa8900c24a5565c012b
-    },
-
-    addChat: (state, action) => {
-      state.chats.push(action.payload);
-    },
-
-    deleteChat: (state, action) => {
-      state.chats = state.chats.filter(chat => chat.id !== action.payload);
-    },
-
-    setMessages: (state, action) => {
-      const { chatId, messages } = action.payload;
-
-      // Logging the payload to debug the issue
-      console.log("Action Payload in setMessages:", action.payload);
-
-      // Ensure messagesByChatId is initialized before setting the value
-      if (!state.messagesByChatId) {
-        state.messagesByChatId = {};  // Safeguard in case it’s undefined
-      }
-
-      // Safely setting the messages for the specific chatId
-      state.messagesByChatId[chatId] = messages;
-    },
-
-    addMessage: (state, action) => {
-      const { chatId, message } = action.payload;
-
-      // Initialize the messages array if it's undefined
-      if (!state.messagesByChatId[chatId]) {
-        state.messagesByChatId[chatId] = [];
-      }
-
-      // Add the new message
-      state.messagesByChatId[chatId].push(message);
     },
 
     setChatTitleFromMessage: (state, action) => {
@@ -120,7 +71,7 @@ const chatSlice = createSlice({
       state.selectedMode = action.payload.type;
     },
   },
-});
+);
 
 export const {
   setChats,

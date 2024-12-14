@@ -43,7 +43,7 @@ const Header = () => {
     };
 
     const handleGitHubNavigation = () => {
-        window.open("https://github.com/anshRS/chatbot", "_blank", "noopener,noreferrer");
+        window.open("https://github.com/DanQuang/IE104-frontend", "_blank", "noopener,noreferrer");
     };
 
     return (

@@ -51,7 +51,7 @@ const RegisterPage = () => {
         // Mở modal thông báo đăng ký thành công
         setIsModalOpen(true);
       } else {
-        setErrorMessage(data.message || "Đã xảy ra lỗi trong quá trình đăng ký.");
+        setErrorMessage(data.message || "Email đã được đăng ký hoặc không tồn tại.");
       }
     } catch (error) {
       setErrorMessage("Đã xảy ra lỗi. Vui lòng thử lại.");

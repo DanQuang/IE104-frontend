@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     chats: [],
     messagesByChatId: {},
-    selectedMode: "chattergeist",
+    selectedMode: "Gói Cơ Bản",
   };
   
   const chatSlice = createSlice({

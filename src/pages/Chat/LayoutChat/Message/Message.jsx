@@ -35,7 +35,7 @@ const Message = ({ id, message }) => {
               <h2 className="font-semibold text-base text-left m-0 py-2">
                 {user && user.full_name ? user.full_name : "You"}
               </h2>
-              <p className="pt-1 whitespace-pre-wrap m-0 text-[16px]">{message.content}</p>
+              <p className="pt-1 whitespace-pre-wrap m-0 text-[16px] text-left">{message.content}</p>
             </div>
           </div>
           <Separator className="w-full mb-5" />
@@ -48,7 +48,7 @@ const Message = ({ id, message }) => {
             </div>
             <div className="flex flex-col">
               <h2 className="font-semibold text-base text-left m-0 py-2">ChatBot</h2>
-              <p className="pt-1 whitespace-pre-wrap m-0 text-[16px]">{message.content}</p>
+              <p className="pt-1 whitespace-pre-wrap m-0 text-[16px] text-left">{message.content}</p>
               {/* <div
                 className="whitespace-pre-wrap"
                 dangerouslySetInnerHTML={{ __html: html }}

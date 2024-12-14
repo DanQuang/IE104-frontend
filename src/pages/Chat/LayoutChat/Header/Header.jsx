@@ -68,24 +68,24 @@ const Header = () => {
                         <DropdownMenuContent className="min-w-[340px] max-w-xs p-3" align="start">
                             <DropdownMenuLabel>Mode</DropdownMenuLabel>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem onSelect={() => handleItemClick('chattergeist')}>
+                            <DropdownMenuItem onSelect={() => handleItemClick('Gói Nâng Cao')}>
                                 <div className="flex items-center gap-3 cursor-pointer">
                                     <Lightning size={32} />
                                     <div>
-                                        <h3 className="text-base">Chattergeist</h3>
-                                        <p className="font-extralight">A general chatbot for engaging conversations on various topics.</p>
+                                        <h3 className="text-sm">Gói Nâng Cao</h3>
+                                        <p className="font-extralight text-sm">Đây là gói nâng cao</p>
                                     </div>
-                                    {selectedMode === 'chattergeist' && <CheckIcon className="h-8 w-8" />}
+                                    {selectedMode === 'Gói Nâng Cao' && <CheckIcon className="h-6 w-6" />}
                                 </div>
                             </DropdownMenuItem>
-                            <DropdownMenuItem onSelect={() => handleItemClick('noura')}>
+                            <DropdownMenuItem onSelect={() => handleItemClick('Gói cơ bản')}>
                                 <div className="flex items-center gap-3 cursor-pointer">
                                     <Cherries size={32} />
                                     <div>
-                                        <h3 className="text-base">Noura</h3>
-                                        <p className="font-extralight">A nutrition-focused chatbot using the RAG pipeline for personalized advice.</p>
+                                        <h3 className="text-sm">Gói cơ bản</h3>
+                                        <p className="font-extralight text-sm">Chức năng cơ bản của Chatbot</p>
                                     </div>
-                                    {selectedMode === 'noura' && <CheckIcon className="h-8 w-8" />}
+                                    {selectedMode === 'Gói cơ bản' && <CheckIcon className="h-6 w-6" />}
                                 </div>
                             </DropdownMenuItem>
                         </DropdownMenuContent>

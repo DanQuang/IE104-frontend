@@ -10,7 +10,6 @@ const NewChat = () => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
 
-  // Function to create a new chat
   const createNewChat = async () => {
     if (!token) {
       console.error("No token found. User might not be logged in.");
@@ -28,36 +27,31 @@ const NewChat = () => {
         }
       );
       const newChat = response.data;
+      
+      // Đảm bảo newChat.id là kiểu int (số nguyên)
+      const chatId = parseInt(newChat.id, 10); // parseInt chuyển đổi id thành số nguyên (base 10)
 
-      // Convert newChat.id to an integer
-      const chatId = parseInt(newChat.id, 10); // Ensures the chat ID is an integer
-
-      dispatch(addChat({ ...newChat, id: chatId }));
-      navigate(`/chat/${chatId}`); // Navigate to the newly created chat
+      dispatch(addChat({ ...newChat, id: chatId }));  // Nếu id là số nguyên thì chỉ cần truyền trực tiếp
+      navigate(`/chat/${chatId}`);  // Dùng id đã chuyển đổi
     } catch (error) {
       console.error("Error creating new chat:", error);
     }
   };
 
   return (
-<div className="sticky top-0 left-0 py-0 z-10">
-  <button
-    onClick={createNewChat} // Make sure the click works for the button
-    className="flex justify-between items-center px-2 py-2 rounded-md 
-              bg-sidebar hover:bg-input cursor-pointer 
-              border-2 border-gray-300 z-50 bg-white w-full"
-  >
-    <div className="flex gap-3 flex-1 justify-between">
-      <StackIcon className="h-8 w-6" />
-      <h1 className="text-[18px] text-left px-4">New chat</h1>
-    <Pencil2Icon
-      className="h-7 w-5 cursor-pointer"
-      onClick={createNewChat}
-      />
-      </div>
-  </button>
-</div>
-
+    <div className="sticky top-0 left-0 py-2 z-10">
+      <button
+        className="flex justify-between items-center px-2 py-2 rounded-md 
+                   bg-sidebar hover:bg-input cursor-pointer 
+                   border-2 border-gray-300"
+      >
+        <div className="flex gap-3 flex-1">
+          <StackIcon className="h-8 w-6" />
+          <h1 className="text-xl text-left px-4" onClick={createNewChat}>New chat</h1>
+        </div>
+        <Pencil2Icon className="h-7 w-5" />
+      </button>
+    </div>
   );
 };
 

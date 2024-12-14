@@ -5,31 +5,29 @@ import { Separator } from "../../../../component/ui/separator";
 import { marked } from "marked";
 import hljs from "highlight.js";
 
-const Message = ({ id, message }) => {
-  const { user } = useSelector((state) => state.auth);
+const Message = ({ message }) => {
+    const { user } = useSelector((state) => state.auth);
 
-  const renderer = new marked.Renderer();
-  renderer.code = (code, language) => {
-    const validLanguage = hljs.getLanguage(language) ? language : "plaintext";
-    return `<pre><code class="language-${validLanguage}">${
-      hljs.highlight(validLanguage, code).value
-    }</code></pre>`;
-  };
+    const renderer = new marked.Renderer();
+    renderer.code = (code, language) => {
+        const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
+        return `<pre><code class="language-${validLanguage}">${hljs.highlight(validLanguage, code).value}</code></pre>`;
+    };
 
-  marked.setOptions({ renderer });
+    marked.setOptions({ renderer });
 
-  // Kiểm tra và xử lý nội dung
-  const content = message.content || ""; // Đảm bảo luôn là chuỗi
-  const html = marked(content);
+    // Kiểm tra và xử lý nội dung
+    const content = message.content || ''; // Đảm bảo luôn là chuỗi
+    const html = marked(content);
 
-  return (
-    <>
-      {message.sender_email ? (
-        <div className="max-w-2xl mx-auto">
-          <div className="flex space-x-5">
-            <div className="w-10 h-10 rounded-full border flex items-center justify-center p-1">
-              <UserCircle size={32} />
-            </div>
+    return (
+        <>
+            {message.sender_email ? (
+                <div className='max-w-2xl mx-auto'>
+                    <div className='flex space-x-5'>
+                        <div className='w-10 h-10 rounded-full border flex items-center justify-center p-1'>
+                            <UserCircle size={32} />
+                        </div>
 
             <div className="flex flex-col">
               <h2 className="font-semibold text-base text-left m-0 py-2">
@@ -60,6 +58,7 @@ const Message = ({ id, message }) => {
       )} 
     </>
   );
+
 };
 
 export default Message;

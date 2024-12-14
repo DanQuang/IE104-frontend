@@ -71,7 +71,7 @@ const initialState = {
       state.selectedMode = action.payload.type;
     },
   },
-});
+);
 
 export const {
   setChats,

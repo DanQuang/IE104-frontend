@@ -46,7 +46,7 @@ const ChatAreaLayout = () => {
           <Sidebar />
           <div className="w-full flex flex-col overflow-auto">
             {/* Header cố định */}
-            {/* <Header /> */}
+            <Header />
             {/* Hiển thị ChatPage nếu có id, ngược lại hiển thị IndexPage */}
             {id ? <ChatPage /> : <Indexpage />}
           </div>

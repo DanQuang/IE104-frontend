@@ -50,12 +50,10 @@ const ChatArea = ({ chatId, chunks }) => {
             <StackIcon className="w-20 h-20" />
             <div className="rounded-lg border border-foreground/15 bg-tertiary p-8">
               <h1 className="mb-2 text-lg font-semibold">
-                Welcome to Chat Droid AI Chatbot!
+                Welcome to Vietnamese Law AI Chatbot!
               </h1>
               <p className="mb-2 text-muted-foreground">
-                Experience the future of chatbots with our Next.js 14 powered
-                platform, featuring sleek shadcn styling, backed by Django and
-                Langchain.
+                Lúc bạn tìm đến tôi thì chắc bạn cũng đã phạm một lỗi lầm nào đó có thể liên quan tới pháp lý. Hãy để tôi an ủi tâm hồn của bạn bằng thông tin những bản án bạn có thể nhận. 😄
               </p>
             </div>
           </div>

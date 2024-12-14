@@ -113,10 +113,10 @@ const NavBar = () => {
               {dropdownVisible && (
                 <div className="dropdown-menu">
                   <button className="dropdown-item" onClick={() => navigate("auth/profile")}>
-                    Profile
+                    Hồ sơ
                   </button>
                   <button className="dropdown-item" onClick={handleLogout}>
-                    Logout
+                    Đăng xuất
                   </button>
                 </div>
               )}

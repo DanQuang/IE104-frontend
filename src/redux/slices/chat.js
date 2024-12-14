@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Initial state with proper initialization for messagesByChatId
 const initialState = {
     chats: [],
     messagesByChatId: {},
@@ -52,18 +53,35 @@ const initialState = {
         state.selectedMode = action.payload.type;
       },
     },
-  });
-  
-  export const {
-    setChats,
-    addChat,
-    deleteChat,
-    setMessages,
-    addMessage,
-    resetChatHistory,
-    setChatTitleFromMessage,
-    setSelectedMode,
-  } = chatSlice.actions;
-  
-  export default chatSlice.reducer;
-  
+
+    setChatTitleFromMessage: (state, action) => {
+      const { chatId, title } = action.payload;
+      const chat = state.chats.find(chat => chat.id === chatId);
+      if (chat) {
+        chat.title = title;
+      }
+    },
+
+    resetChatHistory: (state) => {
+      state.chats = [];
+      state.messagesByChatId = {};  // Resetting the messages as well
+    },
+
+    setSelectedMode: (state, action) => {
+      state.selectedMode = action.payload.type;
+    },
+  },
+});
+
+export const {
+  setChats,
+  addChat,
+  deleteChat,
+  setMessages,
+  addMessage,
+  resetChatHistory,
+  setChatTitleFromMessage,
+  setSelectedMode,
+} = chatSlice.actions;
+
+export default chatSlice.reducer;

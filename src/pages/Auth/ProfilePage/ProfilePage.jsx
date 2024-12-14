@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import './ProfilePage.css';
-import avt from '../../../assets/avatar.jpg'; // Import avatar from assets
+import avt from '../../../assets/quan.jpg'; // Import avatar from assets
 
 const ProfilePage = () => {
   const { token } = useSelector((state) => state.auth); // Use useSelector outside useEffect

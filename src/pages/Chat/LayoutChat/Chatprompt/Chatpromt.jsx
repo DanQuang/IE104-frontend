@@ -8,7 +8,7 @@ const ChatPrompt = ({ chatId, onSendMessage, loading }) => {
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();  // Ngừng hành vi mặc định của Enter
+      e.preventDefault();  
       sendMessage();
     }
   };
@@ -34,7 +34,7 @@ const ChatPrompt = ({ chatId, onSendMessage, loading }) => {
                   onChange={(e) => setPrompt(e.target.value)}
                   placeholder="Send a message..."
                   spellCheck={false}
-                  onKeyDown={handleKeyDown} // Thêm sự kiện keydown
+                  onKeyDown={handleKeyDown} 
                   className="min-h-[60px] w-full resize-none px-4 py-[1.3rem] focus-within:outline-none md:text-sm disabled:cursor-not-allowed"
                 />
                 <div className="absolute right-0 top-4 md:right-4">

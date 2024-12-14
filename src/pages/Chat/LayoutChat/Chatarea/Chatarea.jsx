@@ -8,17 +8,10 @@ import { StackIcon } from "@radix-ui/react-icons";
 import Message from "../Message/Message";
 
 const ChatArea = ({ chatId, chunks }) => {
-  console.log("Debug - ChatArea Rendered");
-  console.log("Debug - chatId:", chatId);
-
   const { messagesByChatId } = useSelector((state) => state.chat);
 
-  // Debugging Redux state
-  console.log("Debug - messagesByChatId:", messagesByChatId);
-
-  // Safely retrieve messages
-  const messages = messagesByChatId?.[chatId] || [];
-  console.log("Debug - Retrieved messages for chatId:", chatId, messages);
+  // Lấy tin nhắn một cách an toàn
+  const messages = messagesByChatId[chatId] || [];
 
   const chatRef = useRef(null);
 
@@ -29,20 +22,20 @@ const ChatArea = ({ chatId, chunks }) => {
   };
   marked.setOptions({ renderer });
 
-  const html = chunks ? marked(chunks) : ""; // Handle undefined chunks
+  const html = chunks ? marked(chunks) : ""; // Xử lý nếu chunks là undefined
 
   useEffect(() => {
-    console.log("Debug - useEffect triggered");
+    // Kiểm tra nếu chatRef có sẵn trước khi cuộn
     if (chatRef.current) {
-      console.log("Debug - Scrolling to bottom");
+      // Đảm bảo cuộn xảy ra sau khi component được cập nhật
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
-  }, [messages]); // Update scroll on new messages
+  }, [messages, chunks, chatId]); // Phụ thuộc vào cả messages, chunks và chatId để kích hoạt cuộn khi thay đổi chat
 
   return (
     <div
       ref={chatRef}
-      className="flex-1 overflow-y-scroll overflow-x-hidden custom-scrollbar py-5 px-2 md:p-5"
+      className="flex-1 overflow-y-scroll overflow-x-hidden py-5 px-2 md:p-5"
     >
       {messages.length === 0 && (
         <div className="pb-[200px] pt-4 md:pt-10">

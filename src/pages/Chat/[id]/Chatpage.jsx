@@ -8,7 +8,7 @@ import ChatPrompt from "../LayoutChat/Chatprompt/Chatpromt";
 const ChatPage = () => {
   const { id: rawId } = useParams(); // Lấy id từ URL (dạng chuỗi)
   const id = parseInt(rawId, 10); // Chuyển đổi id sang số nguyên
-  console.log("ID:", id); // Kiểm tra kiểu dữ liệu của id
+  // console.log("ID:", id); // Kiểm tra kiểu dữ liệu của id
 
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth); // Lấy token từ Redux
@@ -36,7 +36,7 @@ const ChatPage = () => {
         }
 
         const data = await response.json();
-        console.log("Fetched messages:", data);
+        // console.log("Fetched messages:", data);
         dispatch(setMessages({ chatId: id, messages: data }));
       } catch (error) {
         console.error("Error fetching messages:", error);

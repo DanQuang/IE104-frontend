@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Modal from "react-modal"; // Import React Modal
 import "./RegisterPage.css"; // Import file CSS
 import animationData from "../../../assets/chatbot.json"; // Import the animation data
 import Lottie from "lottie-react";
 import "./Registerpage.css";
+
+Modal.setAppElement("#root"); // Thiết lập vùng gốc để tránh lỗi truy cập ngoài modal
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -13,6 +16,7 @@ const RegisterPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(""); 
   const [isLoading, setIsLoading] = useState(false); 
+  const [isModalOpen, setIsModalOpen] = useState(false); // State cho modal
 
   const navigate = useNavigate();
 
@@ -21,7 +25,6 @@ const RegisterPage = () => {
     setIsLoading(true);
     setErrorMessage("");
 
-    // Kiểm tra xác nhận mật khẩu
     if (password !== confirmPassword) {
       setErrorMessage("Mật khẩu không chính xác.");
       setIsLoading(false);
@@ -34,23 +37,32 @@ const RegisterPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ "full_name": name, "email": email, "password": password, "re_password": confirmPassword }),
-        mode: 'cors'
+        body: JSON.stringify({
+          full_name: name,
+          email: email,
+          password: password,
+          re_password: confirmPassword,
+        }),
+        mode: "cors",
       });
 
       const data = await response.json();
       if (response.ok) {
-        // Điều hướng đến trang đăng nhập sau khi đăng ký thành công
-        navigate("/auth/login");
+        // Mở modal thông báo đăng ký thành công
+        setIsModalOpen(true);
       } else {
-        // Hiển thị lỗi từ máy chủ
-        setErrorMessage(data.message || "Đã xảy ra lỗi trong quá trình đăng ký.");
+        setErrorMessage(data.message || "Email đã được đăng ký hoặc không tồn tại.");
       }
     } catch (error) {
       setErrorMessage("Đã xảy ra lỗi. Vui lòng thử lại.");
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    navigate("/auth/login"); // Điều hướng đến trang đăng nhập sau khi đóng modal
   };
 
   return (
@@ -137,6 +149,19 @@ const RegisterPage = () => {
           </p>
         </div>
       </div>
+
+      {/* Modal thông báo đăng ký thành công */}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Success Modal"
+        className="success-modal"
+        overlayClassName="success-modal-overlay"
+      >
+        <h2>Đăng ký thành công!</h2>
+        <p>Hãy đăng nhập ngay để khám phá!</p>
+        <button onClick={closeModal} className="modal-button">Tiếp tục</button>
+      </Modal>
     </div>
   );
 };

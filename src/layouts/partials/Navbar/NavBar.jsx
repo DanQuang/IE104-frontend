@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import Cookies from "js-cookie";  // import js-cookie
-import { AvatarIcon } from "@radix-ui/react-icons";  // import icon từ Radix UI
+import Cookies from "js-cookie"; // import js-cookie
+import { AvatarIcon } from "@radix-ui/react-icons"; // import icon từ Radix UI
 import animationData from "../../../assets/chatbot.json";
 import Lottie from "lottie-react";
 import { signOut } from "../../../redux/slices/auth";
@@ -12,6 +12,7 @@ const NavBar = () => {
   const [current, setCurrent] = useState("home");
   const [hasScrolled, setHasScrolled] = useState(false);
   const [dropdownVisible, setDropdownVisible] = useState(false); // State để điều khiển dropdown
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false); // State để hiển thị modal
   const dropdownRef = useRef(null); // Tham chiếu đến dropdown
   const navigate = useNavigate();
   const location = useLocation();
@@ -67,6 +68,19 @@ const NavBar = () => {
     setDropdownVisible((prev) => !prev); // Toggle dropdown
   };
 
+  const handleShowLogoutConfirm = () => {
+    setShowLogoutConfirm(true); // Hiển thị modal
+  };
+
+  const handleCancelLogout = () => {
+    setShowLogoutConfirm(false); // Đóng modal
+  };
+
+  const handleConfirmLogout = () => {
+    setShowLogoutConfirm(false);
+    handleLogout(); // Thực hiện đăng xuất
+  };
+
   return (
     <header
       className={`navbar-container ${hasScrolled ? "scrolled" : ""} ${
@@ -83,15 +97,7 @@ const NavBar = () => {
           />
         </Link>
         <nav className="navbar-menu">
-          {[
-            { key: "home", label: "Trang chủ" },
-            { key: "feature", label: "Dịch vụ" },
-            { key: "chat", label: "Trò chuyện" },
-            { key: "pricing", label: "Bảng giá" },
-            { key: "donation", label: "Ủng hộ" },
-            { key: "about", label: "Về chúng tôi" },
-            { key: "contact", label: "Liên hệ" },
-          ].map((item) => (
+          {[{ key: "home", label: "Trang chủ" }, { key: "feature", label: "Dịch vụ" }, { key: "chat", label: "Trò chuyện" }, { key: "pricing", label: "Bảng giá" }, { key: "donation", label: "Ủng hộ" }, { key: "about", label: "Về chúng tôi" }, { key: "contact", label: "Liên hệ" }].map((item) => (
             <Link
               key={item.key}
               to={`/${item.key}`}
@@ -106,17 +112,16 @@ const NavBar = () => {
           {isLoggedIn ? (
             <div className="navbar-user-dropdown" ref={dropdownRef}>
               <div className="navbar-user" onClick={toggleDropdown}>
-                {/* Sử dụng icon Avatar từ Radix UI */}
                 <AvatarIcon className="user-avatar" />
                 <span>{user?.name || "User"}</span>
               </div>
               {dropdownVisible && (
                 <div className="dropdown-menu">
                   <button className="dropdown-item" onClick={() => navigate("auth/profile")}>
-                    Profile
+                    Hồ sơ
                   </button>
-                  <button className="dropdown-item" onClick={handleLogout}>
-                    Logout
+                  <button className="dropdown-item" onClick={handleShowLogoutConfirm}>
+                    Đăng xuất
                   </button>
                 </div>
               )}
@@ -131,6 +136,23 @@ const NavBar = () => {
           )}
         </div>
       </div>
+
+      {/* Modal xác nhận đăng xuất */}
+      {showLogoutConfirm && (
+        <div className="logout-modal">
+          <div className="logout-modal-content">
+            <p>Bạn có chắc chắn muốn đăng xuất?</p>
+            <div className="logout-modal-actions">
+              <button className="cancel-button" onClick={handleCancelLogout}>
+                Hủy
+              </button>
+              <button className="confirm-button" onClick={handleConfirmLogout}>
+                Đăng xuất
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

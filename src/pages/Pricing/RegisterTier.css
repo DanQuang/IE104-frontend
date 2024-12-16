@@ -1,0 +1,126 @@
+/* Tạo không gian đẹp mắt cho form */
+.payment-visa-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  border: 1px solid #f0c5d4;
+  border-radius: 12px;
+  background-color: #fff8fb;
+  box-shadow: 0 6px 16px rgba(255, 182, 193, 0.2);
+  transition: all 0.3s ease;
+}
+
+.payment-visa-container:hover {
+  box-shadow: 0 8px 24px rgba(255, 105, 135, 0.3);
+}
+
+/* Tiêu đề trang */
+.payment-visa-container h2 {
+  text-align: center;
+  font-size: 26px;
+  color: #ff6f91;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+/* Phần thông tin gói dịch vụ */
+.payment-visa-container p {
+  text-align: center;
+  font-size: 16px;
+  color: #7a7a7a;
+  margin-bottom: 30px;
+}
+
+/* Căn trái các nhãn và trường nhập */
+.payment-visa-container .ant-form-item {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.payment-visa-container .ant-form-item-label {
+  text-align: left;
+}
+
+.payment-visa-container .ant-form-item-label label {
+  font-weight: bold;
+  color: #ff6f91;
+}
+
+/* Các trường input */
+.payment-visa-container .ant-input,
+.payment-visa-container .ant-input-number-input {
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ffc0cb;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(255, 182, 193, 0.1);
+  text-align: left; /* Căn nội dung trong input sang trái */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payment-visa-container .ant-input:focus,
+.payment-visa-container .ant-input-number-input:focus {
+  border-color: #ff6f91;
+  box-shadow: 0 0 8px rgba(255, 105, 135, 0.4);
+}
+
+/* Các trường DatePicker */
+.payment-visa-container .ant-picker {
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #fff;
+  border: 1px solid #ffc0cb;
+  box-shadow: 0 2px 6px rgba(255, 182, 193, 0.1);
+  text-align: left;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payment-visa-container .ant-picker:focus {
+  border-color: #ff6f91;
+  box-shadow: 0 0 8px rgba(255, 105, 135, 0.4);
+}
+
+/* Chỉnh sửa nút thanh toán */
+.payment-visa-container .ant-btn-primary {
+  background-color: #ff6f91;
+  border-color: #ff6f91;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 25px;
+  border-radius: 8px;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(255, 105, 135, 0.2);
+  transition: all 0.3s ease;
+}
+
+.payment-visa-container .ant-btn-primary:hover {
+  background-color: #ff4569;
+  border-color: #ff4569;
+  box-shadow: 0 6px 12px rgba(255, 69, 105, 0.3);
+}
+
+/* Hiệu ứng cho các trường khi có lỗi */
+.payment-visa-container .ant-form-item-explain {
+  color: #ff6f91;
+  font-size: 14px;
+}
+
+/* Responsive: Điều chỉnh cho màn hình nhỏ */
+@media (max-width: 500px) {
+  .payment-visa-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .payment-visa-container h2 {
+    font-size: 22px;
+  }
+
+  .payment-visa-container p {
+    font-size: 14px;
+  }
+}

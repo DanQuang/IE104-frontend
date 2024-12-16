@@ -88,12 +88,9 @@ function HomePage() {
               trở thành hiện thực cho tất cả mọi người.
             </p>
             <div className="btn-box">
-              <a
-                className="tab-btn"
-                href="https://www.facebook.com/profile.php?id=100047983584357"
-              >
+              <Link to="/chat" className="tab-btn">
                 Thử Luật Sư AI
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -118,8 +115,12 @@ function HomePage() {
             </div>
             <p>Đăng ký hoặc Trải nghiệm Tư vấn AI ngay hôm nay!</p>
             <div className="button-container">
-              <button className="btn white">Thử Tư Vấn AI</button>
-              <button className="btn white">Tạo Tài Khoản Miễn Phí</button>
+              <Link to="/chat">
+                <button className="btn white">Thử Tư Vấn AI</button>
+              </Link>
+              <Link to="/auth/register">
+                <button className="btn white">Tạo Tài Khoản Miễn Phí</button>
+              </Link>
             </div>
           </div>
         </div>

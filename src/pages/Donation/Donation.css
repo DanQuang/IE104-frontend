@@ -133,7 +133,7 @@
   line-height: 1.6;
 }
 
-.donate-button {
+.donation-button {
   display: inline-block;
   padding: 20px 32px;
   font-size: 1rem;
@@ -145,9 +145,11 @@
   text-decoration: none;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center; /* Căn chữ ở giữa ngang */
+  line-height: 1; /* Tùy chỉnh chiều cao để chữ không bị lệch */
 }
 
-.donate-button:hover {
+.donation-button:hover {
   color: #ffffff;
   background-color: #ee0a34;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);

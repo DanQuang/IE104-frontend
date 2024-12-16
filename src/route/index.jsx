@@ -12,6 +12,8 @@ import Donation from "../pages/Donation/Donation";
 import ChatPage from "../pages/Chat/[id]/Chatpage";
 import ChatAreaLayout from "../pages/Chat/ChatAreaLayout";
 import ProfilePage from "../pages/Auth/ProfilePage/ProfilePage";
+import RegisterTier from "../pages/Pricing/RegisterTier";
+import Donate from "../pages/Donation/Donate";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +65,19 @@ export const router = createBrowserRouter([
         path: "chat/:id", // Route động cho trang chat
         element: <ChatPage />,
       },
+      {
+        path: "auth/register-tier",
+        element: <RegisterTier/>
+      },
+
+      {
+        path: "auth/profile",
+        element: <ProfilePage />,
+      },
+      {
+        path: "/donate",
+        element: <Donate />
+      }
     ],
   },
   {
@@ -81,10 +96,7 @@ export const router = createBrowserRouter([
         path: "forgot-password",
         element: <ForgotPasswordPage />,
       },
-      {
-        path: "profile",
-        element: <ProfilePage />,
-      },
+
     ],
   },
 ]);

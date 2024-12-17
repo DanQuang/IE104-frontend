@@ -1,0 +1,104 @@
+.chat-container {
+    flex: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e0 #f1f1f1;
+}
+
+.chat-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0;
+    border-radius: 4px;
+}
+
+.chat-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.empty-chat {
+    padding-bottom: 200px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.empty-chat-content {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.stack-icon {
+    width: 80px;
+    height: 80px;
+}
+
+.welcome-message {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.welcome-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.welcome-description {
+    color: #6c757d;
+}
+
+.chat-chunk {
+    max-width: 600px;
+    margin: auto;
+}
+
+.chat-chunk-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.cpu-icon-container {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.chat-chunk-body {
+    flex: 1;
+}
+
+.chatbot-name {
+    font-weight: bold;
+    margin: 0;
+}
+
+.chat-chunk-content {
+    padding-top: 5px;
+    white-space: pre-wrap;
+}
+
+.separator {
+    margin: 20px 0;
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+}

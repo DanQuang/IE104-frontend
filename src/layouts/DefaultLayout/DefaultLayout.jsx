@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
 import NavBar from '../partials/Navbar/NavBar';
 import Footer from '../partials/Footer/Footer';
-import './defaultLayout.css';  // Import CSS file
+import './defaultLayout.css';
 
 const { Content } = Layout;
 

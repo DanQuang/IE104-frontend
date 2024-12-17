@@ -1,165 +1,158 @@
-import { useState, useEffect } from "react";
-import {
-  HomeOutlined,
-  MenuOutlined,
-} from "@ant-design/icons";
-import { Button, Menu, Drawer, Avatar, Dropdown } from "antd";
-import { Link, useNavigate } from "react-router-dom";
-import './navbar.css';  // Import file CSS mới
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import Cookies from "js-cookie"; // import js-cookie
+import { AvatarIcon } from "@radix-ui/react-icons"; // import icon từ Radix UI
+import animationData from "../../../assets/chatbot.json";
+import Lottie from "lottie-react";
+import { signOut } from "../../../redux/slices/auth";
+import "./Navbar.css";
 
 const NavBar = () => {
   const [current, setCurrent] = useState("home");
-  const [drawerVisible, setDrawerVisible] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({ name: "" });
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState(false); // State để điều khiển dropdown
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false); // State để hiển thị modal
+  const dropdownRef = useRef(null); // Tham chiếu đến dropdown
   const navigate = useNavigate();
+  const location = useLocation();
+  const { isLoggedIn, user } = useSelector((state) => state.auth); // Lấy thông tin user từ Redux
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("accessToken");
-    if (storedToken) {
-      try {
-        // Giả sử có hàm giải mã token để lấy user
-        const decoded = jwtDecode(storedToken);
-        fetchUserData(decoded.id);
-        setIsLoggedIn(true);
-      } catch (error) {
-        console.error("Token decoding error:", error);
-      }
-    }
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
-  const items = [
-    {
-      label: (
-        <Link to="/" className={`navbar-menu-item ${current === "home" ? "active" : ""}`}>
-          Home
-        </Link>
-      ),
-      key: "home",
-    },
-    {
-      label: (
-        <Link to="/features" className={`navbar-menu-item ${current === "features" ? "active" : ""}`}>
-          Features
-        </Link>
-      ),
-      key: "features",
-    },
-    {
-      label: (
-        <Link to="/legal-assistant" className={`navbar-menu-item ${current === "legal-assistant" ? "active" : ""}`}>
-          Legal Assistant
-        </Link>
-      ),
-      key: "legal-assistant",
-    },
-    {
-      label: (
-        <Link to="/pricing" className={`navbar-menu-item ${current === "pricing" ? "active" : ""}`}>
-          Pricing
-        </Link>
-      ),
-      key: "pricing",
-    },
-    {
-      label: (
-        <Link to="/donation" className={`navbar-menu-item ${current === "donation" ? "active" : ""}`}>
-          Donation
-        </Link>
-      ),
-      key: "donation",
-    },
-    {
-      label: (
-        <Link to="/blogs" className={`navbar-menu-item ${current === "blogs" ? "active" : ""}`}>
-          Blogs
-        </Link>
-      ),
-      key: "blogs",
-    },
-    {
-      label: (
-        <Link to="/about" className={`navbar-menu-item ${current === "about" ? "active" : ""}`}>
-          About
-        </Link>
-      ),
-      key: "about",
-    },
-    {
-      label: (
-        <Link to="/contact" className={`navbar-menu-item ${current === "contact" ? "active" : ""}`}>
-          Contact
-        </Link>
-      ),
-      key: "contact",
-    },
-  ];
+  useEffect(() => {
+    const path = location.pathname.replace("/", "");
+    setCurrent(path || "home");
+  }, [location]);
 
-  const onClick = (e) => {
-    setCurrent(e.key);
-    navigate(`/${e.key}`);
-    setDrawerVisible(false);
+  // Đóng dropdown khi bấm ra ngoài
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownVisible(false);
+      }
+    };
+
+    if (dropdownVisible) {
+      document.addEventListener("click", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [dropdownVisible]);
+
+  const handleNavigation = (key) => {
+    setCurrent(key);
+    navigate(`/${key}`);
+  };
+
+  const handleLogout = () => {
+    Cookies.remove("authToken");
+    dispatch(signOut());
+    navigate("/home");
+  };
+
+  const toggleDropdown = () => {
+    setDropdownVisible((prev) => !prev); // Toggle dropdown
+  };
+
+  const handleShowLogoutConfirm = () => {
+    setShowLogoutConfirm(true); // Hiển thị modal
+  };
+
+  const handleCancelLogout = () => {
+    setShowLogoutConfirm(false); // Đóng modal
+  };
+
+  const handleConfirmLogout = () => {
+    setShowLogoutConfirm(false);
+    handleLogout(); // Thực hiện đăng xuất
   };
 
   return (
-    <header className="navbar-container">
+    <header
+      className={`navbar-container ${hasScrolled ? "scrolled" : ""} ${
+        location.pathname.startsWith("/chat") ? "non-sticky" : ""
+      }`}
+    >
       <div className="navbar-header">
         <Link to="/" className="navbar-logo">
-          <img src="/path/to/logo.png" alt="Logo" />
-        </Link>
-
-        <div className="navbar-menu">
-          <Menu
-            onClick={onClick}
-            selectedKeys={[current]}
-            mode="horizontal"
-            items={items}
-            className="navbar-menu"
+          <Lottie
+            animationData={animationData}
+            loop={true}
+            alt="Legal Chatbot Logo"
+            className="logo"
           />
-        </div>
-
+        </Link>
+        <nav className="navbar-menu">
+          {[{ key: "home", label: "Trang chủ" }, { key: "feature", label: "Dịch vụ" }, { key: "chat", label: "Trò chuyện" }, { key: "pricing", label: "Bảng giá" }, { key: "donation", label: "Ủng hộ" }, { key: "about", label: "Về chúng tôi" }, { key: "contact", label: "Liên hệ" }].map((item) => (
+            <Link
+              key={item.key}
+              to={`/${item.key}`}
+              className={`navbar-menu-item ${current === item.key ? "active" : ""}`}
+              onClick={() => handleNavigation(item.key)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
         <div className="navbar-actions">
           {isLoggedIn ? (
-            <Dropdown
-              overlay={
-                <Menu>
-                  <Menu.Item onClick={() => navigate("/profile")}>Profile</Menu.Item>
-                  <Menu.Item onClick={() => {
-                    localStorage.removeItem("accessToken");
-                    setIsLoggedIn(false);
-                    setUser({ name: "" });
-                    navigate("/auth/login");
-                  }}>Logout</Menu.Item>
-                </Menu>
-              }
-            >
-              <div className="navbar-user">
-                <Avatar src={user.avatar} />
-                <span>{user.name}</span>
+            <div className="navbar-user-dropdown" ref={dropdownRef}>
+              <div className="navbar-user" onClick={toggleDropdown}>
+                <AvatarIcon className="user-avatar" />
+                <span>{user?.name || "User"}</span>
               </div>
-            </Dropdown>
+              {dropdownVisible && (
+                <div className="dropdown-menu">
+                  <button className="dropdown-item" onClick={() => navigate("auth/profile")}>
+                    Hồ sơ
+                  </button>
+                  <button className="dropdown-item" onClick={handleShowLogoutConfirm}>
+                    Đăng xuất
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
-            <Button
-              type="primary"
+            <button
               className="navbar-login-button"
               onClick={() => navigate("/auth/login")}
             >
-              Start Consulting
-            </Button>
+              Bắt đầu ngay
+            </button>
           )}
-
-          <Button icon={<MenuOutlined />} onClick={() => setDrawerVisible(true)} className="navbar-mobile-menu-button" />
         </div>
       </div>
 
-      <Drawer
-        title="Menu"
-        placement="left"
-        onClose={() => setDrawerVisible(false)}
-        visible={drawerVisible}
-      >
-        <Menu onClick={onClick} selectedKeys={[current]} mode="vertical" items={items} />
-      </Drawer>
+      {/* Modal xác nhận đăng xuất */}
+      {showLogoutConfirm && (
+        <div className="logout-modal">
+          <div className="logout-modal-content">
+            <p>Bạn có chắc chắn muốn đăng xuất?</p>
+            <div className="logout-modal-actions">
+              <button className="cancel-button" onClick={handleCancelLogout}>
+                Hủy
+              </button>
+              <button className="confirm-button" onClick={handleConfirmLogout}>
+                Đăng xuất
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

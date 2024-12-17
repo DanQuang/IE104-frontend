@@ -1,0 +1,216 @@
+/* Sidebar container */
+/* Định nghĩa cho lớp custom */
+.sidebar {
+    width: 260px; /* Tương đương với w-[260px] */
+    display: none; /* Tương đương với hidden */
+    height: 100vh; /* Tương đương với h-screen */
+    background-color: var(--sidebar-color); /* Tương đương với bg-sidebar, giả sử bg-sidebar là một màu được định nghĩa trong CSS */
+  }
+  
+  /* Khi kích thước màn hình >= md (phổ biến trong Tailwind là khoảng 768px) */
+  @media (min-width: 768px) {
+    .sidebar {
+      display: block; /* Tương đương với md:block */
+    }
+  }
+  
+/* Định nghĩa cho lớp custom */
+.sidebar-content {
+    height: 100%; /* Tương đương với h-full */
+    border-radius: 0.5rem; /* Tương đương với rounded-lg (kích thước của border-radius có thể thay đổi tùy vào thiết lập của bạn trong Tailwind, 0.5rem là giá trị mặc định) */
+    padding-top: 0.5rem; /* Tương đương với py-2 */
+    padding-bottom: 0.5rem; /* Tương đương với py-2 */
+    display: flex; /* Tương đương với flex */
+    flex-direction: column; /* Tương đương với flex-col */
+    justify-content: space-between; /* Tương đương với justify-between */
+    gap: 0.75rem; /* Tương đương với gap-3 (mỗi khoảng cách là 0.75rem) */
+  }
+  
+
+/* Định nghĩa cho lớp custom */
+.new-chat-container {
+    padding-left: 0.5rem; /* Tương đương với px-2 */
+    padding-right: 0.5rem; /* Tương đương với px-2 */
+    overflow-y: auto; /* Tương đương với overflow-y-auto */
+  }
+  
+  /* Tạo custom scrollbar (thường sử dụng cho trình duyệt Webkit như Chrome, Safari) */
+  .new-chat-container::-webkit-scrollbar {
+    width: 8px; /* Đặt chiều rộng của scrollbar */
+  }
+  
+  .new-chat-container::-webkit-scrollbar-thumb {
+    background-color: #888; /* Màu của thanh cuộn */
+    border-radius: 10px; /* Bo tròn thanh cuộn */
+  }
+  
+  .new-chat-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Màu khi hover */
+  }
+  
+  .new-chat-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Màu nền của thanh cuộn */
+    border-radius: 10px; /* Bo tròn nền thanh cuộn */
+  }
+  
+
+.loading-container {
+    width: 100%; /* Tương đương với w-full */
+    display: flex; /* Tương đương với flex */
+    flex-direction: column; /* Tương đương với flex-col */
+    align-items: center; /* Tương đương với items-center */
+    justify-content: center; /* Tương đương với justify-center */
+  }
+
+.spinner {
+    animation: spin 1s linear infinite; /* Tương đương với animate-spin */
+    height: 1rem; /* Tương đương với h-4 (1rem = 16px) */
+    width: 1rem; /* Tương đương với w-4 (1rem = 16px) */
+    margin-right: 0.5rem; /* Tương đương với mr-2 (0.5rem = 8px) */
+  }
+  
+  /* Định nghĩa chuyển động spin */
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+/* Mobile Sidebar */
+.mobile-sidebar {
+    display: none; /* Tương đương với md:hidden */
+    position: fixed; /* Tương đương với fixed */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; /* Tương đương với inset-0 */
+    overflow-y: auto; /* Tương đương với overflow-y-auto */
+    z-index: 50; /* Tương đương với z-50 */
+    background-color: rgba(31, 41, 55, 0.75); /* Tương đương với bg-gray-800 bg-opacity-75 */
+  }
+  
+  /* Khi kích thước màn hình >= md (phổ biến trong Tailwind là khoảng 768px) */
+  @media (min-width: 768px) {
+    .mobile-sidebar {
+      display: block; /* Tương đương với md:block, hiển thị phần tử khi màn hình đạt kích thước md */
+    }
+  }
+
+.mobile-sidebar-content {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    width: 100%;
+}
+
+.sidebar-container {
+    max-width: 400px;
+    width: 100%;
+    background-color: #2e2e2e;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+.close-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.close-icon {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+/* User info section */
+.user-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.avatar {
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.avatar img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.user-info p {
+    color: white;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Chat rows */
+.chat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: #3a3a3a;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.chat-row:hover {
+    background-color: #5a5a5a;
+}
+
+.chat-row p {
+    color: white;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* New Chat Button */
+.new-chat-button {
+    padding: 12px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.new-chat-button:hover {
+    background-color: #45a049;
+}
+
+/* Scrollbar styles */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #555 #222;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #222;
+}

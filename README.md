@@ -9,7 +9,7 @@ Trước khi bắt đầu, bạn cần có một số phần mềm sau:
 - [Node.js](https://nodejs.org/) (Phiên bản >= 16.x)
 - [npm](https://www.npmjs.com/) (Được cài sẵn cùng Node.js)
 - [Vite](https://vitejs.dev/) (Sử dụng tự động khi chạy dự án)
-
+- web tham khảo: [link](https://legalmasterai.com/) 
 ## Cài đặt và khởi động dự án
 
 1. **Clone Repository**

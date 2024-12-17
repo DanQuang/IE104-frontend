@@ -1,0 +1,157 @@
+/* General Container */
+.donation-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px;
+}
+
+/* Đảm bảo nội dung không bị giới hạn */
+.donation-info {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 20px 0;
+  padding-bottom: 20px;
+  box-sizing: border-box; /* Đảm bảo kích thước đúng */
+}
+
+.donation-text {
+  width: 60%;
+}
+
+.donation-text h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #333;
+  text-align: left;
+}
+
+.donation-text p {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #555;
+  text-align: left;
+}
+
+.donation-image img {
+  width: 80%;
+  border-radius: 8px;
+}
+
+/* Empower Access to Justice */
+.donation-empower {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.donation-empower h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.donation-empower p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Donation Motto */
+.donation-motto {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+  background-color: #f4f4f4;
+}
+
+.donation-motto h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.donation-motto p {
+  font-size: 18px;
+  color: #666;
+}
+
+/* Donation Breakdown */
+.donation-how {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.donation-how h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.donation-breakdown {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.donation-item {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.donation-item h3 {
+  font-size: 24px;
+  color: #333;
+}
+
+.donation-item p {
+  font-size: 16px;
+  color: #555;
+}
+
+.donation-transparency {
+  width: 50%;
+  margin-bottom: 30px;
+  text-align: center;
+  margin: 0 auto; /* Căn giữa khối so với trang */
+  padding-top: 80px;
+}
+
+.donation-transparency h2 {
+  font-weight: bold;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.donation-transparency p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.donation-button {
+  display: inline-block;
+  padding: 20px 32px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #f43f5e;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center; /* Căn chữ ở giữa ngang */
+  line-height: 1; /* Tùy chỉnh chiều cao để chữ không bị lệch */
+}
+
+.donation-button:hover {
+  color: #ffffff;
+  background-color: #ee0a34;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
